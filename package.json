@@ -1,0 +1,26 @@
+{
+  "name": "greenfield",
+  "version": "1.0.0",
+  "description": "task manager application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenevolentBactrians/Greenfield.git"
+  },
+  "keywords": [
+    "task",
+    "calander",
+    "to-do",
+    "organizer",
+    "planner"
+  ],
+  "author": "Eric Chi, Vasyl Nesterenko, Michael Flis, Shawn Kang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenevolentBactrians/Greenfield/issues"
+  },
+  "homepage": "https://github.com/BenevolentBactrians/Greenfield#readme"
+}
