@@ -4,7 +4,8 @@
   "description": "task manager application",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --watch -d"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,16 @@
   "bugs": {
     "url": "https://github.com/BenevolentBactrians/Greenfield/issues"
   },
-  "homepage": "https://github.com/BenevolentBactrians/Greenfield#readme"
+  "homepage": "https://github.com/BenevolentBactrians/Greenfield#readme",
+  "dependencies": {
+    "webpack": "^4.5.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack-cli": "^2.0.14"
+  }
 }
