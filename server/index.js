@@ -22,5 +22,10 @@ app.post('/login', urlencodedParser, (req, res) => {
   res.sendStatus(201)
 })
 
+app.get('/signup', (req, res) => {
+  console.log('here')
+  res.sendFile(path.join(__dirname, '..', '/client/dist/signup.html'));
+})
+
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on 3000'))
