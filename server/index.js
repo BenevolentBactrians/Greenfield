@@ -34,8 +34,13 @@ app.get('/signup', (req, res) => {
 
 // -- added to test DB --
 
-app.post('/saveUser', urlencodedParser, (req, res) => {
+// { email: 'test@aere',
+//   password: 'test',
+//   'password-again': 'test' }
+
+app.post('/signup', urlencodedParser, (req, res) => {
   console.log(req.body);
+  
   db.saveUser(req.body);
   res.sendStatus(201);
 })

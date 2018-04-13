@@ -9,7 +9,6 @@ db.once('open', () => console.log('mongoose db connection open..'));
 
 const userSchema = new mongoose.Schema (
   {
-    id: {type: Number, unique: true},
     name: String,
     hashedPassword: String,
     salt: String
@@ -21,7 +20,6 @@ let User = mongoose.model('User', userSchema);
 
 const taskSchema = new mongoose.Schema (
   {
-    id: {type: Number, unique: true},
     userId: Number,
     name: String,
     description: String,
@@ -35,7 +33,6 @@ let Task = mongoose.model('Task', taskSchema);
 
 const noteSchema = new mongoose.Schema (
   {
-    id: {type: Number, unique: true},
     userId: Number,
     text: String
   }
@@ -50,31 +47,21 @@ let Note = mongoose.model('Note', noteSchema);
 // -- User Functions --
 
 // Save a user or users to the MongoDB
-let saveUser = (list) => {
+let saveUser = (user) => {
   console.log('Saving users(s) to database ...');
   
-  // handle single user object, wrap in array
-  if ( !Array.isArray(list) ) {
-    list = [list];
+  var formated = {
+    name: user.email,
+    hashedPassword: user.password,
+    salt: "salt"
   }
-   
-  // loop over users, format user obj, create new db entry for each user
-  list.forEach( (user) => {
     
-    var formated = {
-      id: user.id,
-      name: user.name,
-      hashedPassword: user.hashedPassword,
-      salt: user.salt
+  new User(formated).save( (err, newUserEntry) => {
+    if (err) {
+      throw err;
     }
-    
-    new User(formated).save( (err, newUserEntry) => {
-      if (err) {
-        throw err;
-      }
-      console.log('New user added to db: ', newUserEntry);
-    })    
-  })  
+    console.log('New user added to db: ', newUserEntry);
+  })    
 }
 
 let getAllUsers = (callback) => {
@@ -108,7 +95,6 @@ let saveTask = (list) => {
   
   list.forEach( (task) => {  
     var formatted = {  
-      id: task.id,
       userId: task.userId,
       name: task.name,
       description: task.description,
