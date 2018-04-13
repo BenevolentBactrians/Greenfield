@@ -77,6 +77,27 @@ let saveUser = (list) => {
   })  
 }
 
+let getAllUsers = (callback) => {
+  console.log('Getting all users..');
+  User.find( (err, users) => {
+    if (err) {
+      throw err;
+    }
+    callback(users);
+  }) 
+}
+
+let getUser = (query, callback) => {
+  console.log('Getting user: ', query);
+  User.find(query,  (err, user) => {
+    if (err) {
+      throw err;
+    }
+    callback(user);
+  })
+}
+
+
 // -- Task Functons --
 let saveTask = (list) => {
   console.log('Saving task to database..');
@@ -85,8 +106,7 @@ let saveTask = (list) => {
     list = [list]
   }
   
-  list.forEach( (task) => {
-    
+  list.forEach( (task) => {  
     var formatted = {  
       id: task.id,
       userId: task.userId,
@@ -95,16 +115,16 @@ let saveTask = (list) => {
       startTime: task.startTime,
       endTime: task.endTime
     }
-  
     new Task(formatted).save( (err, newTaskEntry) => {
       if (err) {
         throw err;
       }
       console.log('New task added to db: ', newTaskEntry);
-    })
-  
+    }) 
   })
 }
+
+
 
 // -- Note Functons --
 let saveNote = (list) => {
@@ -128,14 +148,13 @@ let saveNote = (list) => {
       }
       console.log('New note added to db: ', newNoteEntry);
     })
-  
-  })  
-  
+  })   
 }
 
 
 module.exports.saveUser = saveUser;
 module.exports.saveTask = saveTask;
 module.exports.saveNote = saveNote;
-
+module.exports.getAllUsers = getAllUsers;
+module.exports.getUser = getUser;
 

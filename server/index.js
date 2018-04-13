@@ -26,6 +26,9 @@ app.post('/login', urlencodedParser, (req, res) => {
   res.sendStatus(201)
 })
 
+
+// -- added to test DB --
+
 app.post('/saveUser', urlencodedParser, (req, res) => {
   console.log(req.body);
   db.saveUser(req.body);
@@ -42,6 +45,20 @@ app.post('/saveNote', urlencodedParser, (req, res) => {
   console.log(req.body);
   db.saveNote(req.body);
   res.sendStatus(201);
+})
+
+// get all users
+app.get('/users', urlencodedParser, (req, res) => {
+  db.getAllUsers( (users) => {
+    res.send(users);
+  })
+})
+
+// get user by id
+app.get('/users/:id', urlencodedParser, (req, res) => {
+  db.getUser(req.params, (user) => {
+    res.send(user);
+  })
 })
 
 
