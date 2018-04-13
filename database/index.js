@@ -49,11 +49,10 @@ let Note = mongoose.model('Note', noteSchema);
 // Save a user or users to the MongoDB
 let saveUser = (user) => {
   console.log('Saving users(s) to database ...');
-  
   var formated = {
-    name: user.email,
-    hashedPassword: user.password,
-    salt: "salt"
+    name: user.name,
+    hashedPassword: user.hashedPassword,
+    salt: user.salt
   }
     
   new User(formated).save( (err, newUserEntry) => {
