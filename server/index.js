@@ -13,7 +13,7 @@ app.use(morgan('dev')); // HTTP request logger middleware for node.js
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 
-
+//serves index html and bundle.js when open /
 // app.get('/', (req, res) => {
 //   res.redirect(301, '/login');
 // })
