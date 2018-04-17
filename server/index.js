@@ -3,6 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const db = require('../database');
+var bcrypt = require('bcrypt');
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -34,9 +35,23 @@ app.get('/signup', (req, res) => {
 
 // -- added to test DB --
 
-app.post('/saveUser', urlencodedParser, (req, res) => {
+// { email: 'test@aere',
+//   password: 'test',
+//   'password-again': 'test' }
+
+app.post('/signup', urlencodedParser, (req, res) => {
   console.log(req.body);
-  db.saveUser(req.body);
+  const saltRounds = 10;
+  bcrypt.genSalt(saltRounds, function(err, salt) {
+    bcrypt.hash(req.body.password, salt, function(err, hash) {
+        let formated = {}
+        formated.name = req.body.email;
+        formated.salt = salt
+        formated.hashedPassword = hash
+        console.log(formated, '<<<<<<<<<')
+        db.saveUser(formated);
+    });
+  });
   res.sendStatus(201);
 })
 
