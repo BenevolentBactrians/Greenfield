@@ -25,7 +25,13 @@ app.get('/login', (req, res) => {
 
 app.post('/login', urlencodedParser, (req, res) => {
   console.log(req.body);
-  res.sendStatus(201)
+  db.getUser({name: req.body.email}, (error, result) => {
+    result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
+      bcrypt.hash(req.body.password, result.salt, function(err, hash) {
+        hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
+          res.sendFile(path.join(__dirname, '..', '/client/dist/index.html'));
+      });
+  })
 })
 
 app.get('/signup', (req, res) => {
@@ -49,7 +55,7 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.name = req.body.email;
         formated.salt = salt
         formated.hashedPassword = hash
-        db.saveUser(formated, (error) => {
+        db.saveUser(formated, (error, success) => {
           error ? res.status(400).send(`Sorry ${error}`) : res.sendStatus(201);
         });
     });
