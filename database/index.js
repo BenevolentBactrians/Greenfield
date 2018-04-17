@@ -52,7 +52,7 @@ let Note = mongoose.model('Note', noteSchema);
 // -- User Functions --
 
 // Save a user or users to the MongoDB
-let saveUser = (user) => {
+let saveUser = (user, callback) => {
   console.log('Saving users(s) to database ...');
   var formated = {
     name: user.name,
@@ -62,7 +62,7 @@ let saveUser = (user) => {
     
   new User(formated).save( (err, newUserEntry) => {
     if (err) {
-      throw err;
+      callback(err);
     }
     console.log('New user added to db: ', newUserEntry);
   })    
