@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema (
     name: {
       type: String,
       required: true,
-      unique: true,
+      index: { unique: true },
       lowercase: true
     },
     hashedPassword: String,
@@ -63,8 +63,10 @@ let saveUser = (user, callback) => {
   new User(formated).save( (err, newUserEntry) => {
     if (err) {
       callback(err);
+    } else {
+      callback();
+      console.log('New user added to db: ', newUserEntry);
     }
-    console.log('New user added to db: ', newUserEntry);
   })    
 }
 
@@ -80,11 +82,11 @@ let getAllUsers = (callback) => {
 
 let getUser = (query, callback) => {
   console.log('Getting user: ', query);
-  User.find(query,  (err, user) => {
+  User.findOne(query, (err, user) => {
     if (err) {
-      throw err;
+      callback(err);
     }
-    callback(user);
+    callback(null, user);
   })
 }
 
