@@ -18,10 +18,13 @@ app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 app.get('/', (req, res) => {
   res.render('index');
 })
+<<<<<<< HEAD
 
 // app.get('/', (req, res) => {
 //   res.redirect(301, '/login');
 // })
+=======
+>>>>>>> b117b77... refactored to use express views
 
 app.get('/login', (req, res) => {
   res.render('login')
@@ -34,10 +37,14 @@ app.post('/login', urlencodedParser, (req, res) => {
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
 <<<<<<< HEAD
+<<<<<<< HEAD
           res.render('index')
 =======
           res.sendFile(path.join(__dirname, '..', '/client/dist/index.html'));
 >>>>>>> 8d6dc5a... working login
+=======
+          res.render('index')
+>>>>>>> b117b77... refactored to use express views
       });
   })
 })
