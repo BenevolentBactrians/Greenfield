@@ -10,7 +10,6 @@ class App extends React.Component {
 
   render(props) {
     return (
-      // <MuiThemeProvider>
 
         <div className="container">
 
@@ -37,10 +36,9 @@ class App extends React.Component {
 
         </div>
        
-       // </MuiThemeProvider>
 
       )
   }
 }
 
-export default App
+export default App;
