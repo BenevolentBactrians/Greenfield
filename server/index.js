@@ -11,16 +11,16 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
 
+app.set('view engine', 'ejs'); // sets a view engine to use things from /views folder
+
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 
-//serves index html and bundle.js when open /
-// app.get('/', (req, res) => {
-//   res.redirect(301, '/login');
-// })
+app.get('/', (req, res) => {
+  res.render('index');
+})
 
 app.get('/login', (req, res) => {
-  console.log('here')
-  res.sendFile(path.join(__dirname, '..', '/client/dist/login.html'));
+  res.render('login')
 })
 
 app.post('/login', urlencodedParser, (req, res) => {
@@ -29,14 +29,13 @@ app.post('/login', urlencodedParser, (req, res) => {
     result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
-          res.sendFile(path.join(__dirname, '..', '/client/dist/index.html'));
+          res.render('index')
       });
   })
 })
 
 app.get('/signup', (req, res) => {
-  console.log('here')
-  res.sendFile(path.join(__dirname, '..', '/client/dist/signup.html'));
+  res.render('signup')
 })
 
 
