@@ -9,7 +9,12 @@ db.once('open', () => console.log('mongoose db connection open..'));
 
 const userSchema = new mongoose.Schema (
   {
-    name: String,
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true
+    },
     hashedPassword: String,
     salt: String
   }  
