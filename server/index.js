@@ -11,11 +11,11 @@ const urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
 
-app.use(express.static('../client/dist'));
+app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 
-app.get('/', (req, res) => {
-  res.redirect(301, '/login');
-})
+// app.get('/', (req, res) => {
+//   res.redirect(301, '/login');
+// })
 
 app.get('/login', (req, res) => {
   console.log('here')
