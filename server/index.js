@@ -19,6 +19,10 @@ app.get('/', (req, res) => {
   res.render('index');
 })
 
+// app.get('/', (req, res) => {
+//   res.redirect(301, '/login');
+// })
+
 app.get('/login', (req, res) => {
   res.render('login')
 })
