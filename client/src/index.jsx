@@ -9,19 +9,29 @@ class App extends React.Component {
   render() {
     return (
 
-          <div className='container'>
+          <div className="container">
 
-            <div className='header'>HEADER</div>
-
-            <div className='main'>MAIN
-              <div className='add-task'>ADD TASK</div>
-              <div className='daily'>DAILY</div>
-              <div className='right-col'>
-                <div className='weekly'>WEEKLY</div>
-                <div className='notes'>NOTES</div>
-              </div>
-
+            <div className="header">  
+              <div className="header-left"> LEFT </div>
+              <div className="header-center"> <h1>TITLE </h1></div>
+              <div className="header-right"> RIGHT </div>   
             </div>
+              
+            <div className='col-left'>
+              <div className='add-task'> ADD TASK </div>
+              <div className='duck-view'> ASK THE DUCK </div>
+            </div>
+            
+            <div className='col-center'>
+              <div className='weekly-view'> WEEKLY OUTLOOK </div>
+            </div>
+            
+            <div className='col-right'>
+              <div className='notes'>NOTES</div>
+              <div className='chart'>PROGRESS</div>
+            </div>
+
+
           </div>
 
 
