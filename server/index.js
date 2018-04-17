@@ -49,7 +49,6 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.name = req.body.email;
         formated.salt = salt
         formated.hashedPassword = hash
-        console.log(formated, '<<<<<<<<<')
         db.saveUser(formated);
     });
   });
