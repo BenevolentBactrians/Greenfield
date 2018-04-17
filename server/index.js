@@ -49,10 +49,12 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.name = req.body.email;
         formated.salt = salt
         formated.hashedPassword = hash
-        db.saveUser(formated);
+        db.saveUser(formated, (error) => {
+          error ? res.status(400).send(`Sorry ${error}`) : res.sendStatus(201);
+        });
     });
   });
-  res.sendStatus(201);
+  
 })
 
 app.post('/saveTask', urlencodedParser, (req, res) => {
