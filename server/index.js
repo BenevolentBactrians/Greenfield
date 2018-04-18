@@ -3,11 +3,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const db = require('../database');
-var bcrypt = require('bcrypt');
+const bcrypt = require('bcrypt');
+const session = require('express-session');
 
 const app = express();
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
 
@@ -15,36 +17,46 @@ app.set('view engine', 'ejs'); // sets a view engine to use things from /views f
 
 app.use(express.static(path.join(__dirname, '..', '/client/dist')));
 
-app.get('/', (req, res) => {
+//app is using express-sessions and stores them in mongo db
+app.use(session({
+  secret: 'shh.. this is a secret',
+  resave: true,
+  saveUninitialized: false,
+  cookie: {}
+}));
+
+// function that when used denies access to prohibited resources. 
+const restrict = (req, res, next) => {
+  if ( req.session && req.session.userId ) {
+    return next();
+  } else {
+    req.session.error = 'Access denied!';
+    res.status(403);
+    res.redirect('login');
+  }
+}
+
+app.get( '/', restrict, (req, res, next) => {
   res.render('index');
 })
-<<<<<<< HEAD
-
-// app.get('/', (req, res) => {
-//   res.redirect(301, '/login');
-// })
-=======
->>>>>>> b117b77... refactored to use express views
 
 app.get('/login', (req, res) => {
   res.render('login')
 })
 
 app.post('/login', urlencodedParser, (req, res) => {
-  console.log(req.body);
   db.getUser({name: req.body.email}, (error, result) => {
     result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
-        hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
-<<<<<<< HEAD
-<<<<<<< HEAD
-          res.render('index')
-=======
-          res.sendFile(path.join(__dirname, '..', '/client/dist/index.html'));
->>>>>>> 8d6dc5a... working login
-=======
-          res.render('index')
->>>>>>> b117b77... refactored to use express views
+        if ( hash === result.hashedPassword ) {
+          // create session and add userId to the session
+          req.session.regenerate(() => {
+            req.session.userId = result.id;
+            res.redirect('/');
+          })
+        } else {
+          res.status(404).send(`Invalid credentials`) 
+        } 
       });
   })
 })
@@ -53,12 +65,15 @@ app.get('/signup', (req, res) => {
   res.render('signup')
 })
 
+app.get('/signout', (req, res) => {
+  if ( req.session ) {
+    req.session.destroy((err) => {
+      err ? console.log(err) : res.redirect('/login')
+    })
+  }
+})
 
 // -- added to test DB --
-
-// { email: 'test@aere',
-//   password: 'test',
-//   'password-again': 'test' }
 
 app.post('/signup', urlencodedParser, (req, res) => {
   console.log(req.body);
