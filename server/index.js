@@ -33,7 +33,7 @@ app.get('/login', (req, res) => {
 app.post('/login', urlencodedParser, (req, res) => {
   console.log(req.body);
   db.getUser({name: req.body.email}, (error, result) => {
-    result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
+    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
 <<<<<<< HEAD
