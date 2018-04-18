@@ -7,12 +7,14 @@ class AddTask extends Reat.Component {
 
     this.state={
       task: '',
+      date: '',
       startTime: '',
       endTime: '',
       description: ''
     }
 
     this.onChangeTask = this.onChangeTask.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
     this.onChangeStart = this.onChangeStart.bind(this);
     this.onChangeEnd = this.onChangeEnd.bind(this);
     this.onChangeDesc = this.onChangeDesc.bind(this);
@@ -21,7 +23,7 @@ class AddTask extends Reat.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3000/addtask', {
+    axios.post('http://localhost:3000/savetask', {
       task: this.state.task,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
@@ -37,6 +39,12 @@ class AddTask extends Reat.Component {
   onChangeTask(e) {
     this.setState({
       task: e.target.value
+    })
+  }
+
+   onChangeDate(e) {
+    this.setState({
+      Date: e.target.value
     })
   }
 
@@ -64,6 +72,7 @@ class AddTask extends Reat.Component {
           <h3>add a task</h3>
           <form onSubmit={this.handleSubmit}>
             <input type='text' placeholder='task' onChange={this.onChangeTask}/>
+            <input type='text' placeholder='task' onChange={this.onChangeDate}/>
             <input type='text' placeholder='start time' onChange={this.onChangeStart}/>
             <input type='text' placeholder='end time' onChange={this.onChangeEnd}/>
             <input type='text' placeholder='description'onChange={this.onChangeDesc}/>
