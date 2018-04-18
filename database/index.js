@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema (
     },
     hashedPassword: String,
     salt: String
-  }  
+  }
 );
 
 let User = mongoose.model('User', userSchema);
@@ -26,11 +26,12 @@ let User = mongoose.model('User', userSchema);
 const taskSchema = new mongoose.Schema (
   {
     userId: Number,
-    name: String,
+    task: String,
+    date: String,
     description: String,
     startTime: String,
     endTime: String
-  }  
+  }
 );
 
 let Task = mongoose.model('Task', taskSchema);
@@ -59,7 +60,7 @@ let saveUser = (user, callback) => {
     hashedPassword: user.hashedPassword,
     salt: user.salt
   }
-    
+
   new User(formated).save( (err, newUserEntry) => {
     if (err) {
       callback(err);
@@ -67,7 +68,7 @@ let saveUser = (user, callback) => {
       callback();
       console.log('New user added to db: ', newUserEntry);
     }
-  })    
+  })
 }
 
 let getAllUsers = (callback) => {
@@ -77,7 +78,7 @@ let getAllUsers = (callback) => {
       throw err;
     }
     callback(users);
-  }) 
+  })
 }
 
 let getUser = (query, callback) => {
@@ -92,28 +93,26 @@ let getUser = (query, callback) => {
 
 
 // -- Task Functons --
-let saveTask = (list) => {
+let saveTask = (taskObj) => {
   console.log('Saving task to database..');
-  
-  if ( !Array.isArray(list) ) {
-    list = [list]
+
+  //deconstructs the task object from request body
+  const {userId, task, date,startTime, endTime, description} = taskObj;
+  const formatted = {
+    userId: userId,
+    task: task,
+    date: date,
+    startTime: startTime,
+    endTime: endTime,
+    description: description
   }
-  
-  list.forEach( (task) => {  
-    var formatted = {  
-      userId: task.userId,
-      name: task.name,
-      description: task.description,
-      startTime: task.startTime,
-      endTime: task.endTime
-    }
+  //save new task to database
     new Task(formatted).save( (err, newTaskEntry) => {
       if (err) {
         throw err;
       }
       console.log('New task added to db: ', newTaskEntry);
-    }) 
-  })
+    })
 }
 
 
@@ -121,26 +120,26 @@ let saveTask = (list) => {
 // -- Note Functons --
 let saveNote = (list) => {
   console.log('Saving note to database..');
-  
+
   if ( !Array.isArray(list) ) {
     list = [list]
   }
-  
+
   list.forEach( (note) => {
-    
-    var formatted = {  
+
+    var formatted = {
       id: note.id,
       userId: note.userId,
       text: note.text
     }
-  
+
     new Note(formatted).save( (err, newNoteEntry) => {
       if (err) {
         throw err;
       }
       console.log('New note added to db: ', newNoteEntry);
     })
-  })   
+  })
 }
 
 
