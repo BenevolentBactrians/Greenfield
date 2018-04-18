@@ -1,10 +1,10 @@
-App.jsx
-Login.jsx
-Weekly.jsx
-Register.jsx
-AddTask.jsx
-Notes.jsx
-Daily.jsx
-AppHeader.jsx
-DailyHeader.jsx
-TaskTimeRange.jsx
+// App.jsx
+// Login.jsx
+// Weekly.jsx
+// Register.jsx
+// AddTask.jsx
+// Notes.jsx
+// Daily.jsx
+// AppHeader.jsx
+// DailyHeader.jsx
+// TaskTimeRange.jsx
