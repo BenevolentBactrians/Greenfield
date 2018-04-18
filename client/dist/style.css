@@ -1,7 +1,57 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat');
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 
 body {
-  font-family:'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+.main {
+  width: 100%;
+  height: 100%;
+}
+.wisdom {
+  width: 100%;
+  height: 100%;
+}
+.login {
+  padding: 0px 5% 0px 5%;
+}
+.task {
+  padding: 0px 5% 0px 5%;
+}
+.progress {
+  padding: 0px 5% 0px 5%;
+}
+.wisdom {
+  padding: 0px 5% 0px 5%;
+}
+.selected {
+  padding: 5px;
+  color: white;
+  font-weight: bold;
+  margin-right: 5px;
+  font-size: 1.1em;
+}
+
+.unselected {
+  padding: 5px;
+  margin-right: 5px;
+  font-size: 1.1em;
+}
+.nav {
+  background-color: #3498db;
+  margin: 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-family: "Francois One";
+}
+.home {
+  font-weight: bold;
+  font-size: 1.9em;
+  margin-right: auto;
+  margin-left: 10px;
+  font-family: "Francois One";
+  color: #ffffff;
 }
 
 .container {
@@ -24,7 +74,6 @@ body {
 .header-left {
   background-color: beige;
   width: 30%;
-  
 }
 
 .header-center {
