@@ -2,10 +2,9 @@ import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 import TimePicker from 'material-ui/TimePicker';
 import TextField from 'material-ui/TextField';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
-import moment from 'moment';
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -16,7 +15,8 @@ class AddTask extends React.Component {
       date: null,
       startTime: null,
       endTime: null,
-      description: ''
+      description: '',
+      open: false
     }
 
     this.onChangeTask = this.onChangeTask.bind(this);
@@ -25,23 +25,26 @@ class AddTask extends React.Component {
     this.onChangeEnd = this.onChangeEnd.bind(this);
     this.onChangeDesc = this.onChangeDesc.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRequestClose = this.handleRequestClose.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
+    console.log('DATEEEEEE!!!!!!', this.state.date)
     axios.post('http://localhost:3000/savetask', {
       task: this.state.task,
       date: this.state.date,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
-      description: this.state.description
+      description: this.state.description,
     }).then((response) => {
       this.setState({
         task: '',
         date: null,
         startTIme: null,
         endTime: null,
-        description: ''
+        description: '',
+        open:true
       })
     }).catch(function(error) {
       console.error(error);
@@ -55,10 +58,9 @@ class AddTask extends React.Component {
     })
   }
 
-   onChangeDate(e, date) {
-    console.log('!!!!!DATTTTEEE!!!!', date)
+  onChangeDate(e, date) {
     this.setState({
-      Date: date
+      date: date
     })
   }
 
@@ -80,9 +82,15 @@ class AddTask extends React.Component {
     })
   }
 
+  handleRequestClose() {
+    this.setState({
+      open: false
+    })
+  }
+
   render() {
     return (
-        <div className="addTask">
+        <div className="add-task">
           <h4>add a task</h4>
           <form onSubmit={this.handleSubmit}>
              <TextField
@@ -117,9 +125,17 @@ class AddTask extends React.Component {
               floatingLabelText="description"
               rows={2}
             />
-            <FloatingActionButton type="submit" value="Submit" onClick={this.handleSubmit}>
-              <ContentAdd />
-            </FloatingActionButton>
+
+            <RaisedButton
+              onClick={this.handleSubmit}
+              label="add task"
+            />
+            <Snackbar
+              open={this.state.open}
+              message="task added"
+              autoHideDuration={4000}
+              onRequestClose={this.handleRequestClose}
+            />
           </form>
         </div>
       )
