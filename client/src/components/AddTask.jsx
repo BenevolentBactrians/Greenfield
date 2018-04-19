@@ -1,5 +1,11 @@
 import React from 'react';
+import DatePicker from 'material-ui/DatePicker';
+import TimePicker from 'material-ui/TimePicker';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 import axios from 'axios';
+import moment from 'moment';
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -7,9 +13,9 @@ class AddTask extends React.Component {
 
     this.state={
       task: '',
-      date: '',
-      startTime: '',
-      endTime: '',
+      date: null,
+      startTime: null,
+      endTime: null,
       description: ''
     }
 
@@ -32,9 +38,9 @@ class AddTask extends React.Component {
     }).then((response) => {
       this.setState({
         task: '',
-        date: '',
-        startTIme: '',
-        endTime: '',
+        date: null,
+        startTIme: null,
+        endTime: null,
         description: ''
       })
     }).catch(function(error) {
@@ -49,21 +55,22 @@ class AddTask extends React.Component {
     })
   }
 
-   onChangeDate(e) {
+   onChangeDate(e, date) {
+    console.log('!!!!!DATTTTEEE!!!!', date)
     this.setState({
-      Date: e.target.value
+      Date: date
     })
   }
 
-  onChangeStart(e) {
+  onChangeStart(e, time) {
     this.setState({
-      startTime: e.target.value
+      startTime: time
     })
   }
 
-  onChangeEnd(e) {
+  onChangeEnd(e, time) {
     this.setState({
-      endTime: e.target.value
+      endTime:time
     })
   }
 
@@ -75,16 +82,44 @@ class AddTask extends React.Component {
 
   render() {
     return (
-        <div>
-          <h3>add a task</h3>
+        <div className="addTask">
+          <h4>add a task</h4>
           <form onSubmit={this.handleSubmit}>
-            <input type='text' placeholder='task' onChange={this.onChangeTask}/>
-            <input type='text' placeholder='date' onChange={this.onChangeDate}/>
-            <DateTime closeOnSelect={true}/>
-            <input type='text' placeholder='start time' onChange={this.onChangeStart}/>
-            <input type='text' placeholder='end time' onChange={this.onChangeEnd}/>
-            <input type='text' placeholder='description'onChange={this.onChangeDesc}/>
-            <button type='submit' value='Submit'>create a task</button>
+             <TextField
+              id='task'
+              value={this.state.task}
+              onChange={this.onChangeTask}
+              floatingLabelText="task"
+            />
+            <DatePicker
+              id="date"
+              hintText="yyyy/mm/dd"
+              onChange={this.onChangeDate}
+            />
+            <TimePicker
+              id="starttime"
+              format="ampm"
+              hintText="start time"
+              value={this.state.startTime}
+              onChange={this.onChangeStart}
+            />
+            <TimePicker
+              id="endtime"
+              format="ampm"
+              hintText="end time"
+              value={this.state.endTime}
+              onChange={this.onChangeEnd}
+            />
+            <TextField
+              id='description'
+              value={this.state.description}
+              onChange={this.onChangeDesc}
+              floatingLabelText="description"
+              rows={2}
+            />
+            <FloatingActionButton type="submit" value="Submit" onClick={this.handleSubmit}>
+              <ContentAdd />
+            </FloatingActionButton>
           </form>
         </div>
       )

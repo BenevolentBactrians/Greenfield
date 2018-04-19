@@ -27,10 +27,10 @@ const taskSchema = new mongoose.Schema (
   {
     userId: Number,
     task: String,
-    date: String,
+    date: Date,
     description: String,
-    startTime: String,
-    endTime: String
+    startTime: Date,
+    endTime: Date
   }
 );
 
@@ -97,7 +97,7 @@ let saveTask = (taskObj) => {
   console.log('Saving task to database..');
 
   //deconstructs the task object from request body
-  const {userId, task, date,startTime, endTime, description} = taskObj;
+  const {userId, task, date, startTime, endTime, description} = taskObj;
   const formatted = {
     userId: userId,
     task: task,

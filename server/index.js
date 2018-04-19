@@ -92,7 +92,7 @@ app.post('/signup', urlencodedParser, (req, res) => {
 
 })
 
-app.post('/saveTask', urlencodedParser, (req, res) => {
+app.post('/saveTask', jsonParser, (req, res) => {
   console.log(req.body);
   db.saveTask(req.body);
   res.sendStatus(201);
