@@ -25,7 +25,7 @@ app.use(session({
   cookie: {}
 }));
 
-// function that when used denies access to prohibited resources. 
+// function that when used denies access to prohibited resources.
 const restrict = (req, res, next) => {
   if ( req.session && req.session.userId ) {
     return next();
@@ -46,7 +46,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', urlencodedParser, (req, res) => {
   db.getUser({name: req.body.email}, (error, result) => {
-    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
+    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) :
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         if ( hash === result.hashedPassword ) {
           // create session and add userId to the session
@@ -55,8 +55,8 @@ app.post('/login', urlencodedParser, (req, res) => {
             res.redirect('/');
           })
         } else {
-          res.status(404).send(`Invalid credentials`) 
-        } 
+          res.status(404).send(`Invalid credentials`)
+        }
       });
   })
 })
@@ -89,7 +89,7 @@ app.post('/signup', urlencodedParser, (req, res) => {
         });
     });
   });
-  
+
 })
 
 app.post('/saveTask', urlencodedParser, (req, res) => {

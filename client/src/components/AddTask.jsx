@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-class AddTask extends Reat.Component {
+class AddTask extends React.Component {
   constructor(props) {
     super(props);
 
@@ -25,11 +25,18 @@ class AddTask extends Reat.Component {
     e.preventDefault();
     axios.post('http://localhost:3000/savetask', {
       task: this.state.task,
+      date: this.state.date,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
       description: this.state.description
-    }).then(function(response) {
-      console.log(response)
+    }).then((response) => {
+      this.setState({
+        task: '',
+        date: '',
+        startTIme: '',
+        endTime: '',
+        description: ''
+      })
     }).catch(function(error) {
       console.error(error);
     })
@@ -72,11 +79,12 @@ class AddTask extends Reat.Component {
           <h3>add a task</h3>
           <form onSubmit={this.handleSubmit}>
             <input type='text' placeholder='task' onChange={this.onChangeTask}/>
-            <input type='text' placeholder='task' onChange={this.onChangeDate}/>
+            <input type='text' placeholder='date' onChange={this.onChangeDate}/>
+            <DateTime closeOnSelect={true}/>
             <input type='text' placeholder='start time' onChange={this.onChangeStart}/>
             <input type='text' placeholder='end time' onChange={this.onChangeEnd}/>
             <input type='text' placeholder='description'onChange={this.onChangeDesc}/>
-            <button type='submit' value='Create A Task'/>
+            <button type='submit' value='Submit'>create a task</button>
           </form>
         </div>
       )
