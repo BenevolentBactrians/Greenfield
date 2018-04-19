@@ -33,11 +33,7 @@ app.post('/login', urlencodedParser, (req, res) => {
     result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         hash !== result.hashedPassword ? res.status(404).send(`Invalid credentials`)  :
-<<<<<<< HEAD
           res.render('index')
-=======
-          res.sendFile(path.join(__dirname, '..', '/client/dist/index.html'));
->>>>>>> 8d6dc5a... working login
       });
   })
 })
