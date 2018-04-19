@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import MuiThemeProvider from 'material-ui;
@@ -43,15 +42,4 @@ class App extends React.Component {
 }
 
 export default App;
-=======
-// App.jsx
-// Login.jsx
-// Weekly.jsx
-// Register.jsx
-// AddTask.jsx
-// Notes.jsx
-// Daily.jsx
-// AppHeader.jsx
-// DailyHeader.jsx
-// TaskTimeRange.jsx
->>>>>>> Corrects Typo
+
