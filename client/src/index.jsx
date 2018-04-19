@@ -17,9 +17,7 @@ class App extends React.Component {
 
           <div className="nav-left"> LEFT  </div>
           <div className="nav-center"> <h1> TITLE </h1> </div>
-          <div className="nav-right"> RIGHT 
-            
-          </div>   
+          <div className="nav-right"> RIGHT </div>   
 
             
           <div className='col-left'>
