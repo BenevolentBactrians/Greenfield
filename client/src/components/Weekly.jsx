@@ -43,17 +43,68 @@ class Weekly extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      week: [
-        {name: 'Monday', total: 4}, 
-        {name: 'Tuesday', total: 5},
-        {name: 'Wednesday', total: 12},
-        {name: 'Thursday', total: 0},
-        {name: 'Friday', total: 33},
-        {name: 'Saturday', total: 2},
-        {name: 'Sunday', total: 0}
-      ]
+      weekList: [
+        {date: 'Monday', taskCount: 4}, 
+        {date: 'Tuesday', taskCount: 5},
+        {date: 'Wednesday', taskCount: 12},
+        {date: 'Thursday', taskCount: 0},
+        {date: 'Friday', taskCount: 33},
+        {date: 'Saturday', taskCount: 2},
+        {date: 'Sunday', taskCount: 0}
+      ],
+      currentDate: Date(),
+      currentWeekTasks: [] 
     }
   }
+  // on component did mount
+  //   setCurrentDate
+  //   getCurrentWeekTasks
+  //   formatWeekData
+  
+  componentDidMount () {
+    console.log('componenetDidMount..')
+    this.setCurrentDate();
+    this.getCurrentWeekTasks(); // TODO add user ID
+  }
+  
+  // get / set currentDate state
+  setCurrentDate () {
+    let newDate = Date();
+    this.setState({currentDate: newDate})
+  }
+  
+  
+  
+  // get user's currentWeekTasks for 7 days from currentDate
+  getCurrentWeekTasks (userID) {
+    // var currentWeekTasks = [];
+    // var path = `/tasks/${userID}`; //TODO
+    
+    console.log('getCurrentWeekTasks........')
+    let context = this;
+    
+    axios.get('/tasks')
+    .then ( (results) => {
+      console.log('getCurrentWeekTasks', results.data);
+      context.setState({currentWeekTasks: results.data})
+    })
+    .catch( (error) => {
+      console.log(error)
+    })
+  }
+  
+  // formatWeekData and set weekList state;
+  // create a var weekList set to an empty array
+  //   loop over currentWeekTasks 
+  //      for each task
+  //        iterate over WeekList
+  //          if date  does not exist
+  //            create new object
+  //            set date and  set taskCounter to 1 
+  //          else
+  //            increment taskCounter to list at date
+  //  set weekList state to weekList
+  
   
   render (props) {
     return (
@@ -68,8 +119,8 @@ class Weekly extends React.Component {
               
               <Paper style={listStyles}>
                 <Menu>               
-                  { this.state.week.map( (day, index) =>
-                    <MenuItem key={index} primaryText={day.name} />                 
+                  { this.state.weekList.map( (day, index) =>
+                    <MenuItem key={index} primaryText={day.date} />                 
                     )
                   }               
                 </Menu>
@@ -78,8 +129,8 @@ class Weekly extends React.Component {
     
               <Paper style={listStyles}>
                 <Menu>  
-                  { this.state.week.map( (day, index) => 
-                    <MenuItem key={index} primaryText={`${day.total} Tasks`} />
+                  { this.state.weekList.map( (day, index) => 
+                    <MenuItem key={index} primaryText={`${day.taskCount} Tasks`} />
                     )             
                   }
                   
