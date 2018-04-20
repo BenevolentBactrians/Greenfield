@@ -6,11 +6,16 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
-
-// test
-import ActionHome from 'material-ui/svg-icons/action/home';
 import SvgIcon from 'material-ui/SvgIcon';
 
+const listStyles = {
+  display: 'inline-block',
+  margin: '16px 16px 8px 16px',
+};
+
+const buttonStyles = {
+  margin: 16
+};
 const iconStyles = {
   margin: '8px 16px 8px 16px',
 };
@@ -34,16 +39,6 @@ const RightArrow = (props) => (
 )
 
 
-const styleList = {
-  display: 'inline-block',
-  margin: '16px 16px 8px 16px',
-};
-
-const styleBtn = {
-  margin: 16
-};
-
-
 class Weekly extends React.Component {
   constructor(props) {
     super(props);
@@ -62,16 +57,16 @@ class Weekly extends React.Component {
   
   render (props) {
     return (
-     
-      
+    
         <div className="week-view-container">
-          <Paper style={styleList}>
+          <Paper style={listStyles}>
             
             <div className="week-title"> <h3>WEEKLY TASKS</h3></div>
            
+           
             <div className="week-list">       
               
-              <Paper style={styleList}>
+              <Paper style={listStyles}>
                 <Menu>               
                   { this.state.week.map( (day, index) =>
                     <MenuItem key={index} primaryText={day.name} />                 
@@ -80,9 +75,8 @@ class Weekly extends React.Component {
                 </Menu>
               </Paper>
             
-            
-   
-              <Paper style={styleList}>
+    
+              <Paper style={listStyles}>
                 <Menu>  
                   { this.state.week.map( (day, index) => 
                     <MenuItem key={index} primaryText={`${day.total} Tasks`} />
@@ -94,10 +88,12 @@ class Weekly extends React.Component {
  
           </div>
           
+          
           <div className="week-selectors">            
             <RaisedButton icon={<LeftArrow style={iconStyles} />} style={styleBtn} />
             <RaisedButton label={<RightArrow style={iconStyles} />} style={styleBtn} />       
           </div>
+          
           
           
         </Paper>
