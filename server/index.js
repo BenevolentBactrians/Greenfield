@@ -118,5 +118,10 @@ app.get('/users/:id', urlencodedParser, (req, res) => {
   })
 })
 
+// get all tasks regardless of user -- TEMPORARY
+app.get('/tasks', urlencodedParser, (req, res) => {
+  res.send({});
+})
+
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on 3000')); // TODO update this console log
