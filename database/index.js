@@ -117,6 +117,18 @@ let saveTask = (list) => {
 }
 
 
+let getAllTasks = (callback) => {
+  console.log('Getting all tasks..');
+  Task.find( (err, tasks) => {
+    if (err) {
+      callback(err);
+    } else {
+      callback(tasks);
+    }
+  })
+}
+
+
 
 // -- Note Functons --
 let saveNote = (list) => {
@@ -149,4 +161,5 @@ module.exports.saveTask = saveTask;
 module.exports.saveNote = saveNote;
 module.exports.getAllUsers = getAllUsers;
 module.exports.getUser = getUser;
+module.exports.getAllTasks = getAllTasks;
 
