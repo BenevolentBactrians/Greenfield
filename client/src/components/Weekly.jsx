@@ -1,6 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import MuiThemeProvider from 'material-ui';
+import Paper from 'material-ui/Paper';
+import Menu from 'material-ui/Menu';
+import MenuItem from 'material-ui/MenuItem';
+
+const style = {
+  display: 'inline-block',
+  margin: '16px 32px 16px 0',
+};
 
 
 class Weekly extends React.Component {
@@ -15,49 +22,73 @@ class Weekly extends React.Component {
         {name: 'Friday', total: 33},
         {name: 'Saturday', total: 2},
         {name: 'Sunday', total: 0}
-        ]
+      ]
     }
   }
   
   render (props) {
     return (
+     
       
-      <div className="week-view-container"> 
-        
-        <div className="week-view-title"> Weekly Tasks </div>
-        
-        <div className="week-list">
-          
-          
-          <div className="week-list-items">
-            <ul>
-            { this.state.week.map( (day, index) =>
-              <div>
-                <li key={index}>{day.name}</li>
-              </div>
-              )
-             }
-            </ul>
-          </div>
-          
-          <div className="week-list-sum">
-            <ul>
-              { this.state.week.map( (day, index) =>
-                <div>
-                  <li key={index}>{day.total}</li>
-                </div>
-                )
-               }
-              </ul>
-          </div>
-          
-          
+        <div>
+          <Paper style={style}>
+            <Menu>
+              <MenuItem primaryText="Maps" />
+              <MenuItem primaryText="Books" />
+              <MenuItem primaryText="Flights" />
+              <MenuItem primaryText="Apps" />
+            </Menu>
+          </Paper>
+          <Paper style={style}>
+            <Menu>
+              <MenuItem primaryText="Refresh" />
+              <MenuItem primaryText="Help &amp; feedback" />
+              <MenuItem primaryText="Settings" />
+              <MenuItem primaryText="Sign out" />
+            </Menu>
+          </Paper>
         </div>
+         
       
-      </div>  
     )
   }
   
 }
 
 export default Weekly
+
+     // <div className="week-view-container"> 
+        
+     //    <div className="week-view-title"> Weekly Tasks </div>
+        
+     //    <div className="week-list">
+          
+          
+     //      <div className="week-list-items">
+            
+     //        <ul>
+     //        { this.state.week.map( (day, index) =>
+              
+     //            <li key={index}>{day.name}</li>
+              
+     //          )
+     //         }
+     //        </ul>
+            
+     //      </div>
+          
+     //      <div className="week-list-sum">
+     //        <ul>
+     //          { this.state.week.map( (day, index) =>
+               
+     //              <li key={index}>{day.total}</li>
+                
+     //            )
+     //           }
+     //          </ul>
+     //      </div>
+          
+          
+     //    </div>
+      
+     //  </div>  
