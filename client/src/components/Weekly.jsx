@@ -59,12 +59,13 @@ class Weekly extends React.Component {
   // on component did mount
   //   setCurrentDate
   //   getCurrentWeekTasks
-  //   formatWeekData
+  //   formatWeekList
   
   componentDidMount () {
     console.log('componenetDidMount..')
     this.setCurrentDate();
     this.getCurrentWeekTasks(); // TODO add user ID
+    // this.formatWeekList();
   }
   
   // get / set currentDate state
@@ -74,9 +75,11 @@ class Weekly extends React.Component {
   }
   
   
+  // TODO filter user tasks by date and current user ID
+  
   
   // get user's currentWeekTasks for 7 days from currentDate
-  getCurrentWeekTasks (userID) {
+  getCurrentWeekTasks () {
     // var currentWeekTasks = [];
     // var path = `/tasks/${userID}`; //TODO
     console.log('getCurrentWeekTasks........')
@@ -86,6 +89,10 @@ class Weekly extends React.Component {
     .then ( (results) => {
       console.log('getCurrentWeekTasks', results.data);
       context.setState({currentWeekTasks: results.data})
+      return results.data;
+    })
+    .then ( (results) => {
+      context.formatWeekList();
     })
     .catch( (error) => {
       console.log(error)
@@ -104,7 +111,46 @@ class Weekly extends React.Component {
   //          else
   //            increment taskCounter to list at date
   //  set weekList state to weekList
-  
+  formatWeekList () {
+    let weekList = [];
+    //console.log('formatWeekList task....');
+    //console.log('::::::', this.state.currentWeekTasks)
+    
+    this.state.currentWeekTasks.forEach( (task) => {
+      console.log('formatWeekList task: ', task);
+      
+      //let found = false;
+      
+      // if weekList state is empty
+      let obj = {};
+      obj.date = task.startTime;
+      obj.taskCount = 1;
+      weekList.push(obj);
+     }) 
+      
+      
+    //   this.state.weekList.forEach( (weekListItem) => {
+        
+    //     if (task.startTime  === weekListItem.date) {
+    //       let obj = weekListItem;
+    //       obj.taskCount++;
+    //       weekList.push(obj);
+    //       found = true;
+    //     }
+    //    })
+      
+    //     if ( !found ) {
+    //       let obj = {};
+    //       obj.date = weekListItem.date;
+    //       obj.taskCount = 1;
+    //       weekList.push(obj);
+    //     }
+    // })
+    console.log(this.state.weekList)
+    this.setState({weekList: weekList});
+    console.log(this.state.weekList)
+    
+  }
   
   
   
