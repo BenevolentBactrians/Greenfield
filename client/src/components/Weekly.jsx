@@ -79,7 +79,6 @@ class Weekly extends React.Component {
   getCurrentWeekTasks (userID) {
     // var currentWeekTasks = [];
     // var path = `/tasks/${userID}`; //TODO
-    
     console.log('getCurrentWeekTasks........')
     let context = this;
     
@@ -93,6 +92,7 @@ class Weekly extends React.Component {
     })
   }
   
+  // TODO ...........
   // formatWeekData and set weekList state;
   // create a var weekList set to an empty array
   //   loop over currentWeekTasks 
@@ -104,6 +104,8 @@ class Weekly extends React.Component {
   //          else
   //            increment taskCounter to list at date
   //  set weekList state to weekList
+  
+  
   
   
   render (props) {
