@@ -118,9 +118,11 @@ app.get('/users/:id', urlencodedParser, (req, res) => {
   })
 })
 
-// get all tasks regardless of user -- TEMPORARY
+// get all tasks for all users -- TEMPORARY
 app.get('/tasks', urlencodedParser, (req, res) => {
-  res.send({});
+  db.getAllTasks( (tasks) => {
+    res.send(tasks); 
+  })
 })
 
 
