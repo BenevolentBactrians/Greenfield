@@ -90,8 +90,8 @@ class Weekly extends React.Component {
           
           
           <div className="week-selectors">            
-            <RaisedButton icon={<LeftArrow style={iconStyles} />} style={styleBtn} />
-            <RaisedButton label={<RightArrow style={iconStyles} />} style={styleBtn} />       
+            <RaisedButton icon={<LeftArrow style={iconStyles} />} style={buttonStyles} />
+            <RaisedButton label={<RightArrow style={iconStyles} />} style={buttonStyles} />       
           </div>
           
           
