@@ -1,7 +1,6 @@
 import React from 'react';
 import AddTask from './AddTask.jsx';
 import Duck from './Duck.jsx';
-
 // import SvgIcon from 'material-ui/SvgIcon';
 import Weekly from './Weekly.jsx';
 
@@ -12,6 +11,9 @@ class App extends React.Component {
 
   render(props) {
     return (
+
+    
+     
 
         <div className="container">
 
@@ -27,7 +29,8 @@ class App extends React.Component {
           </div>
 
           <div className='col-center'>
-            <div className='weekly-view'>  
+            <div className='weekly-view'> 
+               
               <Weekly />
             </div>
           </div>
@@ -40,8 +43,8 @@ class App extends React.Component {
 
         </div>
 
-
-       // </MuiThemeProvider>
+  
+    
 
       )
   }
