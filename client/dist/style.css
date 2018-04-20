@@ -89,6 +89,29 @@ body {
   background-color: lightblue;
 }
 
+.week-view-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.week-list {
+  display: flex;
+  flex-direction: row;
+}
+
+.week-title {
+  text-align: center;
+}
+
+.week-selectors {
+  display: flex;
+  flex-direction: row;
+  /*background-color: lightgrey;*/
+  justify-content: space-between;
+}
+
+
+
 .col-right {
   grid-area: 2/3/3/4;
   display: flex;
