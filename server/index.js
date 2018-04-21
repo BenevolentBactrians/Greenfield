@@ -25,7 +25,7 @@ app.use(session({
   cookie: {}
 }));
 
-// function that when used denies access to prohibited resources. 
+// function that when used denies access to prohibited resources.
 const restrict = (req, res, next) => {
   if ( req.session && req.session.userId ) {
     return next();
@@ -46,7 +46,7 @@ app.get('/login', (req, res) => {
 
 app.post('/login', urlencodedParser, (req, res) => {
   db.getUser({name: req.body.email}, (error, result) => {
-    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
+    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) :
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         if ( hash === result.hashedPassword ) {
           // create session and add userId to the session
@@ -55,8 +55,8 @@ app.post('/login', urlencodedParser, (req, res) => {
             res.redirect('/');
           })
         } else {
-          res.status(404).send(`Invalid credentials`) 
-        } 
+          res.status(404).send(`Invalid credentials`)
+        }
       });
   })
 })
@@ -89,10 +89,10 @@ app.post('/signup', urlencodedParser, (req, res) => {
         });
     });
   });
-  
+
 })
 
-app.post('/saveTask', urlencodedParser, (req, res) => {
+app.post('/saveTask', jsonParser, (req, res) => {
   console.log(req.body);
   db.saveTask(req.body);
   res.sendStatus(201);
@@ -120,3 +120,4 @@ app.get('/users/:id', urlencodedParser, (req, res) => {
 
 
 app.listen(process.env.PORT || 3000, () => console.log('listening on 3000')); // TODO update this console log
+
