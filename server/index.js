@@ -5,6 +5,7 @@ const morgan = require('morgan');
 const db = require('../database');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
 
 const app = express();
 const jsonParser = bodyParser.json();
@@ -22,7 +23,8 @@ app.use(session({
   secret: 'shh.. this is a secret',
   resave: true,
   saveUninitialized: false,
-  cookie: {}
+  cookie: {},
+  store: new MongoStore({mongooseConnection: db.db})
 }));
 
 // function that when used denies access to prohibited resources. 
@@ -36,8 +38,9 @@ const restrict = (req, res, next) => {
   }
 }
 
-app.get( '/', /*restrict,*/ (req, res, next) => {
-  res.render('index');
+app.get('/', jsonParser, (req, res, next) => {
+  var userId = req.body.userId
+  res.render('index', {userId: req.url.split('=')[1]});
 })
 
 app.get('/login', (req, res) => {
@@ -52,7 +55,7 @@ app.post('/login', urlencodedParser, (req, res) => {
           // create session and add userId to the session
           req.session.regenerate(() => {
             req.session.userId = result.id;
-            res.redirect('/');
+            res.redirect('/?userId=' + result.id);
           })
         } else {
           res.status(404).send(`Invalid credentials`) 
