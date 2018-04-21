@@ -36,7 +36,7 @@ const restrict = (req, res, next) => {
   }
 }
 
-app.get('/', restrict, (req, res, next) => {
+app.get('/'/*, restrict*/, (req, res, next) => {
   res.render('index');
 })
 
