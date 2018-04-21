@@ -113,3 +113,23 @@ body {
   height: 45%;
   background-color: beige;
 }
+
+.duck {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.duck-image {
+  display: flex;
+  justify-content: center;
+}
+
+.duck-image img {
+  height: 33vh;
+}
+
+.duck-text {
+  text-align: center;
+}
