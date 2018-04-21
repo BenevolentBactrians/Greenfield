@@ -31,7 +31,6 @@
     "bcrypt": "^2.0.0",
     "body-parser": "^1.18.2",
     "express": "^4.16.3",
-    "express-session": "^1.15.6",
     "material-ui": "^0.20.0",
     "express-session": "^1.15.6",
     "moment": "^2.22.1",

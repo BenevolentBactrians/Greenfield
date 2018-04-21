@@ -24,7 +24,7 @@ body {
   align-items: center;
   background-color: beige;
   padding-left: 10px;
-
+  
 }
 
 .nav-center {
@@ -112,4 +112,24 @@ body {
   width: 100%;
   height: 45%;
   background-color: beige;
+}
+
+.duck {
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+}
+
+.duck-image {
+  display: flex;
+  justify-content: center;
+}
+
+.duck-image img {
+  height: 33vh;
+}
+
+.duck-text {
+  text-align: center;
 }

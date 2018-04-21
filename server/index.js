@@ -25,7 +25,7 @@ app.use(session({
   cookie: {}
 }));
 
-// function that when used denies access to prohibited resources.
+// function that when used denies access to prohibited resources. 
 const restrict = (req, res, next) => {
   if ( req.session && req.session.userId ) {
     return next();
@@ -55,8 +55,8 @@ app.post('/login', urlencodedParser, (req, res) => {
             res.redirect('/');
           })
         } else {
-          res.status(404).send(`Invalid credentials`)
-        }
+          res.status(404).send(`Invalid credentials`) 
+        } 
       });
   })
 })

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AddTask from './AddTask.jsx';
+import Duck from './Duck.jsx';
 // import MuiThemeProvider from 'material-ui;
 // import SvgIcon from 'material-ui/SvgIcon';
 
@@ -22,7 +23,7 @@ class App extends React.Component {
 
           <div className='col-left'>
             <AddTask className='add-task' />
-            <div className='duck-view'> DUCK </div>
+            <Duck className='duck-view'/>
           </div>
 
           <div className='col-center'>
