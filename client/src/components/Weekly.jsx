@@ -123,7 +123,9 @@ class Weekly extends React.Component {
       
       // if weekList state is empty
       let obj = {};
-      obj.date = task.startTime;
+      let date = moment(task.startTime).format('YYYY-MM-DD')    // depricated FIX THIS
+      
+      obj.date = date;
       obj.taskCount = 1;
       weekList.push(obj);
      }) 
@@ -178,7 +180,7 @@ class Weekly extends React.Component {
               <Paper style={listStyles}>
                 <Menu>  
                   { this.state.weekList.map( (day, index) => 
-                    <MenuItem key={index} primaryText={`${day.taskCount} Tasks`} />
+                    <MenuItem key={index} primaryText={`${day.taskCount} Task(s)`} />
                     )             
                   }
                   
