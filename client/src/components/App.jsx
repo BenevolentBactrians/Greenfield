@@ -11,7 +11,7 @@ class App extends React.Component {
     return (
 
     
-//       <MuiThemeProvider>
+       <MuiThemeProvider>
 
         <div className="container">
 
@@ -41,7 +41,7 @@ class App extends React.Component {
 
         </div>
 
-//     </MuiThemeProvider>   
+     </MuiThemeProvider>   
       
 
 
