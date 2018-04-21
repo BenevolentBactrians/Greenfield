@@ -7,7 +7,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => console.log('mongoose db connection open..'));
 
 
-const userSchema = new mongoose.Schema (
+const userSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -17,26 +17,26 @@ const userSchema = new mongoose.Schema (
     },
     hashedPassword: String,
     salt: String
-  }  
+  }
 );
 
 let User = mongoose.model('User', userSchema);
 
 
-const taskSchema = new mongoose.Schema (
+const taskSchema = new mongoose.Schema(
   {
     userId: Number,
     name: String,
     description: String,
     startTime: String,
     endTime: String
-  }  
+  }
 );
 
 let Task = mongoose.model('Task', taskSchema);
 
 
-const noteSchema = new mongoose.Schema (
+const noteSchema = new mongoose.Schema(
   {
     userId: Number,
     text: String
@@ -59,25 +59,25 @@ let saveUser = (user, callback) => {
     hashedPassword: user.hashedPassword,
     salt: user.salt
   }
-    
-  new User(formated).save( (err, newUserEntry) => {
+
+  new User(formated).save((err, newUserEntry) => {
     if (err) {
       callback(err);
     } else {
       callback();
       console.log('New user added to db: ', newUserEntry);
     }
-  })    
+  })
 }
 
 let getAllUsers = (callback) => {
   console.log('Getting all users..');
-  User.find( (err, users) => {
+  User.find((err, users) => {
     if (err) {
       throw err;
     }
     callback(users);
-  }) 
+  })
 }
 
 let getUser = (query, callback) => {
@@ -94,25 +94,25 @@ let getUser = (query, callback) => {
 // -- Task Functons --
 let saveTask = (list) => {
   console.log('Saving task to database..');
-  
-  if ( !Array.isArray(list) ) {
+
+  if (!Array.isArray(list)) {
     list = [list]
   }
-  
-  list.forEach( (task) => {  
-    var formatted = {  
+
+  list.forEach((task) => {
+    var formatted = {
       userId: task.userId,
       name: task.name,
       description: task.description,
       startTime: task.startTime,
       endTime: task.endTime
     }
-    new Task(formatted).save( (err, newTaskEntry) => {
+    new Task(formatted).save((err, newTaskEntry) => {
       if (err) {
         throw err;
       }
       console.log('New task added to db: ', newTaskEntry);
-    }) 
+    })
   })
 }
 
@@ -121,26 +121,26 @@ let saveTask = (list) => {
 // -- Note Functons --
 let saveNote = (list) => {
   console.log('Saving note to database..');
-  
-  if ( !Array.isArray(list) ) {
+
+  if (!Array.isArray(list)) {
     list = [list]
   }
-  
-  list.forEach( (note) => {
-    
-    var formatted = {  
+
+  list.forEach((note) => {
+
+    var formatted = {
       id: note.id,
       userId: note.userId,
       text: note.text
     }
-  
-    new Note(formatted).save( (err, newNoteEntry) => {
+
+    new Note(formatted).save((err, newNoteEntry) => {
       if (err) {
         throw err;
       }
       console.log('New note added to db: ', newNoteEntry);
     })
-  })   
+  })
 }
 
 
