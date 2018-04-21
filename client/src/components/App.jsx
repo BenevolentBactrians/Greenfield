@@ -7,14 +7,21 @@ import Weekly from './Weekly.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props)
+    this.state = {
+      userId: ''
+    }
+  }
+
+  componentDidMount() {
+    var userId = window.location.search.split('=')[1]
+    console.log(window.location)
+    if ( userId !== this.state.userId ){
+      this.setState({userId: userId});
+    }
   }
 
   render(props) {
     return (
-
-    
-     
-
         <div className="container">
 
 

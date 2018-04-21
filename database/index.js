@@ -148,4 +148,4 @@ module.exports.saveTask = saveTask;
 module.exports.saveNote = saveNote;
 module.exports.getAllUsers = getAllUsers;
 module.exports.getUser = getUser;
-
+module.exports.db = db;
