@@ -1,9 +1,8 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import AddTask from './AddTask.jsx';
 import Duck from './Duck.jsx';
-// import MuiThemeProvider from 'material-ui;
 // import SvgIcon from 'material-ui/SvgIcon';
+import Weekly from './Weekly.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,6 +11,9 @@ class App extends React.Component {
 
   render(props) {
     return (
+
+    
+     
 
         <div className="container">
 
@@ -27,7 +29,10 @@ class App extends React.Component {
           </div>
 
           <div className='col-center'>
-            <div className='weekly-view'> WEEKLY OUTLOOK </div>
+            <div className='weekly-view'> 
+               
+              <Weekly />
+            </div>
           </div>
 
           <div className='col-right'>
@@ -38,8 +43,8 @@ class App extends React.Component {
 
         </div>
 
-
-       // </MuiThemeProvider>
+  
+    
 
       )
   }
