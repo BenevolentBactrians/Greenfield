@@ -27,7 +27,7 @@ app.use(session({
 
 // function that when used denies access to prohibited resources. 
 const restrict = (req, res, next) => {
-  if ( req.session && req.session.userId ) {
+  if (req.session && req.session.userId) {
     return next();
   } else {
     req.session.error = 'Access denied!';
@@ -36,7 +36,7 @@ const restrict = (req, res, next) => {
   }
 }
 
-app.get( '/', restrict, (req, res, next) => {
+app.get('/'/*, restrict*/, (req, res, next) => {
   res.render('index');
 })
 
@@ -45,18 +45,18 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/login', urlencodedParser, (req, res) => {
-  db.getUser({name: req.body.email}, (error, result) => {
-    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) : 
-      bcrypt.hash(req.body.password, result.salt, function(err, hash) {
-        if ( hash === result.hashedPassword ) {
+  db.getUser({ name: req.body.email }, (error, result) => {
+    result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) :
+      bcrypt.hash(req.body.password, result.salt, function (err, hash) {
+        if (hash === result.hashedPassword) {
           // create session and add userId to the session
           req.session.regenerate(() => {
             req.session.userId = result.id;
             res.redirect('/');
           })
         } else {
-          res.status(404).send(`Invalid credentials`) 
-        } 
+          res.status(404).send(`Invalid credentials`)
+        }
       });
   })
 })
@@ -66,7 +66,7 @@ app.get('/signup', (req, res) => {
 })
 
 app.get('/signout', (req, res) => {
-  if ( req.session ) {
+  if (req.session) {
     req.session.destroy((err) => {
       err ? console.log(err) : res.redirect('/login')
     })
@@ -78,18 +78,18 @@ app.get('/signout', (req, res) => {
 app.post('/signup', urlencodedParser, (req, res) => {
   console.log(req.body);
   const saltRounds = 10;
-  bcrypt.genSalt(saltRounds, function(err, salt) {
-    bcrypt.hash(req.body.password, salt, function(err, hash) {
-        let formated = {}
-        formated.name = req.body.email;
-        formated.salt = salt
-        formated.hashedPassword = hash
-        db.saveUser(formated, (error, success) => {
-          error ? res.status(400).send(`Sorry ${error}`) : res.sendStatus(201);
-        });
+  bcrypt.genSalt(saltRounds, function (err, salt) {
+    bcrypt.hash(req.body.password, salt, function (err, hash) {
+      let formated = {}
+      formated.name = req.body.email;
+      formated.salt = salt
+      formated.hashedPassword = hash
+      db.saveUser(formated, (error, success) => {
+        error ? res.status(400).send(`Sorry ${error}`) : res.sendStatus(201);
+      });
     });
   });
-  
+
 })
 
 app.post('/saveTask', urlencodedParser, (req, res) => {
@@ -106,7 +106,7 @@ app.post('/saveNote', urlencodedParser, (req, res) => {
 
 // get all users
 app.get('/users', urlencodedParser, (req, res) => {
-  db.getAllUsers( (users) => {
+  db.getAllUsers((users) => {
     res.send(users);
   })
 })
