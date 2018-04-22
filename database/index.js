@@ -118,7 +118,7 @@ let saveTask = (taskObj) => {
 
 
 // -- Note Functons --
-const saveNote = (text, userId) => {
+const saveNote = (text, userId, callback) => {
   var formatted = {
     text: text,
     userId: userId    
@@ -128,7 +128,7 @@ const saveNote = (text, userId) => {
     if (err) {
       console.log( err ) ;
     }
-    console.log('New note added to db: ', newNoteEntry);
+    callback(newNoteEntry)
   })
 }
 
@@ -138,8 +138,13 @@ const getNotesForUser = function(userId, callback) {
   })
 }
 
-const deleteNote = function(noteId) {
+const deleteNote = function(noteId, callback) {
   Note.remove({_id: noteId}, (err) => {
+    if(err) {
+      console.log(err) 
+    } else {
+      callback()
+    }
   })
 }
 

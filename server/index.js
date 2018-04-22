@@ -105,8 +105,10 @@ app.post('/saveTask', restrict, jsonParser, (req, res) => {
 
 app.post('/notes', (req, res) => {
   console.log(req.body);
-  db.saveNote(req.body.text, req.body.userId);
-  res.sendStatus(201);
+  db.saveNote(req.body.text, req.body.userId, (newNote) => {
+    res.send(201, newNote)
+  });
+
 })
 
 app.get('/notes', restrict, (req, res) => {
@@ -118,7 +120,9 @@ app.get('/notes', restrict, (req, res) => {
 
 app.delete('/notes', (req, res) => {
   const noteId = req.url.split('=')[1]
-  db.deleteNote(noteId)
+  db.deleteNote(noteId, ()=>{
+    res.sendStatus(200)
+  })
 })
 
 // get all users

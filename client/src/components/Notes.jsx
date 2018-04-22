@@ -9,7 +9,8 @@ class Notes extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      notes: []
+      notes: [],
+      text: ''
     }
     this.handleTextfieldChange = this.handleTextfieldChange.bind(this)
     this.submitNote = this.submitNote.bind(this)
@@ -25,19 +26,24 @@ class Notes extends React.Component {
   }
 
   submitNote() {
-    let notes = this.state.notes;
-    notes.push({text: this.state.text, userId: this.props.userId})
-    this.setState({notes: notes})
+    let notes = this.state.notes.slice();
+    
+    
     axios.post('/notes', {text: this.state.text, userId: this.props.userId})
-    this.getNotes()
+      .then((res) => {
+        notes.push(res.data)
+        this.setState({notes: notes})
+      })
+    this.setState({text: ''})
   }
 
   handleDelete(noteId) {
+    console.log(noteId)
     axios.delete(`notes?noteId=${noteId}`)
       .then((res) => {
-        console.log(res)
+        this.getNotes()
       })
-    this.getNotes()
+    
   }
 
   getNotes() {
@@ -58,10 +64,12 @@ class Notes extends React.Component {
   render() {
     return(
       <div className='notes-wrap'>
-        <ul className="notes">
+        
+        <div className="notes">
+        <h2>Notes</h2>
           {
             this.state.notes.map((note, ind) => {
-              return <li key={note._id ? note._id : ind} className="note">
+              return <div key={note._id ? note._id : ind} className="note">
                 <div className="noteText">
                   {note.text} 
                 </div>
@@ -69,17 +77,17 @@ class Notes extends React.Component {
                   <FlatButton label="Delete" primary={true} onClick={() => this.handleDelete(note._id)} />
                 </div>
                 
-              </li>
+              </div>
             })
           }
-        </ul>
+        </div>
         <div className="addNoteForm">
           <div className="addNoteTextField">
-            <TextField hintText="Add your note" onChange={this.handleTextfieldChange} />
+            <TextField hintText="Add your note" onChange={this.handleTextfieldChange} value={this.state.text} />
           </div>
 
           <div className="addNoteButton">
-            <FloatingActionButton mini={true} style={this.style} onClick={this.submitNote} >
+            <FloatingActionButton mini={true} style={this.style} onClick={this.submitNote} disabled={this.state.text === ''} >
               <ContentAdd />
             </FloatingActionButton>
           </div>
