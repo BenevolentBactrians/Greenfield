@@ -172,12 +172,12 @@ body {
 .addNoteForm {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem;
   flex-shrink: 0;
 }
 
 .addNoteButton {
-  padding: 0 1rem;
+  padding: 0 0.5rem 0 1rem;
 }
 
 .notes {
@@ -189,11 +189,15 @@ body {
 .note {
   display: flex;
   justify-content: space-between;
-  padding: 0.3rem 1.5rem 0.3rem 0.5rem
+  padding: 0.3rem 1.5rem 0.3rem 1.5rem;
 }
 
 .noteText {
   display: flex;
   justify-content: center;
   flex-direction: column;
+}
+
+.notes h2 {
+  text-align: center;
 }

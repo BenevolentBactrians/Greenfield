@@ -64,9 +64,9 @@ class Notes extends React.Component {
   render() {
     return(
       <div className='notes-wrap'>
-        
+
         <div className="notes">
-        <h2>Notes</h2>
+          <h2>Notes</h2>
           {
             this.state.notes.map((note, ind) => {
               return <div key={note._id ? note._id : ind} className="note">
