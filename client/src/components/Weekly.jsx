@@ -43,15 +43,6 @@ class Weekly extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      week: [
-        {name: 'Monday', total: 4}, 
-        {name: 'Tuesday', total: 5},
-        {name: 'Wednesday', total: 12},
-        {name: 'Thursday', total: 0},
-        {name: 'Friday', total: 33},
-        {name: 'Saturday', total: 2},
-        {name: 'Sunday', total: 0}
-      ]
     }
   }
   
@@ -68,7 +59,7 @@ class Weekly extends React.Component {
               
               <Paper style={listStyles}>
                 <Menu>               
-                  { this.state.week.map( (day, index) =>
+                  { this.props.week.map( (day, index) =>
                     <MenuItem key={index} primaryText={day.name} />                 
                     )
                   }               
@@ -78,7 +69,7 @@ class Weekly extends React.Component {
     
               <Paper style={listStyles}>
                 <Menu>  
-                  { this.state.week.map( (day, index) => 
+                  { this.props.week.map( (day, index) => 
                     <MenuItem key={index} primaryText={`${day.total} Tasks`} />
                     )             
                   }

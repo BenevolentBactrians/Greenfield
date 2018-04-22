@@ -8,7 +8,16 @@ class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userId: ''
+      userId: null,
+      weekState: [
+        {name: 'Monday', total: 4}, 
+        {name: 'Tuesday', total: 5},
+        {name: 'Wednesday', total: 12},
+        {name: 'Thursday', total: 0},
+        {name: 'Friday', total: 33},
+        {name: 'Saturday', total: 2},
+        {name: 'Sunday', total: 0}
+      ]
     }
   }
 
@@ -38,7 +47,7 @@ class App extends React.Component {
           <div className='col-center'>
             <div className='weekly-view'> 
                
-              <Weekly />
+              <Weekly week={this.state.weekState} />
             </div>
           </div>
 
