@@ -172,7 +172,7 @@ body {
 .addNoteForm {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
+  padding: 1rem;
   flex-shrink: 0;
 }
 
@@ -200,4 +200,8 @@ body {
 
 .notes h2 {
   text-align: center;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> styles
