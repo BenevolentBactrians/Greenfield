@@ -36,12 +36,8 @@ class App extends React.Component {
       <div>
         <div className="container">    
 
+          <AppHeader />
 
-        <div className="nav-left"> LEFT  </div>
-          <div className="nav-center"> <h1> TITLE </h1> </div>
-          <div className="nav-right"> RIGHT </div>
-        
-        
           <div className='col-left'>
             <AddTask className='add-task' />
             <Duck className='duck-view'/>
