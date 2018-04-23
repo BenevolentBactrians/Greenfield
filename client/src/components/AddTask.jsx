@@ -30,7 +30,7 @@ class AddTask extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3000/savetask', {
+    axios.post('http://localhost:3000/task', {
       task: this.state.task,
       date: this.state.date,
       startTime: this.state.startTime,
