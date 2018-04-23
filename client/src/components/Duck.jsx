@@ -19,7 +19,7 @@ class Duck extends React.Component {
     const that = this
     axios.get('/quotes')
       .then((res) => {
-        that.setState({quotes: res.data, currentQuote: res.data[Math.floor(Math.random() * res.data.length)].text})
+        that.setState({quotes: res.data, currentQuote: 'Click a Duck!'})
     })
   }
 
@@ -29,9 +29,12 @@ class Duck extends React.Component {
         <div className="duck-image">
           <img src="/assets/duck.png" alt=""/>
         </div>
-        <p className="duck-text">
-          {this.state.currentQuote}
-        </p>
+        <div className="duck-text-wrap">
+          <p className="duck-text">
+            {this.state.currentQuote}
+          </p>
+        </div>
+
       </div>
     )
   }

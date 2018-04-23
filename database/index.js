@@ -195,13 +195,15 @@ quotes.quotes.forEach((quote, ind) => {
 })
 
 
-
-
-module.exports.saveUser = saveUser;
-module.exports.saveTask = saveTask;
-module.exports.saveNote = saveNote;
-module.exports.getAllUsers = getAllUsers;
-module.exports.getUser = getUser;
-module.exports.db = db;
-module.exports.saveQuote = saveQuote;
-module.exports.getAllQuotes = getAllQuotes;
+module.exports = { 
+  saveUser, 
+  saveTask,
+  saveNote,
+  getAllUsers,
+  getUser,
+  db,
+  getNotesForUser,
+  deleteNote,
+  saveQuote,
+  getAllQuotes
+}
