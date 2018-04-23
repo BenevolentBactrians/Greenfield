@@ -120,10 +120,7 @@ class AddTask extends React.Component {
             <DatePicker
               id="date"
               minDate={this.state.today}
-<<<<<<< HEAD
               value={this.state.date}
-=======
->>>>>>> restricts dates for DatePicker
               hintText="yyyy/mm/dd"
               onChange={this.onChangeDate}
               style={{
