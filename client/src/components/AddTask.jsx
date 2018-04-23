@@ -34,6 +34,7 @@ class AddTask extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     if (!this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description) {
       this.setState({emptyOpen: true})
     } else {

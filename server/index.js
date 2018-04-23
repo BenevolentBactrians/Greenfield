@@ -88,7 +88,7 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.salt = salt
         formated.hashedPassword = hash
         db.saveUser(formated, (error, success) => {
-          error ? res.status(400).send(`Sorry ${error}`) : 
+          error ? res.status(400).send(`Sorry ${error}`) :
           req.session.regenerate(() => {
             req.session.userId = success._id;
             res.send(201, {userId: success._id});
@@ -113,7 +113,6 @@ app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
   db.getTasksOnDate(userId, date, function(results) {
     res.send(results)
   })
-})
 
 app.post('/notes', (req, res) => {
   console.log(req.body);
