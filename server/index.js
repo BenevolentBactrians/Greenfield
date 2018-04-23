@@ -35,8 +35,7 @@ const restrict = (req, res, next) => {
     return next();
   } else {
     req.session.error = 'Access denied!';
-    res.status(403);
-    res.redirect('login');
+    res.sendStatus(403);
   }
 }
 
