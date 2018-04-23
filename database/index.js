@@ -26,7 +26,7 @@ let User = mongoose.model('User', userSchema);
 
 const taskSchema = new mongoose.Schema (
   {
-    userId: Number,
+    userId: String,
     task: String,
     date: Date,
     description: String,
