@@ -57,6 +57,7 @@ class AddTask extends React.Component {
           task: '',
           date: null,
           startTime: null,
+          startTIme: null,
           endTime: null,
           description: '',
           open:true
