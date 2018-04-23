@@ -20,6 +20,7 @@ class WeeklyTaskEntry extends React.Component {
     this.setState({open: true});
   }
   
+
   handleClose () {
     this.setState({open: false});
   }
@@ -45,6 +46,7 @@ class WeeklyTaskEntry extends React.Component {
            <Daily tasks={this.props.day}/>
         </Dialog>      
       </div>
+
     )
   }
   
