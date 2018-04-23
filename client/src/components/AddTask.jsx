@@ -54,7 +54,7 @@ class AddTask extends React.Component {
         this.setState({
           task: '',
           date: null,
-          startTIme: null,
+          startTime: null,
           endTime: null,
           description: '',
           open:true
@@ -115,6 +115,7 @@ class AddTask extends React.Component {
             <DatePicker
               id="date"
               minDate={this.state.today}
+              value={this.state.date}
               hintText="yyyy/mm/dd"
               onChange={this.onChangeDate}
             />
