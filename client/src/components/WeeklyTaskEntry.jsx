@@ -23,4 +23,5 @@ class WeeklyTaskEntry extends React.Component {
 }
 
 
+
 export default WeeklyTaskEntry;
