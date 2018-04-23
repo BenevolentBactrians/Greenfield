@@ -25,7 +25,6 @@ class App extends React.Component {
 
   componentDidMount() {
     var userId = window.location.search.split('=')[1]
-    console.log(window.location)
     if ( userId !== this.state.userId ){
       this.setState({userId: userId});
     }
@@ -36,7 +35,7 @@ class App extends React.Component {
       <div>
         <div className="container">    
 
-          <AppHeader />
+          <AppHeader logged={!(!this.state.userId)} />
 
           <div className='col-left'>
             <AddTask className='add-task' />
