@@ -12,7 +12,7 @@ class App extends React.Component {
     this.state = {
       userId: null,
       weekState: [
-        {name: 'Monday', total: 4}, 
+        {name: 'Monday', total: 4},
         {name: 'Tuesday', total: 5},
         {name: 'Wednesday', total: 12},
         {name: 'Thursday', total: 0},
@@ -33,19 +33,21 @@ class App extends React.Component {
   render(props) {
     return (
       <div>
-        <div className="container">    
+        <div className="container">
 
           <AppHeader logged={!(!this.state.userId)} />
 
           <div className='col-left'>
-            <AddTask className='add-task' />
+            <AddTask className='add-task' userId={this.state.userId}/>
             <Duck className='duck-view'/>
           </div>
 
           <div className='col-center'>
-            <div className='weekly-view'> 
+
+            <div className='weekly-view'>
 
               <Weekly week={this.state.weekState} />
+
             </div>
           </div>
 
@@ -58,8 +60,8 @@ class App extends React.Component {
         </div>
       </div>
 
-  
-    
+
+
 
       )
   }

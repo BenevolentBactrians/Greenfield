@@ -30,13 +30,13 @@ class AddTask extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('DATEEEEEE!!!!!!', this.state.date)
     axios.post('http://localhost:3000/savetask', {
       task: this.state.task,
       date: this.state.date,
       startTime: this.state.startTime,
       endTime: this.state.endTime,
       description: this.state.description,
+      userId: this.props.userId
     }).then((response) => {
       this.setState({
         task: '',
