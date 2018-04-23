@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -7,6 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import SvgIcon from 'material-ui/SvgIcon';
+import WeeklyTaskEntry from './WeeklyTaskEntry.jsx'
 
 const listStyles = {
   display: 'inline-block',
