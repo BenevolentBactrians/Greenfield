@@ -11,6 +11,7 @@ class WeeklyTaskEntry extends React.Component {
   
   render (props) {
   
+
     return ( 
       <MenuItem  
         primaryText={this.props.day.name} 
