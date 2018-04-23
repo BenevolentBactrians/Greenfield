@@ -17,6 +17,8 @@ class AddTask extends React.Component {
       endTime: null,
       description: '',
       open: false,
+      logOpen: false,
+      emptyOpen: false,
       today: new Date()
     }
 
@@ -31,26 +33,36 @@ class AddTask extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.post('http://localhost:3000/task', {
-      task: this.state.task,
-      date: this.state.date,
-      startTime: this.state.startTime,
-      endTime: this.state.endTime,
-      description: this.state.description,
-      userId: this.props.userId
-    }).then((response) => {
-      this.setState({
-        task: '',
-        date: null,
-        startTIme: null,
-        endTime: null,
-        description: '',
-        open:true
+    if (!this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description) {
+      this.setState({emptyOpen: true})
+    } else {
+      axios.post('http://localhost:3000/task', {
+        task: this.state.task,
+        date: this.state.date,
+        startTime: this.state.startTime,
+        endTime: this.state.endTime,
+        description: this.state.description,
+        userId: this.props.userId
+      }, {validateStatus: function(status) {
+        return status === 201 || status === 200 || status === 403}
+      }).then((response) =>  {
+        if (response.status === 403) {
+          this.setState({
+            logOpen: true
+          })
+        } else {
+        this.setState({
+          task: '',
+          date: null,
+          startTIme: null,
+          endTime: null,
+          description: '',
+          open:true
+        })
+      }}).catch(function(err, response) {
+        console.error(err);
       })
-    }).catch(function(error) {
-      console.error(error);
-    })
-
+    }
   }
 
   onChangeTask(e) {
@@ -135,6 +147,19 @@ class AddTask extends React.Component {
             <Snackbar
               open={this.state.open}
               message="task added"
+              autoHideDuration={4000}
+              onRequestClose={this.handleRequestClose}
+            />
+             <Snackbar
+              open={this.state.logOpen}
+              message="Please Login first"
+              autoHideDuration={4000}
+              onRequestClose={this.handleRequestClose}
+            />
+
+             <Snackbar
+              open={this.state.emptyOpen}
+              message="Please complete all fields"
               autoHideDuration={4000}
               onRequestClose={this.handleRequestClose}
             />
