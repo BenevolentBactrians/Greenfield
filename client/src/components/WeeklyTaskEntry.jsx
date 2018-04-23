@@ -21,6 +21,7 @@ class WeeklyTaskEntry extends React.Component {
   }
   
 
+
   handleClose () {
     this.setState({open: false});
   }
@@ -29,6 +30,7 @@ class WeeklyTaskEntry extends React.Component {
     var date = this.props.day.date.getTime()
     date = moment(date).format('LL')
     
+
     return ( 
       <div>
         <MenuItem  
