@@ -103,6 +103,14 @@ app.post('/task', jsonParser, (req, res) => {
   res.sendStatus(201);
 })
 
+app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
+  const userId = req.params.userId;
+  const date = req.params.date;
+  db.getTasksOnDate(userId, date, function(results) {
+    res.send(results)
+  })
+})
+
 app.post('/notes', (req, res) => {
   console.log(req.body);
   db.saveNote(req.body.text, req.body.userId, (newNote) => {

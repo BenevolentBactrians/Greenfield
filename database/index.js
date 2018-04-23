@@ -125,13 +125,23 @@ let saveTask = (taskObj) => {
     })
 }
 
+let getTasksOnDate = (userId, date, callback) => {
+  Task.find({userId: userId, date: date}, 'task description startTime endTime', function(err, results) {
+    if (err) {
+      console.error(err)
+    } else {
+      callback(results)
+    }
+  })
+}
+
 
 
 // -- Note Functons --
 const saveNote = (text, userId, callback) => {
   var formatted = {
     text: text,
-    userId: userId    
+    userId: userId
   }
 
   new Note(formatted).save( (err, newNoteEntry) => {
@@ -151,7 +161,7 @@ const getNotesForUser = function(userId, callback) {
 const deleteNote = function(noteId, callback) {
   Note.remove({_id: noteId}, (err) => {
     if(err) {
-      console.log(err) 
+      console.log(err)
     } else {
       callback()
     }
@@ -191,12 +201,13 @@ quotes.quotes.forEach((quote, ind) => {
       saveQuote(quote)
     }
   })
-  
+
 })
 
 
-module.exports = { 
-  saveUser, 
+
+module.exports = {
+  saveUser,
   saveTask,
   saveNote,
   getAllUsers,
@@ -205,5 +216,6 @@ module.exports = {
   getNotesForUser,
   deleteNote,
   saveQuote,
-  getAllQuotes
+  getAllQuotes,
+  getTasksOnDate
 }
