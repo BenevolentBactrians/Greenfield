@@ -58,7 +58,7 @@ class Weekly extends React.Component {
             <div className="week-list">       
               
               <Paper style={listStyles}>
-                <Menu width={300}>               
+                <Menu width={320}>               
                   { this.props.week.map( (day, index) =>
                     <WeeklyTaskEntry day={day} key={index} />                 
                     )
