@@ -39,7 +39,7 @@ let Task = mongoose.model('Task', taskSchema);
 
 const noteSchema = new mongoose.Schema (
   {
-    userId: Number,
+    userId: String,
     text: String
   }
 );
@@ -118,34 +118,44 @@ let saveTask = (taskObj) => {
 
 
 // -- Note Functons --
-let saveNote = (list) => {
-  console.log('Saving note to database..');
-
-  if ( !Array.isArray(list) ) {
-    list = [list]
+const saveNote = (text, userId, callback) => {
+  var formatted = {
+    text: text,
+    userId: userId    
   }
 
-  list.forEach( (note) => {
-
-    var formatted = {
-      id: note.id,
-      userId: note.userId,
-      text: note.text
+  new Note(formatted).save( (err, newNoteEntry) => {
+    if (err) {
+      console.log( err ) ;
     }
-
-    new Note(formatted).save( (err, newNoteEntry) => {
-      if (err) {
-        throw err;
-      }
-      console.log('New note added to db: ', newNoteEntry);
-    })
+    callback(newNoteEntry)
   })
 }
 
+const getNotesForUser = function(userId, callback) {
+  Note.find( { userId: userId }, (err, result) => {
+    err ? console.log(err) : callback(result)
+  })
+}
 
-module.exports.saveUser = saveUser;
-module.exports.saveTask = saveTask;
-module.exports.saveNote = saveNote;
-module.exports.getAllUsers = getAllUsers;
-module.exports.getUser = getUser;
-module.exports.db = db;
+const deleteNote = function(noteId, callback) {
+  Note.remove({_id: noteId}, (err) => {
+    if(err) {
+      console.log(err) 
+    } else {
+      callback()
+    }
+  })
+}
+
+module.exports = { 
+  saveUser, 
+  saveTask,
+  saveNote,
+  getAllUsers,
+  getUser,
+  db,
+  getNotesForUser,
+  deleteNote
+}
+

@@ -11,7 +11,7 @@ body {
   grid-template-rows: 2fr 20fr;
   width: 100vw;
   height: 100vh;
-  background-color: lightgrey;
+  background-color: whitesmoke;
 }
 
 
@@ -22,7 +22,6 @@ body {
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  background-color: beige;
   padding-left: 10px;
   
 }
@@ -34,7 +33,6 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: white;
 }
 
 .nav-right {
@@ -43,7 +41,6 @@ body {
   display:flex;
   flex-direction: row-reverse;
   align-items: center;
-  background-color: beige;
   padding-right: 20px;
 }
 
@@ -109,8 +106,6 @@ body {
   justify-content: space-between;
 }
 
-
-
 .col-right {
   grid-area: 2/3/3/4;
   display: flex;
@@ -119,13 +114,13 @@ body {
   background-color: lightgreen;
 }
 
-.notes {
+.notes-wrap {
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   height: 55%;
   background-color: white;
+  justify-content: space-between;
 }
 
 .chart {
@@ -136,6 +131,17 @@ body {
   height: 45%;
   background-color: beige;
 }
+
+.app-header { 
+  grid-column-end: 4;
+  grid-column-start: 1;
+  display: grid;
+  grid-template-columns: 4fr 5fr 4fr;
+}
+
+/* ===========================================
+       Duck
+=========================================== */
 
 .duck {
   justify-content: center;
@@ -154,5 +160,44 @@ body {
 }
 
 .duck-text {
+  text-align: center;
+}
+
+/* ===========================================
+        Notes 
+=========================================== */
+
+
+
+.addNoteForm {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  flex-shrink: 0;
+}
+
+.addNoteButton {
+  padding: 0 0.5rem 0 1rem;
+}
+
+.notes {
+  list-style-type: none;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.note {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 1.5rem 0.3rem 1.5rem;
+}
+
+.noteText {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.notes h2 {
   text-align: center;
 }

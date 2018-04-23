@@ -10,6 +10,8 @@ const MongoStore = require('connect-mongo')(session);
 const app = express();
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }))
 
 
 app.use(morgan('dev')); // HTTP request logger middleware for node.js
@@ -95,16 +97,32 @@ app.post('/signup', urlencodedParser, (req, res) => {
 
 })
 
-app.post('/saveTask', jsonParser, (req, res) => {
+app.post('/saveTask', restrict, jsonParser, (req, res) => {
   console.log(req.body);
   db.saveTask(req.body);
   res.sendStatus(201);
 })
 
-app.post('/saveNote', urlencodedParser, (req, res) => {
+app.post('/notes', (req, res) => {
   console.log(req.body);
-  db.saveNote(req.body);
-  res.sendStatus(201);
+  db.saveNote(req.body.text, req.body.userId, (newNote) => {
+    res.send(201, newNote)
+  });
+
+})
+
+app.get('/notes', restrict, (req, res) => {
+  const userId = req.url.split('=')[1]
+  db.getNotesForUser(userId,  (notes) => {
+    res.send(notes);
+  })
+})
+
+app.delete('/notes', (req, res) => {
+  const noteId = req.url.split('=')[1]
+  db.deleteNote(noteId, ()=>{
+    res.sendStatus(200)
+  })
 })
 
 // get all users
