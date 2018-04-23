@@ -186,9 +186,11 @@ class Weekly extends React.Component {
             <div className="week-list">       
               
 
+
                 <Menu width={320}>               
 
                   { this.state.currentWeekData.map( (day, index) =>
+
                     <WeeklyTaskEntry day={day} key={index} />                 
                     )
                   }               
