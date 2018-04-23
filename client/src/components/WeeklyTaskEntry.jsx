@@ -20,15 +20,19 @@ class WeeklyTaskEntry extends React.Component {
     this.setState({open: true});
   }
 
+
   handleClose () {
     this.setState({open: false});
   }
 
   render () {
     var date = this.props.day.date.getTime()
-    date = moment(date).format('LL')
+    date = moment(date).format('LL');
 
-    return (
+    
+
+    return ( 
+
       <div>
         <MenuItem
           primaryText={date}
