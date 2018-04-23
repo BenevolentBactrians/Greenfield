@@ -10,14 +10,14 @@ import WeeklyTaskEntry from './WeeklyTaskEntry.jsx'
 
 const listStyles = {
   display: 'inline-block',
-  margin: '16px 16px 8px 16px',
+  margin: '8px 8px 8px 8px'
 };
 
 const buttonStyles = {
   margin: 16
 };
 const iconStyles = {
-  margin: '8px 16px 8px 16px',
+  margin: '8px 16px 8px 16px'
 };
 
 const LeftArrow = (props) => (
@@ -49,8 +49,8 @@ class Weekly extends React.Component {
   render (props) {
     return (
     
-        <div className="week-view-container">
-          <Paper style={listStyles}>
+        // <div className="week-view-container">
+          <Paper style={listStyles} className="week-view-container">
             
             <div className="week-title"> <h3>WEEKLY TASKS</h3></div>
            
@@ -58,22 +58,11 @@ class Weekly extends React.Component {
             <div className="week-list">       
               
               <Paper style={listStyles}>
-                <Menu>               
+                <Menu width={300}>               
                   { this.props.week.map( (day, index) =>
-                    <MenuItem key={index} primaryText={day.name} />                 
+                    <WeeklyTaskEntry day={day} key={index} />                 
                     )
                   }               
-                </Menu>
-              </Paper>
-            
-    
-              <Paper style={listStyles}>
-                <Menu>  
-                  { this.props.week.map( (day, index) => 
-                    <MenuItem key={index} primaryText={`${day.total} Tasks`} />
-                    )             
-                  }
-                  
                 </Menu>
               </Paper>
  
@@ -88,7 +77,7 @@ class Weekly extends React.Component {
           
           
         </Paper>
-       </div>  
+       // </div>  
       
     )
   }
