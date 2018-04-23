@@ -3,6 +3,7 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 import axios from 'axios';
 
 class Notes extends React.Component {
@@ -12,14 +13,10 @@ class Notes extends React.Component {
       notes: [],
       text: ''
     }
-    this.handleTextfieldChange = this.handleTextfieldChange.bind(this)
-    this.submitNote = this.submitNote.bind(this)
-    this.handleDelete = this.handleDelete.bind(this)
-    this.getNotes = this.getNotes.bind(this)
+    this.handleTextfieldChange = this.handleTextfieldChange.bind(this);
+    this.submitNote = this.submitNote.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
-  style = {
-    marginRight: 20,
-  };
 
   handleTextfieldChange(event) {
     this.setState({text: event.target.value})
@@ -27,8 +24,6 @@ class Notes extends React.Component {
 
   submitNote() {
     let notes = this.state.notes.slice();
-    
-    
     axios.post('/notes', {text: this.state.text, userId: this.props.userId})
       .then((res) => {
         notes.push(res.data)
@@ -39,18 +34,12 @@ class Notes extends React.Component {
 
   handleDelete(noteId) {
     console.log(noteId)
+    let notes = this.state.notes.slice();
     axios.delete(`notes?noteId=${noteId}`)
       .then((res) => {
-        this.getNotes()
+        this.setState({notes: notes.filter((note, ind) => note._id !== noteId) });
       })
     
-  }
-
-  getNotes() {
-    axios.get(`/notes?userId=${this.props.userId}`)
-    .then((res) => {
-      this.setState({notes: res.data})
-    })
   }
 
   componentWillReceiveProps(nextProps) {
@@ -60,9 +49,9 @@ class Notes extends React.Component {
       })
   }
 
-
   render() {
     return(
+      <Paper className="notes-paper" >
       <div className='notes-wrap'>
 
         <div className="notes">
@@ -87,21 +76,16 @@ class Notes extends React.Component {
           </div>
 
           <div className="addNoteButton">
-            <FloatingActionButton mini={true} style={this.style} onClick={this.submitNote} disabled={this.state.text === ''} >
+            <FloatingActionButton mini={true} onClick={this.submitNote} disabled={this.state.text === ''} >
               <ContentAdd />
             </FloatingActionButton>
           </div>
 
         </div>
       </div>
+      </Paper>
     )
   }
 }
-
-// const NoteEntry(props) => {
-//   return (
-    
-//   )
-// }
 
 export default Notes;
