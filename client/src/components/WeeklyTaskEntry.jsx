@@ -32,6 +32,7 @@ class WeeklyTaskEntry extends React.Component {
     
 
     return ( 
+
       <div>
         <MenuItem  
           primaryText={date} 
@@ -48,6 +49,7 @@ class WeeklyTaskEntry extends React.Component {
            <Daily tasks={this.props.day}/>
         </Dialog>      
       </div>
+
 
     )
   }

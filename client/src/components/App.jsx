@@ -55,7 +55,7 @@ class App extends React.Component {
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               />
-           
+
 
           </div>
           <div className='col-right'>
