@@ -25,7 +25,6 @@ class App extends React.Component {
 
   componentDidMount() {
     var userId = window.location.search.split('=')[1]
-    console.log(window.location)
     if ( userId !== this.state.userId ){
       this.setState({userId: userId});
     }
@@ -36,12 +35,8 @@ class App extends React.Component {
       <div>
         <div className="container">    
 
+          <AppHeader logged={!(!this.state.userId)} />
 
-        <div className="nav-left"> LEFT  </div>
-          <div className="nav-center"> <h1> TITLE </h1> </div>
-          <div className="nav-right"> RIGHT </div>
-        
-        
           <div className='col-left'>
             <AddTask className='add-task' />
             <Duck className='duck-view'/>
