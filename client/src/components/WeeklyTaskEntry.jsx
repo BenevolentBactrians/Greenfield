@@ -48,6 +48,7 @@ class WeeklyTaskEntry extends React.Component {
            <Daily tasks={this.props.day.tasks} date={this.props.day.date}/>
         </Dialog>
       </div>
+
     )
   }
 
