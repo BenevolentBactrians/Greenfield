@@ -46,7 +46,9 @@ class App extends React.Component {
             <Duck className='duck-view'/>
           </div>
           <div className='col-center'>
-            <Weekly week={this.state.weekState} className='weekly-view'/>
+          
+            <Weekly week={this.state.weekState} className='weekly-view' userId={this.state.userId}/>
+
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />

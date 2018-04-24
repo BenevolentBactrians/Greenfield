@@ -43,8 +43,37 @@ class Weekly extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentDate: null,
+      currentWeekFormatted: [];
     }
   }
+  
+  componentDidMount() {
+    console.log('weekly component did mount ..');
+    this.setCurrentDate();
+  }
+  
+    // get / set currentDate state
+  setCurrentDate () {
+    let newDate = Date();
+    this.setState({currentDate: newDate})
+  }
+  
+  getCurrentWeekTaskCount () {
+    var context = this;
+
+    
+    axios.get( `/tasks?currentdate=${context.state.currentDate}`)
+    .then ( (results) => {
+      console.log('getCurrentWeekTaskCount', results.data)
+    })
+    .catch ( (error) => {
+      console.log(error)
+    })
+    
+  }
+  
+  
   
   render (props) {
     return (
