@@ -149,6 +149,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1rem;
+  min-height: 270px;
+  flex: 2;
 }
 
 .duck-image {
@@ -157,11 +159,18 @@ body {
 }
 
 .duck-image img {
-  height: 33vh;
+  height: 26vh;
 }
 
 .duck-text {
   text-align: center;
+}
+
+.duck-text-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* ===========================================

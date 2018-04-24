@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const quotes = require('./quotes.js')
 mongoose.connect('mongodb://localhost/greenfield');  // connection defaults to port 27017
 
 const db = mongoose.connection;
@@ -45,6 +46,15 @@ const noteSchema = new mongoose.Schema (
 );
 
 let Note = mongoose.model('Note', noteSchema);
+
+
+const quoteSchema = new mongoose.Schema (
+  {
+    text: String
+  }
+);
+
+let Quote = mongoose.model('Quote', quoteSchema);
 
 
 // ------------ Database Functions -----------------------
@@ -148,6 +158,43 @@ const deleteNote = function(noteId, callback) {
   })
 }
 
+const saveQuote = function(text) {
+  const quote = {
+    text: text
+  }
+  new Quote(quote).save( (err) => {
+    if (err) {
+      console.log(err);
+    }
+  })
+}
+
+const getAllQuotes = function(callback) {
+  Quote.find( (err, quotes) => {
+    if (err) {
+      throw err;
+    }
+    callback(quotes);
+  })
+}
+
+// ====================================================
+//         populate quotes table
+// ====================================================
+quotes.quotes.forEach((quote, ind) => {
+  var query = {text: quote}
+  Quote.findOne(query, (err, result) => {
+    if (err) {
+      console.log(err);
+    }
+    if ( result === null) {
+      saveQuote(quote)
+    }
+  })
+  
+})
+
+
 module.exports = { 
   saveUser, 
   saveTask,
@@ -156,6 +203,7 @@ module.exports = {
   getUser,
   db,
   getNotesForUser,
-  deleteNote
+  deleteNote,
+  saveQuote,
+  getAllQuotes
 }
-
