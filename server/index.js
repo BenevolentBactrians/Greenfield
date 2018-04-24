@@ -29,7 +29,7 @@ app.use(session({
   store: new MongoStore({mongooseConnection: db.db})
 }));
 
-// function that when used denies access to prohibited resources. 
+// function that when used denies access to prohibited resources.
 const restrict = (req, res, next) => {
   if ( req.session && req.session.userId ) {
     return next();
@@ -59,8 +59,8 @@ app.post('/login', urlencodedParser, (req, res) => {
             res.redirect('/?userId=' + result.id);
           })
         } else {
-          res.status(404).send(`Invalid credentials`) 
-        } 
+          res.status(404).send(`Invalid credentials`)
+        }
       });
   })
 })
@@ -96,10 +96,20 @@ app.post('/signup', urlencodedParser, (req, res) => {
 
 })
 
-app.post('/saveTask', restrict, jsonParser, (req, res) => {
-  console.log(req.body);
-  db.saveTask(req.body);
-  res.sendStatus(201);
+
+app.post('/task', restrict, jsonParser, (req, res) => {
+  // console.log(req.body);
+  // db.saveTask(req.body);
+  // res.sendStatus(201);
+  res.sendStatus(403);
+})
+
+app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
+  const userId = req.params.userId;
+  const date = req.params.date;
+  db.getTasksOnDate(userId, date, function(results) {
+    res.send(results)
+  })
 })
 
 app.post('/notes', (req, res) => {
