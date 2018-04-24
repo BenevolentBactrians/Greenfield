@@ -118,6 +118,9 @@ class AddTask extends React.Component {
               value={this.state.date}
               hintText="yyyy/mm/dd"
               onChange={this.onChangeDate}
+              style={{
+               textAlign: 'center'
+             }}
             />
             <TimePicker
               id="starttime"

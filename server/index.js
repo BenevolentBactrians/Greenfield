@@ -97,10 +97,11 @@ app.post('/signup', urlencodedParser, (req, res) => {
 })
 
 
-app.post('/task', jsonParser, (req, res) => {
-  console.log(req.body);
-  db.saveTask(req.body);
-  res.sendStatus(201);
+app.post('/task', restrict, jsonParser, (req, res) => {
+  // console.log(req.body);
+  // db.saveTask(req.body);
+  // res.sendStatus(201);
+  res.sendStatus(403);
 })
 
 app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
