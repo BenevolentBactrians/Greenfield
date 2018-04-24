@@ -57,7 +57,6 @@ class App extends React.Component {
               />
            
 
-
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />

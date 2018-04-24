@@ -142,6 +142,7 @@ class Weekly extends React.Component {
     this.setState({currentWeekFormatted: formattedWeek})   
   }
   
+
   
   handlePreviousWeekButton () {
     console.log('handlePreviousWeekButton...');
@@ -173,6 +174,8 @@ class Weekly extends React.Component {
    
   
   render (props) { 
+
+  
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
