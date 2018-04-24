@@ -44,11 +44,8 @@ class App extends React.Component {
 
           <div className='col-center'>
 
-            <div className='weekly-view'>
+            <Weekly week={this.state.weekState} className='weekly-view'/>
 
-              <Weekly week={this.state.weekState} />
-
-            </div>
           </div>
 
           <div className='col-right'>
