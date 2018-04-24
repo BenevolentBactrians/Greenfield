@@ -6,7 +6,7 @@ import axios from 'axios';
 import moment from 'moment';
 import RaisedButton from 'material-ui/RaisedButton';
 import SvgIcon from 'material-ui/SvgIcon';
-import WeeklyTaskEntry from './WeeklyTaskEntry.jsx'
+import WeeklyTaskEntry from './WeeklyTaskEntry.jsx';
 
 const listStyles = {
   display: 'inline-block',
@@ -44,7 +44,7 @@ class Weekly extends React.Component {
     super(props);
     this.state = {
       currentDate: null,
-      currentWeekFormatted: [];
+      currentWeekFormatted: []
     }
   }
   

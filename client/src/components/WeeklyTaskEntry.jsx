@@ -14,8 +14,8 @@ class WeeklyTaskEntry extends React.Component {
 
     return ( 
       <MenuItem  
-        primaryText={this.props.day.name} 
-        secondaryText={`${this.props.day.total} Task(s)`} 
+        primaryText={this.props.day.date} 
+        secondaryText={`${this.props.day.count} Task(s)`} 
         onClick={(e)=> console.log('clicked ', this.props.day)}
         />
     )
