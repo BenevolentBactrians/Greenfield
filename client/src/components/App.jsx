@@ -66,6 +66,7 @@ class App extends React.Component {
               setWeekDataState = {this.updateCurrentWeekData}
               />
 
+
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
