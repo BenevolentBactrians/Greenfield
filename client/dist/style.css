@@ -244,3 +244,11 @@ body {
   display: flex;
   align-items: center;
 }
+
+.close-button-login {
+  position: absolute;
+    z-index: 2;
+    margin: -224px 0;
+    background: transparent;
+    border: none;
+}
