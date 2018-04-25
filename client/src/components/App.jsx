@@ -33,7 +33,8 @@ class App extends React.Component {
   render(props) {
     return (
       <div>
-        <div className="container">
+
+        <div className="app-container">
 
           <AppHeader logged={!(!this.state.userId)} />
 
