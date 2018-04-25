@@ -6,6 +6,7 @@ import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
 import { fullWhite } from 'material-ui/styles/colors';
+import Register from './Register.jsx'
 import axios from 'axios';
 import {
   BrowserRouter as Router,
@@ -58,7 +59,7 @@ class AppHeader extends React.Component {
           <div className="nav-left"> LEFT  </div>
           <div className="nav-center"> <h1> TITLE </h1> </div>
           <div className="nav-right"> {this.props.logged ? <Logged /> : <Link to="/login"> <Login /> </Link> } </div>
-      
+          <Route exact path="/signup" component={Register}/>
           <Route exact path="/login" component={LoginView}/>
       </div>
     )

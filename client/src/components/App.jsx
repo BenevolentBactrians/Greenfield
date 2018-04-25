@@ -33,34 +33,21 @@ class App extends React.Component {
   render(props) {
     return (
       <div>
-
         <div className="app-container">
-
           <AppHeader logged={!(!this.state.userId)} />
-
           <div className='col-left'>
             <AddTask className='add-task' userId={this.state.userId}/>
             <Duck className='duck-view'/>
           </div>
-
           <div className='col-center'>
-
             <Weekly week={this.state.weekState} className='weekly-view'/>
-
           </div>
-
           <div className='col-right'>
             <Notes userId={this.state.userId} />
             <div className='chart'>CHART</div>
           </div>
-
-
         </div>
       </div>
-
-
-
-
       )
   }
 }

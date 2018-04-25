@@ -1,10 +1,11 @@
 import React from 'react';
 import SvgIcon from 'material-ui/SvgIcon';
+import Register from './Register.jsx';
 import {
   BrowserRouter as Router,
   Route,
   Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 
 
@@ -31,7 +32,7 @@ class LoginView extends React.Component {
 
         <div className="container login-container">
         <button className="close-button-login" onClick={this.handleClose}><Link to="/">
-      <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
@@ -51,10 +52,9 @@ class LoginView extends React.Component {
               </form>
               <hr/>
               <p>Need an account?
-                  <a href="/signup">Signup</a>
+                  <Link to="/signup"> Sign Up here</Link>
               </p>
-              <p>Or go
-                  <a href="/">home</a>.</p>
+              <p>Or go <Link to="/">home</Link>.</p>
           </div>
         </div>
       </div>

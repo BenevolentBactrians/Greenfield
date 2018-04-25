@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui';
-// import SvgIcon from 'material-ui/SvgIcon';
 import App from './components/App.jsx'
 import {
   BrowserRouter as Router,
