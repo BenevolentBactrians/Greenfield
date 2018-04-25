@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+import axios from 'axios';
 
 
 
@@ -19,12 +20,30 @@ class Register extends React.Component {
       display: this.state.isActive ? 'flex' : 'none'
     }
     this.handleClose = this.handleClose.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault()
+    axios.post('/signup', {email: this.state.email, password: this.state.password})
+      .then((response) => {
+        this.props.setUserIdToState(response.data.userId)
+        localStorage.setItem('userId', response.data.userId)
+      });
+    this.setState({email: '', password: '', isActive: false})
   }
 
   handleClose() {
     this.setState({isActive: false})
   }
 
+  handleEmailChange = (event) => {
+    this.setState({email: event.target.value})
+  }
+
+  handlePasswordChange = (event) => {
+    this.setState({password: event.target.value})
+  }
 
   render() {
     return (
@@ -36,24 +55,24 @@ class Register extends React.Component {
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
        </Link></button>
-          <div class="col-sm-6 col-sm-offset-3">
+          <div className="col-sm-6 col-sm-offset-3">
               <h1><span className="fa fa-sign-in"></span> Register</h1>
               <form action="/signup" method="post">
                   <div className="form-group">
                       <label>Email</label>
-                      <input type="text" className="form-control" name="email"/>
+                      <input type="text" className="form-control" name="email" onChange={this.handleEmailChange} value={this.state.email}/>
                   </div>
                   <div className="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" name="password"/>
+                      <input type="password" className="form-control" name="password" onChange={this.handlePasswordChange} value={this.state.password}/>
                   </div>
-                  <button type="submit" className="btn btn-warning btn-lg">Login</button>
+                  <button onClick={this.handleSubmit} className=" btn-warning btn-lg"><Link to="/" style={{ textDecoration: 'none'}} >Create account</Link></button>
               </form>
               <hr/>
                 <p>Already have an account?
-                  <Link to="login"> Login</Link>
+                  <Link to="/login"> Login</Link>
                 </p>
-              <p>Or go <a href="/">home</a>.</p>
+              <p>Or go <Link to="/">home</Link>.</p>
           </div>
         </div>
       </div>

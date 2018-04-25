@@ -26,7 +26,9 @@ class Login extends Component {
 
 const Logged = (props) => {
   const handleSignOut = () => {
-    axios.get('/signout')
+    axios.get('/signout');
+    props.clearUserIdFromState();
+    localStorage.clear();
   }
   return (
     <IconMenu
@@ -39,7 +41,7 @@ const Logged = (props) => {
     >
       <MenuItem primaryText="Refresh" />
       <MenuItem primaryText="Help" />
-      <MenuItem primaryText="Sign out" onClick={handleSignOut} />
+      <Link to="/" style={{ textDecoration: 'none' }}><MenuItem primaryText="Sign out" onClick={handleSignOut} ></MenuItem></Link>
     </IconMenu>
   )
 };
@@ -53,14 +55,13 @@ class AppHeader extends React.Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="app-header">
           <div className="nav-left"> LEFT  </div>
           <div className="nav-center"> <h1> TITLE </h1> </div>
-          <div className="nav-right"> {this.props.logged ? <Logged /> : <Link to="/login"> <Login /> </Link> } </div>
-          <Route exact path="/signup" component={Register}/>
-          <Route exact path="/login" component={LoginView}/>
+          <div className="nav-right"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
+          <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
+          <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
       </div>
     )
   }

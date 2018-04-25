@@ -230,6 +230,7 @@ body {
   height: 100%;
   align-items: center;
   background: rgba(192,192,192,0.8);
+  z-index: 1;
 }
 
 
@@ -251,4 +252,10 @@ body {
     margin: -224px 0;
     background: transparent;
     border: none;
+}
+
+
+a:focus, a:hover, a:visited, a:link, a:active {
+  text-decoration: none;
+  color:white !important;
 }

@@ -6,6 +6,7 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+import axios from 'axios';
 
 
 
@@ -13,18 +14,36 @@ class LoginView extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isActive: true
+      isActive: this.props.isActive || false
     }
     this.style = {
       display: this.state.isActive ? 'flex' : 'none'
     }
-    this.handleClose = this.handleClose.bind(this)
+    this.handleClose = this.handleClose.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClose() {
     this.setState({isActive: false})
   }
 
+  handleSubmit(event) {
+    event.preventDefault()
+    axios.post('/login', {email: this.state.email, password: this.state.password})
+      .then((response) => {
+        this.props.setUserIdToState(response.data.userId)
+        localStorage.setItem('userId', response.data.userId)
+      });
+    this.setState({email: '', password: '', isActive: false})
+  }
+
+  handleEmailChange = (event) => {
+    this.setState({email: event.target.value})
+  }
+
+  handlePasswordChange = (event) => {
+    this.setState({password: event.target.value})
+  }
 
   render() {
     return (
@@ -37,18 +56,18 @@ class LoginView extends React.Component {
               <path d="M0 0h24v24H0z" fill="none"/>
             </svg>
        </Link></button>
-          <div class="col-sm-6 col-sm-offset-3">
+          <div className="col-sm-6 col-sm-offset-3">
               <h1><span className="fa fa-sign-in"></span> Login</h1>
               <form action="/login" method="post">
                   <div className="form-group">
                       <label>Email</label>
-                      <input type="text" className="form-control" name="email"/>
+                      <input type="text" className="form-control" name="email" onChange={this.handleEmailChange} value={this.state.email}/>
                   </div>
                   <div className="form-group">
                       <label>Password</label>
-                      <input type="password" class="form-control" name="password"/>
+                      <input type="password" className="form-control" name="password" onChange={this.handlePasswordChange} value={this.state.password}/>
                   </div>
-                  <button type="submit" className="btn btn-warning btn-lg">Login</button>
+                  <button onClick={this.handleSubmit} className="btn-warning btn-lg"><Link to="/" style={{ textDecoration: 'none'}}>Login</Link></button>
               </form>
               <hr/>
               <p>Need an account?

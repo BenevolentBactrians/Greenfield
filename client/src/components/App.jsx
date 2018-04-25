@@ -24,17 +24,22 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var userId = window.location.search.split('=')[1]
-    if ( userId !== this.state.userId ){
-      this.setState({userId: userId});
-    }
+    this.setState({userId: localStorage.getItem('userId')})
+  }
+
+  setUserIdToState = (userId) => {
+    this.setState({userId: userId});
+  }
+
+  clearUserIdFromState = () => {
+    this.setState({userId: null});
   }
 
   render(props) {
     return (
       <div>
         <div className="app-container">
-          <AppHeader logged={!(!this.state.userId)} />
+          <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
           <div className='col-left'>
             <AddTask className='add-task' userId={this.state.userId}/>
             <Duck className='duck-view'/>
