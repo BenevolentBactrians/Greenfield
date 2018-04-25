@@ -31,7 +31,8 @@ const taskSchema = new mongoose.Schema (
     date: Date,
     description: String,
     startTime: Date,
-    endTime: Date
+    endTime: Date,
+    completed: Boolean
   }
 );
 
@@ -114,7 +115,8 @@ let saveTask = (taskObj) => {
     date: date,
     startTime: startTime,
     endTime: endTime,
-    description: description
+    description: description,
+    completed: false
   }
   //save new task to database
     new Task(formatted).save( (err, newTaskEntry) => {
