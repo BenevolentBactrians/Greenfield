@@ -33,6 +33,7 @@ class WeeklyTaskEntry extends React.Component {
 
     return ( 
 
+
       <div>
         <MenuItem
           primaryText={date}
