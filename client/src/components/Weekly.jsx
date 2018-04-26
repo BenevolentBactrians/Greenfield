@@ -44,7 +44,7 @@ class Weekly extends React.Component {
     super(props);
     this.state = {
       currentDate: new Date(),
-      currentWeekDateRange: {},
+      currentWeekDateRange: [],
       currentWeekData: [],
       currentWeekFormatted: this.props.week
     }
@@ -68,19 +68,36 @@ class Weekly extends React.Component {
     this.getCurrentWeekTaskCount();  
   }
   
+  // setCurrentWeekDateRange() {
+  //   var date = new Date (this.state.currentDate.getTime())
+  //   var startDate = date;
+  //   startDate.setHours(0,0,0,0);
+      
+  //   var endDate = new Date(startDate.getTime() + 6 * 86400000); 
+    
+  //   var dateRange = {
+  //     start: startDate,
+  //     end: endDate
+  //   }; 
+  //   this.setState({currentWeekDateRange: dateRange})  
+  // }
+  
   setCurrentWeekDateRange() {
     var date = new Date (this.state.currentDate.getTime())
     var startDate = date;
     startDate.setHours(0,0,0,0);
-      
-    var endDate = new Date(startDate.getTime() + 6 * 86400000); 
+    var dateRange = [startDate];
     
-    var dateRange = {
-      start: startDate,
-      end: endDate
-    }; 
+    for (var i = 0; i < 6; i++) {
+      var nextDate = new Date(dateRange[dateRange.length - 1].getTime() + 1 * 86400000); 
+      dateRange.push(nextDate);
+    }
+    console.log('dateRange: ', dateRange);
+    
     this.setState({currentWeekDateRange: dateRange})  
   }
+  
+  
   
   
   getCurrentWeekTaskCount () {
