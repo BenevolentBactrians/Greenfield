@@ -1,7 +1,7 @@
 import React from 'react';
 import MenuItem from 'material-ui/MenuItem';
 // import axios from 'axios';
-// import moment from 'moment';
+import moment from 'moment';
 import Dialog from 'material-ui/Dialog';
 import Daily from './Daily.jsx'
 
@@ -26,6 +26,7 @@ class WeeklyTaskEntry extends React.Component {
   
   render () {
     var date = this.props.day.date.getTime()
+    date = moment(date).format('LL')
     
     return ( 
       <div>
