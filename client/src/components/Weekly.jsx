@@ -52,6 +52,7 @@ class Weekly extends React.Component {
     this.handleNextWeekButton = this.handleNextWeekButton.bind(this);
     this.getTasksByDay = this.getTasksByDay.bind(this);
     this.getCurrentWeekTaskCount = this.getCurrentWeekTaskCount.bind(this);
+    // TODO bind other functions
   }
   
   componentWillMount () {
@@ -68,6 +69,14 @@ class Weekly extends React.Component {
     console.log('weekly component did mount....'); 
  
     var context = this;
+    
+    // initialize the current week view data (promise)
+    //   get the date
+    //   set current week date range
+    //   get tasks by day for date range (7 days)
+    //   iterate over the data
+    //   format current week data into currentWeekFormated by date and count
+  
     
     var initializeData = new Promise ( (resolve, reject) => {
       context.setCurrentWeekDateRange();
@@ -87,6 +96,11 @@ class Weekly extends React.Component {
       console.log(error);
     })
   }
+  
+  // TODO
+  // move initializeData outside of componenetDidMount 
+  // then call initialize data from componentDidMount or prev or next wk buttons
+  
   
   setCurrentWeekDateRange() {
     console.log('setCurrentWeekDateRange...')
@@ -109,7 +123,7 @@ class Weekly extends React.Component {
     console.log('getCurrentWeekTaskCount.....')
     var context = this;
     
-    var currentWeekFormatted = this.state.currentWeekData.map( (day) =>{
+    var formattedWeek = this.state.currentWeekData.map( (day) =>{
       console.log('hello');
       var obj = {}
       obj.date = day.date;
@@ -117,7 +131,10 @@ class Weekly extends React.Component {
       console.log(obj);
       return obj;
     })
-    console.log('currentWeekFormatted: ', currentWeekFormatted)
+    console.log('currentWeekFormatted: ', formattedWeek);
+    
+    // TODO ------------------ TODO ----------------------
+    // this.setState({currentWeekFormatted: formattedWeek})
     
   }
   
@@ -165,12 +182,22 @@ class Weekly extends React.Component {
   
   handlePreviousWeekButton () {
     console.log('handlePreviousWeekButton...');
+    var newDate = new Date (this.state.currentDate.getTime() - 7 * 86400000);
+    // newDate.setHours(0,0,0,0);
+    console.log('old date: ',  this.state.currentDate);
+    console.log('new date: ', newDate);
     
+    // TODO set state for currentDate
   }
   
   handleNextWeekButton () {
     console.log('handleNextWeekButton...');
-    
+    var newDate = new Date (this.state.currentDate.getTime() + 7 * 86400000);
+    // newDate.setHours(0,0,0,0);
+    console.log('old date: ',  this.state.currentDate);
+    console.log('new date: ', newDate);
+   
+    // TODO set state for currentDate
   }
   
   
@@ -193,7 +220,7 @@ class Weekly extends React.Component {
 
                 <Menu width={320}>               
 
-                  { this.state.currentWeekFormatted.map( (day, index) =>
+                  { this.state.currentWeekData.map( (day, index) =>
                     <WeeklyTaskEntry day={day} key={index} />                 
                     )
                   }               
