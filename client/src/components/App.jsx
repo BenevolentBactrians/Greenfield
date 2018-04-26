@@ -37,7 +37,8 @@ class App extends React.Component {
   }
 
   render(props) {
-    return (
+    
+    return ( 
       <div>
         <div className="app-container">
           <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
@@ -47,6 +48,8 @@ class App extends React.Component {
           </div>
           <div className='col-center'>
 
+          
+           { this.state.userId ?
 
             <Weekly 
               week={this.state.weekState} 
@@ -54,6 +57,10 @@ class App extends React.Component {
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               />
+              :
+              null
+              
+           }
 
 
           </div>
