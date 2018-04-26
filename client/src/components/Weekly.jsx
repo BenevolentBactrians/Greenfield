@@ -3,7 +3,7 @@ import Paper from 'material-ui/Paper';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
-import moment from 'moment';
+import moment from 'moment'; 
 import RaisedButton from 'material-ui/RaisedButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import WeeklyTaskEntry from './WeeklyTaskEntry.jsx';
@@ -43,39 +43,112 @@ class Weekly extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentDate: null,
-      currentWeekFormatted: []
+      currentDate: new Date(),
+      currentWeekRange: [],
+      currentWeekData: [],
+      currentWeekFormatted: this.props.week
     }
+    this.handlePreviousWeekButton = this.handlePreviousWeekButton.bind(this);
+    this.handleNextWeekButton = this.handleNextWeekButton.bind(this);
+    this.getTasksByDay = this.getTasksByDay.bind(this);
   }
+  
+  // componentWillMount () {
+  //   console.log('weekly componentWillMount...');
+  //   // console.log('props:', this.props);
+  //   // console.log('state:', this.state);
+  // }
   
   componentDidMount() {
-    console.log('weekly component did mount ..');
-    this.setCurrentDate();
+    console.log('weekly component did mount....'); 
+    // console.log('props:', this.props);
+    // console.log('state:', this.state); 
+      
+    this.getCurrentWeekTaskCount();
+    
   }
   
-    // get / set currentDate state
-  setCurrentDate () {
-    let newDate = Date();
-    this.setState({currentDate: newDate})
+  // componentWillReceiveProps(nextProps) {
+  //   console.log('weekly componentWillReceiveProps....')
+  //   this.setState({currentUserId: nextProps.userId});
+  //   this.setState({currentWeekFormatted: nextProps.week});  
+  // } 
+  
+  // TODO 
+  getDateRange () {
+    var startDate = this.state.currentDate;
+    // let endDate = undefined;
   }
+  
   
   getCurrentWeekTaskCount () {
-    var context = this;
-
+    console.log('getCurrentWeekTaskCount.....')
+      
+    // TODO  get one days tasks TEMPORARY
+    this.getTasksByDay ();   
+  }
+  
+  
+  getTasksByDay () {
+    console.log('getTasksByDay............')
     
-    axios.get( `/tasks?currentdate=${context.state.currentDate}`)
+    var context = this;
+    // var date = this.state.currentDate.toISOString();
+    var date = this.state.currentDate;  // set time  to 00000 ????? TODO
+    var userId = this.props.userId;
+    var path = `/task/${userId}/${date}`;
+
+    console.log('path: ', path);
+    
+    axios.get( path )
     .then ( (results) => {
-      console.log('getCurrentWeekTaskCount', results.data)
+      return results;
+    })
+    .then ( (results) => {
+      var updatedCurrentWeekData = context.state.currentWeekData;
+      var tasksByDay = {
+        date: date,
+        tasks: results.data
+      }
+      updatedCurrentWeekData.push(tasksByDay);
+      context.setState({currentWeekData: updatedCurrentWeekData});
+      console.log('currentWeekData: ', context.state.currentWeekData);
     })
     .catch ( (error) => {
       console.log(error)
     })
+  }
+  
+  formatCurrentWeek () {  
+    var formattedWeek = this.currentWeekData.map ( (day) => {
+      var formattedDay = {
+        date: day.date, 
+        count: day.tasks.length
+      }
+      return formattedDay
+    })
+    this.setState({currentWeekFormatted: formattedWeek})   
+  }
+  
+  
+  handlePreviousWeekButton () {
+    console.log('handlePreviousWeekButton...');
+    
+  }
+  
+  handleNextWeekButton () {
+    console.log('handleNextWeekButton...');
     
   }
   
   
   
+  
+  
   render (props) {
+    
+    // console.log('Weekly render props: ', this.props);
+    // console.log('Weekly render state: ', this.state);
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
@@ -89,7 +162,7 @@ class Weekly extends React.Component {
 
                 <Menu width={320}>               
 
-                  { this.props.week.map( (day, index) =>
+                  { this.state.currentWeekFormatted.map( (day, index) =>
                     <WeeklyTaskEntry day={day} key={index} />                 
                     )
                   }               
@@ -100,8 +173,16 @@ class Weekly extends React.Component {
           
           
           <div className="week-selectors">            
-            <RaisedButton icon={<LeftArrow style={iconStyles} />} style={buttonStyles} />
-            <RaisedButton label={<RightArrow style={iconStyles} />} style={buttonStyles} />       
+            <RaisedButton 
+              icon={<LeftArrow style={iconStyles} />} 
+              style={buttonStyles} 
+              onClick={()=> this.handlePreviousWeekButton()}
+              />
+            <RaisedButton 
+              label={<RightArrow style={iconStyles} />} 
+              style={buttonStyles} 
+              onClick={()=> this.handleNextWeekButton()}
+              />       
           </div>
           
           
