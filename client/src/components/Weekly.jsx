@@ -55,7 +55,9 @@ class Weekly extends React.Component {
     this.getTasksByDay = this.getTasksByDay.bind(this);
     this.initializeData = this.initializeData.bind(this);
     // TODO bind other functions ??
+
  }
+
 
 
   
@@ -73,17 +75,14 @@ class Weekly extends React.Component {
 
   initializeData () {
     var context = this;
-    
 
     console.log('initializing data...')
       var initializeDataPROMISE = new Promise ( (resolve, reject) => {
-
       context.setCurrentWeekDateRange();
       resolve()
     }) 
     
     initializeDataPROMISE
-
     .then( (data) => {
       context.state.currentWeekDateRange.forEach( (date) => {
         context.getTasksByDay(date);     
@@ -94,11 +93,6 @@ class Weekly extends React.Component {
     })
  } 
 
-  
-  // TODO
-  // move initializeData outside of componenetDidMount 
-  // then call initialize data from componentDidMount or prev or next wk buttons
-  
   
   setCurrentWeekDateRange() {
     console.log('setCurrentWeekDateRange...')
@@ -113,7 +107,6 @@ class Weekly extends React.Component {
     }
     this.setState({currentWeekDateRange: dateRange})  
   }
-  
   
 
   getTasksByDay (date) {
@@ -197,7 +190,6 @@ class Weekly extends React.Component {
   
 
   render (props) { 
-
 
     return (
 
