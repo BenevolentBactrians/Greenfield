@@ -99,16 +99,18 @@ class Weekly extends React.Component {
       var nextDate = new Date(dateRange[dateRange.length - 1].getTime() + 1 * 86400000); 
       dateRange.push(nextDate);
     }
+    console.log('dateRange: ', dateRange);
+    
     this.setState({currentWeekDateRange: dateRange})  
   }
   
   
+
   getTasksByDay (date) {
     console.log('getTasksByDay......')
+
     
-    var context = this;
-    
-    var date = this.state.currentDate;  
+    var context = this;  
     var userId = this.props.userId;
     var path = `/task/${userId}/${date}`;
     
