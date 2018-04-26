@@ -55,6 +55,7 @@ class Weekly extends React.Component {
   }
 
   
+
   componentDidMount() {
     console.log('weekly component did mount....');  
     this.initializeData()
