@@ -44,7 +44,7 @@ class Weekly extends React.Component {
     super(props);
     this.state = {
       currentDate: new Date(),
-      currentWeekRange: [],
+      currentWeekDateRange: {},
       currentWeekData: [],
       currentWeekFormatted: this.props.week
     }
@@ -53,31 +53,33 @@ class Weekly extends React.Component {
     this.getTasksByDay = this.getTasksByDay.bind(this);
   }
   
-  // componentWillMount () {
-  //   console.log('weekly componentWillMount...');
-  //   // console.log('props:', this.props);
-  //   // console.log('state:', this.state);
-  // }
-  
-  componentDidMount() {
-    console.log('weekly component did mount....'); 
-    // console.log('props:', this.props);
-    // console.log('state:', this.state); 
-      
-    this.getCurrentWeekTaskCount();
+  componentWillMount () {
     
   }
   
-  // componentWillReceiveProps(nextProps) {
-  //   console.log('weekly componentWillReceiveProps....')
-  //   this.setState({currentUserId: nextProps.userId});
-  //   this.setState({currentWeekFormatted: nextProps.week});  
-  // } 
+  componentWillReceiveProps() {
+    
+  }
   
-  // TODO 
-  getDateRange () {
-    var startDate = this.state.currentDate;
-    // let endDate = undefined;
+  
+  componentDidMount() {
+    console.log('weekly component did mount....'); 
+    this.setCurrentWeekDateRange();
+    this.getCurrentWeekTaskCount();  
+  }
+  
+  setCurrentWeekDateRange() {
+    var date = new Date (this.state.currentDate.getTime())
+    var startDate = date;
+    startDate.setHours(0,0,0,0);
+      
+    var endDate = new Date(startDate.getTime() + 6 * 86400000); 
+    
+    var dateRange = {
+      start: startDate,
+      end: endDate
+    }; 
+    this.setState({currentWeekDateRange: dateRange})  
   }
   
   
@@ -93,6 +95,7 @@ class Weekly extends React.Component {
     console.log('getTasksByDay............')
     
     var context = this;
+    
     // var date = this.state.currentDate.toISOString();
     var date = this.state.currentDate;  // set time  to 00000 ????? TODO
     var userId = this.props.userId;
@@ -118,6 +121,8 @@ class Weekly extends React.Component {
       console.log(error)
     })
   }
+  
+  
   
   formatCurrentWeek () {  
     var formattedWeek = this.currentWeekData.map ( (day) => {
