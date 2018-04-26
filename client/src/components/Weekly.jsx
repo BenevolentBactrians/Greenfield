@@ -47,7 +47,6 @@ class Weekly extends React.Component {
     super(props);
     this.state = {
       currentDate: new Date(),
-
       currentWeekDateRange: [],
       currentWeekData: []
     }
@@ -90,6 +89,7 @@ class Weekly extends React.Component {
       console.log(error);
     })
  } 
+
   
   
   setCurrentWeekDateRange() {
@@ -112,6 +112,7 @@ class Weekly extends React.Component {
     
     var context = this;
     
+    var date = this.state.currentDate;  
     var userId = this.props.userId;
     var path = `/task/${userId}/${date}`;
     
@@ -136,6 +137,8 @@ class Weekly extends React.Component {
     })
   }
 
+  
+  
   
   formatCurrentWeek () {  
     console.log('formatCurrentWeek...')
