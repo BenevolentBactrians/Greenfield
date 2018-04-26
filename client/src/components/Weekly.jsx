@@ -48,9 +48,8 @@ class Weekly extends React.Component {
   
   render (props) {
     return (
-    
-        // <div className="week-view-container">
-          <Paper style={listStyles} className="week-view-container">
+
+          <Paper style={listStyles} className="week-view-container paper">
             
             <div className="week-title"> <h3>WEEKLY TASKS</h3></div>
            
@@ -77,7 +76,6 @@ class Weekly extends React.Component {
           
           
         </Paper>
-       // </div>  
       
     )
   }
