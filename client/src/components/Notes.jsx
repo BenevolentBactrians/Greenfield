@@ -5,21 +5,31 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
 import axios from 'axios';
+import Snackbar from 'material-ui/Snackbar';
 
 class Notes extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       notes: [],
-      text: ''
+      text: '',
+      logInSnackBarOpen: false,
+      noteAddedSnackBarOpen: false
     }
     this.handleTextfieldChange = this.handleTextfieldChange.bind(this);
     this.submitNote = this.submitNote.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
+  handleRequestClose = () => {
+    this.setState({
+      noteAddedSnackBarOpen: false,
+      logInSnackBarOpen: false
+    });
+  };
+
   handleTextfieldChange(event) {
-    this.setState({text: event.target.value})
+    this.setState({text: event.target.value, logInSnackBarOpen: !this.props.userId})
   }
 
   submitNote() {
@@ -27,7 +37,7 @@ class Notes extends React.Component {
     axios.post('/notes', {text: this.state.text, userId: this.props.userId})
       .then((res) => {
         notes.push(res.data)
-        this.setState({notes: notes})
+        this.setState({notes: notes, noteAddedSnackBarOpen: true})
       })
     this.setState({text: ''})
   }
@@ -90,12 +100,24 @@ class Notes extends React.Component {
           </div>
 
           <div className="addNoteButton">
-            <FloatingActionButton mini={true} onClick={this.submitNote} disabled={this.state.text === ''} >
+            <FloatingActionButton mini={true} onClick={this.submitNote} disabled={this.state.text === '' || !this.props.userId} >
               <ContentAdd />
             </FloatingActionButton>
           </div>
 
         </div>
+        <Snackbar
+          open={this.state.noteAddedSnackBarOpen}
+          message="Note added"
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
+        <Snackbar
+          open={this.state.logInSnackBarOpen}
+          message="You are logged out, please login to add a note."
+          autoHideDuration={4000}
+          onRequestClose={this.handleRequestClose}
+        />
       </div>
       </Paper>
     )
