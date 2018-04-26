@@ -51,6 +51,7 @@ class Weekly extends React.Component {
     this.handlePreviousWeekButton = this.handlePreviousWeekButton.bind(this);
     this.handleNextWeekButton = this.handleNextWeekButton.bind(this);
     this.getTasksByDay = this.getTasksByDay.bind(this);
+    this.getCurrentWeekTaskCount = this.getCurrentWeekTaskCount.bind(this);
   }
   
   componentWillMount () {
@@ -61,28 +62,34 @@ class Weekly extends React.Component {
     
   }
   
+
   
   componentDidMount() {
     console.log('weekly component did mount....'); 
-    this.setCurrentWeekDateRange();
-    this.getCurrentWeekTaskCount();  
+ 
+    var context = this;
+    
+    var initializeData = new Promise ( (resolve, reject) => {
+      context.setCurrentWeekDateRange();
+      resolve()
+    }) 
+    
+    initializeData
+    .then( (data) => {
+      context.state.currentWeekDateRange.forEach( (date) => {
+        context.getTasksByDay(date);     
+      })
+    })
+    .then( (data) => {
+      context.getCurrentWeekTaskCount()
+    })
+    .catch ( (error) =>{
+      console.log(error);
+    })
   }
   
-  // setCurrentWeekDateRange() {
-  //   var date = new Date (this.state.currentDate.getTime())
-  //   var startDate = date;
-  //   startDate.setHours(0,0,0,0);
-      
-  //   var endDate = new Date(startDate.getTime() + 6 * 86400000); 
-    
-  //   var dateRange = {
-  //     start: startDate,
-  //     end: endDate
-  //   }; 
-  //   this.setState({currentWeekDateRange: dateRange})  
-  // }
-  
   setCurrentWeekDateRange() {
+    console.log('setCurrentWeekDateRange...')
     var date = new Date (this.state.currentDate.getTime())
     var startDate = date;
     startDate.setHours(0,0,0,0);
@@ -92,8 +99,6 @@ class Weekly extends React.Component {
       var nextDate = new Date(dateRange[dateRange.length - 1].getTime() + 1 * 86400000); 
       dateRange.push(nextDate);
     }
-    console.log('dateRange: ', dateRange);
-    
     this.setState({currentWeekDateRange: dateRange})  
   }
   
@@ -102,23 +107,28 @@ class Weekly extends React.Component {
   
   getCurrentWeekTaskCount () {
     console.log('getCurrentWeekTaskCount.....')
-      
-    // TODO  get one days tasks TEMPORARY
-    this.getTasksByDay ();   
+    var context = this;
+    
+    var currentWeekFormatted = this.state.currentWeekData.map( (day) =>{
+      console.log('hello');
+      var obj = {}
+      obj.date = day.date;
+      obj.count = day.tasks.length;
+      console.log(obj);
+      return obj;
+    })
+    console.log('currentWeekFormatted: ', currentWeekFormatted)
+    
   }
   
   
-  getTasksByDay () {
-    console.log('getTasksByDay............')
+  getTasksByDay (date) {
+    console.log('getTasksByDay......')
     
     var context = this;
     
-    // var date = this.state.currentDate.toISOString();
-    var date = this.state.currentDate;  // set time  to 00000 ????? TODO
     var userId = this.props.userId;
     var path = `/task/${userId}/${date}`;
-
-    console.log('path: ', path);
     
     axios.get( path )
     .then ( (results) => {
@@ -132,7 +142,6 @@ class Weekly extends React.Component {
       }
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
-      console.log('currentWeekData: ', context.state.currentWeekData);
     })
     .catch ( (error) => {
       console.log(error)
@@ -142,6 +151,7 @@ class Weekly extends React.Component {
   
   
   formatCurrentWeek () {  
+    console.log('formatCurrentWeek...')
     var formattedWeek = this.currentWeekData.map ( (day) => {
       var formattedDay = {
         date: day.date, 
@@ -167,8 +177,7 @@ class Weekly extends React.Component {
   
   
   
-  render (props) {
-    
+  render (props) { 
     // console.log('Weekly render props: ', this.props);
     // console.log('Weekly render state: ', this.state);
     return (
