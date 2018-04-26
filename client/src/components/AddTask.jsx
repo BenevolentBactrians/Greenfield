@@ -36,7 +36,7 @@ class AddTask extends React.Component {
     if (!this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description) {
       this.setState({emptyOpen: true})
     } else {
-      axios.post('http://localhost:3000/task', {
+      axios.post('/task', {
         task: this.state.task,
         date: this.state.date,
         startTime: this.state.startTime,
@@ -67,37 +67,39 @@ class AddTask extends React.Component {
 
   onChangeTask(e) {
     this.setState({
-      task: e.target.value
+      task: e.target.value, logOpen: !this.props.userId
     })
   }
 
   onChangeDate(e, date) {
     this.setState({
-      date: date
+      date: date, logOpen: !this.props.userId
     })
   }
 
   onChangeStart(e, time) {
     this.setState({
-      startTime: time
+      startTime: time, logOpen: !this.props.userId
     })
   }
 
   onChangeEnd(e, time) {
     this.setState({
-      endTime:time
+      endTime:time, logOpen: !this.props.userId
     })
   }
 
-  onChangeDesc(e) {
+  onChangeDesc = (e) => {
     this.setState({
-      description: e.target.value
+      description: e.target.value, logOpen: !this.props.userId
     })
   }
 
   handleRequestClose() {
     this.setState({
-      open: false
+      open: false,
+      logOpen: false,
+      emptyOpen: false
     })
   }
 
@@ -147,6 +149,7 @@ class AddTask extends React.Component {
             <RaisedButton
               onClick={this.handleSubmit}
               label="add task"
+              disabled={!this.props.userId || !this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description}
             />
             <Snackbar
               open={this.state.open}
