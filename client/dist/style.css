@@ -22,7 +22,7 @@ body {
   justify-content: left;
   align-items: center;
   padding-left: 10px;
-  
+
 }
 
 .nav-center {
@@ -125,7 +125,7 @@ body {
   height: 45%;
 }
 
-.app-header { 
+.app-header {
   min-height: 72px;
   /* align-items: center; */
   grid-column-end: 4;
@@ -179,7 +179,7 @@ body {
 }
 
 /* ===========================================
-        Notes 
+        Notes
 =========================================== */
 
 
@@ -257,6 +257,31 @@ body {
     border: none;
 }
 
+/* ===========================================
+        Daily
+=========================================== */
+
+.daily-container {
+  display: grid;
+  grid-template-columns: 40px auto 150px 40px;
+  grid-template-rows: 50px auto;
+  grid-auto-flow: row;
+  grid-gap: 10px;
+}
+
+.daily-header {
+  grid-row: 1;
+  grid-column-start: 1;
+  grid-column-end:  5;
+  background-color: red;
+}
+
+.daily-body {
+  grid-row: 2;
+  grid-column-start: 1 ;
+  grid-column-end: 5;
+  background-color: blue;
+}
 
 a:focus, a:hover, a:visited, a:link, a:active {
   text-decoration: none;
