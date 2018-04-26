@@ -45,61 +45,46 @@ class Weekly extends React.Component {
     this.state = {
       currentDate: new Date(),
       currentWeekDateRange: [],
-      currentWeekData: [],
-      currentWeekFormatted: this.props.week
+      currentWeekData: []
     }
     this.handlePreviousWeekButton = this.handlePreviousWeekButton.bind(this);
     this.handleNextWeekButton = this.handleNextWeekButton.bind(this);
     this.getTasksByDay = this.getTasksByDay.bind(this);
-    this.getCurrentWeekTaskCount = this.getCurrentWeekTaskCount.bind(this);
-    // TODO bind other functions
+    this.initializeData = this.initializeData.bind(this);
+    // TODO bind other functions ??
   }
-  
-  componentWillMount () {
-    
-  }
-  
-  componentWillReceiveProps() {
-    
-  }
-  
 
   
   componentDidMount() {
-    console.log('weekly component did mount....'); 
- 
-    var context = this;
-    
+    console.log('weekly component did mount....');  
+    this.initializeData()
+  }
+  
     // initialize the current week view data (promise)
     //   get the date
     //   set current week date range
     //   get tasks by day for date range (7 days)
-    //   iterate over the data
-    //   format current week data into currentWeekFormated by date and count
-  
+    //   iterate over the data and populate the view
+
+  initializeData () {
+    var context = this;
     
-    var initializeData = new Promise ( (resolve, reject) => {
+    console.log('initializing data...')
+      var initializeDataPROMISE = new Promise ( (resolve, reject) => {
       context.setCurrentWeekDateRange();
       resolve()
     }) 
     
-    initializeData
+    initializeDataPROMISE
     .then( (data) => {
       context.state.currentWeekDateRange.forEach( (date) => {
         context.getTasksByDay(date);     
       })
     })
-    .then( (data) => {
-      context.getCurrentWeekTaskCount()
-    })
     .catch ( (error) =>{
       console.log(error);
     })
-  }
-  
-  // TODO
-  // move initializeData outside of componenetDidMount 
-  // then call initialize data from componentDidMount or prev or next wk buttons
+ } 
   
   
   setCurrentWeekDateRange() {
@@ -114,28 +99,6 @@ class Weekly extends React.Component {
       dateRange.push(nextDate);
     }
     this.setState({currentWeekDateRange: dateRange})  
-  }
-  
-  
-  
-  
-  getCurrentWeekTaskCount () {
-    console.log('getCurrentWeekTaskCount.....')
-    var context = this;
-    
-    var formattedWeek = this.state.currentWeekData.map( (day) =>{
-      console.log('hello');
-      var obj = {}
-      obj.date = day.date;
-      obj.count = day.tasks.length;
-      console.log(obj);
-      return obj;
-    })
-    console.log('currentWeekFormatted: ', formattedWeek);
-    
-    // TODO ------------------ TODO ----------------------
-    // this.setState({currentWeekFormatted: formattedWeek})
-    
   }
   
   
@@ -182,31 +145,34 @@ class Weekly extends React.Component {
   
   handlePreviousWeekButton () {
     console.log('handlePreviousWeekButton...');
+
     var newDate = new Date (this.state.currentDate.getTime() - 7 * 86400000);
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
     console.log('new date: ', newDate);
     
-    // TODO set state for currentDate
+    this.setState({currentWeekData: []});
+    this.setState({currentDate: newDate});
+    this.initializeData();
   }
+  
   
   handleNextWeekButton () {
     console.log('handleNextWeekButton...');
+    
     var newDate = new Date (this.state.currentDate.getTime() + 7 * 86400000);
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
     console.log('new date: ', newDate);
-   
-    // TODO set state for currentDate
+    
+    this.setState({currentWeekData: []});
+    this.setState({currentDate: newDate});
+    this.initializeData();
   }
   
-  
-  
-  
+   
   
   render (props) { 
-    // console.log('Weekly render props: ', this.props);
-    // console.log('Weekly render state: ', this.state);
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
@@ -253,3 +219,18 @@ class Weekly extends React.Component {
 }
 
 export default Weekly;
+
+
+
+// initialize the following state if not logged in ?? TODO
+      // currentWeekData: [
+      //   {date: 'Monday', tasks: []},
+      //   {date: 'Tuesday', tasks: []},
+      //   {date: 'Wednesday', tasks: []},
+      //   {date: 'Thursday', tasks: []},
+      //   {date: 'Friday', tasks: []},
+      //   {date: 'Saturday', tasks: []},
+      //   {date: 'Sunday', tasks: []}
+      // ]
+
+
