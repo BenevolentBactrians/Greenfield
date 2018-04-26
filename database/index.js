@@ -75,7 +75,7 @@ let saveUser = (user, callback) => {
     if (err) {
       callback(err);
     } else {
-      callback();
+      callback(null, newUserEntry);
       console.log('New user added to db: ', newUserEntry);
     }
   })

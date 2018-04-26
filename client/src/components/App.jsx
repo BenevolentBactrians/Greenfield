@@ -24,42 +24,35 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    var userId = window.location.search.split('=')[1]
-    if ( userId !== this.state.userId ){
-      this.setState({userId: userId});
-    }
+    this.setState({userId: localStorage.getItem('userId')})
+  }
+
+  setUserIdToState = (userId) => {
+    this.setState({userId: userId});
+  }
+
+  clearUserIdFromState = () => {
+    this.setState({userId: null});
   }
 
   render(props) {
     return (
       <div>
-        <div className="container">
-
-          <AppHeader logged={!(!this.state.userId)} />
-
+        <div className="app-container">
+          <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
           <div className='col-left'>
             <AddTask className='add-task' userId={this.state.userId}/>
             <Duck className='duck-view'/>
           </div>
-
           <div className='col-center'>
-
             <Weekly week={this.state.weekState} className='weekly-view'/>
-
           </div>
-
           <div className='col-right'>
             <Notes userId={this.state.userId} />
             <div className='chart'>CHART</div>
           </div>
-
-
         </div>
       </div>
-
-
-
-
       )
   }
 }

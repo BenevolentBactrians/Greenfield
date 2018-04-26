@@ -45,18 +45,17 @@ app.get('/', jsonParser, (req, res, next) => {
 })
 
 app.get('/login', (req, res) => {
-  res.render('login')
+  res.render('index')
 })
 
-app.post('/login', urlencodedParser, (req, res) => {
+app.post('/login', (req, res) => {
   db.getUser({name: req.body.email}, (error, result) => {
     result === null || result.length === 0 ? res.status(404).send(`Invalid credentials`) :
       bcrypt.hash(req.body.password, result.salt, function(err, hash) {
         if ( hash === result.hashedPassword ) {
-          // create session and add userId to the session
           req.session.regenerate(() => {
             req.session.userId = result.id;
-            res.redirect('/?userId=' + result.id);
+            res.send({userId: result.id})
           })
         } else {
           res.status(404).send(`Invalid credentials`)
@@ -66,7 +65,7 @@ app.post('/login', urlencodedParser, (req, res) => {
 })
 
 app.get('/signup', (req, res) => {
-  res.render('signup')
+  res.render('index')
 })
 
 app.get('/signout', (req, res) => {
@@ -89,7 +88,11 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.salt = salt
         formated.hashedPassword = hash
         db.saveUser(formated, (error, success) => {
-          error ? res.status(400).send(`Sorry ${error}`) : res.sendStatus(201);
+          error ? res.status(400).send(`Sorry ${error}`) : 
+          req.session.regenerate(() => {
+            req.session.userId = success._id;
+            res.send(201, {userId: success._id});
+          });
         });
     });
   });

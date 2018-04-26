@@ -1,9 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {MuiThemeProvider, getMuiTheme} from 'material-ui';
-// import SvgIcon from 'material-ui/SvgIcon';
 import App from './components/App.jsx'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
 
 
-ReactDOM.render(<MuiThemeProvider><div><App/></div></MuiThemeProvider>, document.getElementById('app'));
+ReactDOM.render(
+  <MuiThemeProvider>
+    <div>
+      <Router>  
+        <App/>
+      </Router>
+    </div>
+  </MuiThemeProvider>, 
+  document.getElementById('app')
+);
 

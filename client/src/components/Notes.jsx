@@ -33,7 +33,6 @@ class Notes extends React.Component {
   }
 
   handleDelete(noteId) {
-    console.log(noteId)
     let notes = this.state.notes.slice();
     axios.delete(`notes?noteId=${noteId}`)
       .then((res) => {
@@ -43,10 +42,25 @@ class Notes extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    axios.get(`/notes?userId=${nextProps.userId}`)
+    if( !nextProps.userId ) {
+      this.setState({notes: []});
+    } else {
+      axios.get(`/notes?userId=${nextProps.userId}`)
       .then((res) => {
         this.setState({notes: res.data})
       })
+    }
+  }
+
+  componentWillMount() {
+    if ( this.props.userId ) {
+      this.setState({notes: []});
+    } else { 
+        axios.get(`/notes?userId=${this.props.userId}`)
+        .then((res) => {
+        this.setState({notes: res.data})
+      })
+    }
   }
 
   render() {
