@@ -80,6 +80,7 @@ class Weekly extends React.Component {
     }) 
     
     initializeDataPROMISE
+
     .then( (data) => {
       context.state.currentWeekDateRange.forEach( (date) => {
         context.getTasksByDay(date);     
@@ -90,7 +91,6 @@ class Weekly extends React.Component {
     })
  } 
 
-  
   
   setCurrentWeekDateRange() {
     console.log('setCurrentWeekDateRange...')
@@ -110,9 +110,9 @@ class Weekly extends React.Component {
   getTasksByDay (date) {
     console.log('getTasksByDay......')
     
-    var context = this;
-    
-    var date = this.state.currentDate;  
+
+    var context = this;  
+
     var userId = this.props.userId;
     var path = `/task/${userId}/${date}`;
     
@@ -129,7 +129,9 @@ class Weekly extends React.Component {
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
 
+
       this.props.setWeekDataState(updatedCurrentWeekData)
+
 
     })
     .catch ( (error) => {
@@ -182,7 +184,9 @@ class Weekly extends React.Component {
     this.initializeData();
   }
   
+
   render (props) { 
+
 
     return (
 
