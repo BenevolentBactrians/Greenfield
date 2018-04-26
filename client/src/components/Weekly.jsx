@@ -47,6 +47,7 @@ class Weekly extends React.Component {
     super(props);
     this.state = {
       currentDate: new Date(),
+
       currentWeekDateRange: [],
       currentWeekData: []
     }
@@ -55,7 +56,7 @@ class Weekly extends React.Component {
     this.getTasksByDay = this.getTasksByDay.bind(this);
     this.initializeData = this.initializeData.bind(this);
     // TODO bind other functions ??
-  }
+ }
 
   
 
@@ -126,14 +127,15 @@ class Weekly extends React.Component {
       }
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
+
       this.props.setWeekDataState(updatedCurrentWeekData)
+
     })
     .catch ( (error) => {
       console.log(error)
     })
   }
-  
-  
+
   
   formatCurrentWeek () {  
     console.log('formatCurrentWeek...')
@@ -147,6 +149,7 @@ class Weekly extends React.Component {
     this.setState({currentWeekFormatted: formattedWeek})   
   }
   
+
 
   
   handlePreviousWeekButton () {
@@ -178,7 +181,6 @@ class Weekly extends React.Component {
   
   render (props) { 
 
-  
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
