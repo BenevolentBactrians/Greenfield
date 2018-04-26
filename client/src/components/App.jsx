@@ -48,6 +48,8 @@ class App extends React.Component {
           </div>
           <div className='col-center'>
 
+          
+           { this.state.userId ?
 
             <Weekly 
               week={this.state.weekState} 
@@ -55,6 +57,10 @@ class App extends React.Component {
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               />
+              :
+              null
+              
+           }
 
 
           </div>
