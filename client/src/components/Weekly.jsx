@@ -54,6 +54,7 @@ class Weekly extends React.Component {
     // TODO bind other functions ??
  }
 
+
   
   componentDidMount() {
     console.log('weekly component did mount....');  
@@ -69,8 +70,10 @@ class Weekly extends React.Component {
   initializeData () {
     var context = this;
     
+
     console.log('initializing data...')
       var initializeDataPROMISE = new Promise ( (resolve, reject) => {
+
       context.setCurrentWeekDateRange();
       resolve()
     }) 
@@ -88,6 +91,11 @@ class Weekly extends React.Component {
  } 
 
   
+  // TODO
+  // move initializeData outside of componenetDidMount 
+  // then call initialize data from componentDidMount or prev or next wk buttons
+  
+  
   setCurrentWeekDateRange() {
     console.log('setCurrentWeekDateRange...')
     var date = new Date (this.state.currentDate.getTime())
@@ -103,7 +111,6 @@ class Weekly extends React.Component {
   }
   
   
-
 
   getTasksByDay (date) {
     console.log('getTasksByDay......')
@@ -160,16 +167,17 @@ class Weekly extends React.Component {
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
     console.log('new date: ', newDate);
-    
+
     this.setState({currentWeekData: []});
     this.setState({currentDate: newDate});
     this.initializeData();
+
   }
   
   
   handleNextWeekButton () {
     console.log('handleNextWeekButton...');
-    
+
     var newDate = new Date (this.state.currentDate.getTime() + 7 * 86400000);
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
@@ -178,6 +186,7 @@ class Weekly extends React.Component {
     this.setState({currentWeekData: []});
     this.setState({currentDate: newDate});
     this.initializeData();
+
   }
   
    
