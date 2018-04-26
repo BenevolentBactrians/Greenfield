@@ -151,6 +151,23 @@ let getTasksOnDate = (userId, date, callback) => {
   })
 }
 
+let updateTaskOnCheck = (taskId, callback) => {
+  Task.findOneAndUpdate({_id: taskId}, {complete:true}, null ,callback)
+}
+
+let updateTaskOnUnCheck = (taskId, callback) => {
+  Task.findOneAndUpdate({_id: taskId}, {complete:false}, null ,callback)
+}
+
+const deleteTask = function(taskId, callback) {
+  Task.remove({_id: taskId}, (err) => {
+    if(err) {
+      console.log(err)
+    } else {
+      callback()
+    }
+  })
+}
 
 
 // -- Note Functons --
@@ -233,5 +250,7 @@ module.exports = {
   deleteNote,
   saveQuote,
   getAllQuotes,
-  getTasksOnDate
+  getTasksOnDate,
+  updateTaskOnCheck,
+  updateTaskOnUnCheck
 }

@@ -104,7 +104,20 @@ app.post('/task', restrict, jsonParser, (req, res) => {
   console.log(req.body);
   db.saveTask(req.body);
   res.sendStatus(201);
-  // res.sendStatus(403);
+})
+
+app.put('/taskCheck/:taskId',urlencodedParser, (req,res) => {
+  const taskId = req.params.taskId;
+  db.updateTaskOnCheck(taskId, function() {
+    res.sendStatus(201)
+  })
+})
+
+app.put('/taskUnCheck/:taskId',urlencodedParser, (req,res) => {
+  const taskId = req.params.taskId;
+  db.updateTaskOnUnCheck(taskId, function() {
+    res.sendStatus(201)
+  })
 })
 
 app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
@@ -112,6 +125,13 @@ app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
   const date = req.params.date;
   db.getTasksOnDate(userId, date, function(results) {
     res.send(results)
+  })
+})
+
+app.delete('/task/:taskId', (req, res) => {
+  const taskId = req.params.taskId
+  db.deleteTask(taskId, ()=>{
+    res.sendStatus(200)
   })
 })
 
