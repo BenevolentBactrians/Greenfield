@@ -75,7 +75,7 @@ class Notes extends React.Component {
 
   render() {
     return(
-      <Paper className="notes-paper" >
+      <Paper className="paper" >
       <div className='notes-wrap'>
 
         <div className="notes">

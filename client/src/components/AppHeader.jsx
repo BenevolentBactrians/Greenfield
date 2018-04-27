@@ -19,7 +19,7 @@ class Login extends Component {
 
   render() {
     return (
-      <FlatButton style={{color: 'white'}} label="Login" />
+      <FlatButton style={{color: 'white'}} labelStyle={{fontWeight: '800', fontFamily: '"Helvetica Neue",Helvetica,Arial,sans-serif', textTransform: 'none'}} label="Login" />
     );
   }
 }
@@ -62,9 +62,9 @@ class AppHeader extends React.Component {
   render() {
     return (
       <div className="app-header">
-          <div className="nav-left"> LEFT  </div>
-          <div className="nav-center"> <h1> TITLE </h1> </div>
-          <div className="nav-right"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
+          <div className="nav-left"></div>
+          <div className="nav-center header header-el"><div className="header-text"><h2> CamelNotes </h2> </div> </div>
+          <div className="nav-right header-el"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
           <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
       </div>

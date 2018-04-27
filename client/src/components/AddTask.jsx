@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
+import Paper from 'material-ui/Paper';
 
 class AddTask extends React.Component {
   constructor(props) {
@@ -105,8 +106,8 @@ class AddTask extends React.Component {
 
   render() {
     return (
-        <div className="add-task">
-          <h4>add a task</h4>
+        <Paper className="paper">
+          <h2>add a task</h2>
           <form onSubmit={this.handleSubmit}>
              <TextField
               id='task'
@@ -171,7 +172,7 @@ class AddTask extends React.Component {
               onRequestClose={this.handleRequestClose}
             />
           </form>
-        </div>
+        </Paper >
       )
   }
 }
