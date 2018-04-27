@@ -1,5 +1,7 @@
 import React from 'react';
 //import RaisedButton from 'material-ui/RaisedButton';
+import SvgIcon from 'material-ui/SvgIcon';
+
 
 
 class Timer extends React.Component {
@@ -84,7 +86,6 @@ class Timer extends React.Component {
   }
   
   resetTimer () {
-
     // swith to normal status 25 minutes
     this.setState({ 
       bigTime: 1499,
@@ -129,7 +130,6 @@ class Timer extends React.Component {
             {this.state.buttonText}
           </button>
           
-
              
         </div>
         <div className="timer-status">{this.state.status}</div>
