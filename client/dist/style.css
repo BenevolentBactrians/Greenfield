@@ -251,10 +251,28 @@ body {
 
 .close-button-login {
   position: absolute;
-    z-index: 2;
-    margin: -224px 0;
-    background: transparent;
-    border: none;
+  z-index: 2;
+  margin: -224px 0;
+  background: transparent;
+  border: none;
+}
+
+.timer-wrapper {
+  display: flex;
+  flex-direction: column;
+  color: white;
+}
+
+.timer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.timer-btn {
+  margin-left: 8px;
+  border-radius: 2px;
 }
 
 

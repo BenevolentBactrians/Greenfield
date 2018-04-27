@@ -52,7 +52,10 @@ class Weekly extends React.Component {
     this.getTasksByDay = this.getTasksByDay.bind(this);
     this.initializeData = this.initializeData.bind(this);
     // TODO bind other functions ??
-  }
+
+ }
+
+
 
   
   componentDidMount() {
@@ -68,7 +71,7 @@ class Weekly extends React.Component {
 
   initializeData () {
     var context = this;
-    
+
     console.log('initializing data...')
       var initializeDataPROMISE = new Promise ( (resolve, reject) => {
       context.setCurrentWeekDateRange();
@@ -85,7 +88,7 @@ class Weekly extends React.Component {
       console.log(error);
     })
  } 
-  
+
   
   setCurrentWeekDateRange() {
     console.log('setCurrentWeekDateRange...')
@@ -101,12 +104,13 @@ class Weekly extends React.Component {
     this.setState({currentWeekDateRange: dateRange})  
   }
   
-  
+
   getTasksByDay (date) {
     console.log('getTasksByDay......')
+
     
-    var context = this;
-    
+    var context = this;  
+
     var userId = this.props.userId;
     var path = `/task/${userId}/${date}`;
     
@@ -122,11 +126,15 @@ class Weekly extends React.Component {
       }
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
+
+      //console.log('currentWeekData: ', context.state.currentWeekData);
+
     })
     .catch ( (error) => {
       console.log(error)
     })
   }
+
   
   
   
@@ -142,6 +150,8 @@ class Weekly extends React.Component {
     this.setState({currentWeekFormatted: formattedWeek})   
   }
   
+
+
   
   handlePreviousWeekButton () {
     console.log('handlePreviousWeekButton...');
@@ -150,16 +160,17 @@ class Weekly extends React.Component {
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
     console.log('new date: ', newDate);
-    
+
     this.setState({currentWeekData: []});
     this.setState({currentDate: newDate});
     this.initializeData();
+
   }
   
   
   handleNextWeekButton () {
     console.log('handleNextWeekButton...');
-    
+
     var newDate = new Date (this.state.currentDate.getTime() + 7 * 86400000);
     // newDate.setHours(0,0,0,0);
     console.log('old date: ',  this.state.currentDate);
@@ -168,11 +179,12 @@ class Weekly extends React.Component {
     this.setState({currentWeekData: []});
     this.setState({currentDate: newDate});
     this.initializeData();
+
   }
   
    
-  
   render (props) { 
+
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
@@ -184,9 +196,11 @@ class Weekly extends React.Component {
               
               <Paper style={listStyles}>
 
+
                 <Menu width={320}>               
 
                   { this.state.currentWeekData.map( (day, index) =>
+
                     <WeeklyTaskEntry day={day} key={index} />                 
                     )
                   }               

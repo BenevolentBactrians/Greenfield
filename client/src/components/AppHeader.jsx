@@ -4,6 +4,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
+import Timer from './Timer.jsx';
 
 import { fullWhite } from 'material-ui/styles/colors';
 import Register from './Register.jsx'
@@ -67,7 +68,7 @@ class AppHeader extends React.Component {
   render() {
     return (
       <div className="app-header">
-          <div className="nav-left"></div>
+          <div className="nav-left"> <Timer/> </div>
           <div className="nav-center header header-el"><div className="header-text"><h2> CamelNotes </h2> </div> </div>
           <div className="nav-right header-el"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>

@@ -19,7 +19,8 @@ class WeeklyTaskEntry extends React.Component {
     console.log('clicked:', this.props.day.date);
     this.setState({open: true});
   }
-  
+
+
   handleClose () {
     this.setState({open: false});
   }
@@ -28,7 +29,10 @@ class WeeklyTaskEntry extends React.Component {
     var date = this.props.day.date.getTime()
     date = moment(date).format('LL')
     
+
     return ( 
+
+
       <div>
         <MenuItem  
           primaryText={date} 
@@ -45,6 +49,7 @@ class WeeklyTaskEntry extends React.Component {
            <Daily tasks={this.props.day}/>
         </Dialog>      
       </div>
+
     )
   }
   
