@@ -2,6 +2,7 @@ import React from 'react';
 import Checkbox from 'material-ui/Checkbox';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 import axios from 'axios';
 
 class DailyTaskEntry extends React.Component {
@@ -63,11 +64,13 @@ class DailyTaskEntry extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
+        <Paper  zDepth={2}>
           {this.props.task.description}
+        </Paper>
         </Dialog>
-        <span className='daily-start-time'>{new Date((this.props.task.startTime)).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}
+        <span className='daily-start-time'>from {new Date((this.props.task.startTime)).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}
         </span>
-        <span className='daily-end-time'>{new Date((this.props.task.endTime)).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}</span>
+        <span className='daily-end-time'>to {new Date((this.props.task.endTime)).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}</span>
         <span className='daily-delete-button'>
           <FlatButton label="Delete" primary={true} onClick={this.handleDelete} />
         </span>

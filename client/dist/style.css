@@ -273,14 +273,12 @@ body {
   align-items: center;
   justify-content: center;
   grid-row: 1;
-  background-color: red;
 }
 
 .daily-body {
   display: grid;
   grid-row: 2;
   grid-auto-flow: row;
-  background-color: blue;
   grid-gap: 20px 5px;
 }
 
@@ -295,7 +293,7 @@ body {
 }
 
 .checkbox {
-  background-color: red;
+
 }
 
 .checkbox div {
@@ -303,19 +301,22 @@ body {
 }
 
 .daily-entry-name {
-  background-color: white;
+  color: #0D47A1;
+}
+.daily-entry-name:hover {
+  color: #1565C0;
 }
 
 .daily-start-time {
-  background-color: red;
+
 }
 
 .daily-end-time {
-  background-color: white;
+
 }
 
 .daily-delete-button {
-  background-color: red;
+
 }
 
 

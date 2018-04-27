@@ -1,6 +1,7 @@
 import React from 'react';
 import DailyTaskEntry from './DailyTaskEntry.jsx';
 import axios from 'axios';
+import Paper from 'material-ui/Paper'
 
 class Daily extends React.Component {
   constructor(props) {
@@ -31,11 +32,16 @@ class Daily extends React.Component {
   render() {
     return (
         <div className='daily-container'>
-          <div className='daily-header'>Tasks for {(this.props.date).toLocaleString('en-US', {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</div>
+
+        <Paper zDepth={3} style={{textAlign: 'center'}}>
+          <h4 className='daily-header'>Tasks for {(this.props.date).toLocaleString('en-US', {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</h4>
+        </Paper>
           <div className='daily-body'>
             {this.state.tasks.map((task, index) => {
               return (
-                <DailyTaskEntry task={task} handleDelete={this.handleDelete} key={index}/>
+                <Paper zdepth={3}  key={index}>
+                  <DailyTaskEntry task={task} handleDelete={this.handleDelete}/>
+                </Paper>
                 )
             })}
           </div>
