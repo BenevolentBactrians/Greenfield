@@ -263,25 +263,61 @@ body {
 
 .daily-container {
   display: grid;
-  grid-template-columns: 40px auto 150px 40px;
   grid-template-rows: 50px auto;
-  grid-auto-flow: row;
   grid-gap: 10px;
 }
 
 .daily-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   grid-row: 1;
-  grid-column-start: 1;
-  grid-column-end:  5;
   background-color: red;
 }
 
 .daily-body {
+  display: grid;
   grid-row: 2;
-  grid-column-start: 1 ;
-  grid-column-end: 5;
+  grid-auto-flow: row;
   background-color: blue;
+  grid-gap: 20px 5px;
 }
+
+.daily-task-entry-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  /*grid-template-columns: 40px auto 150px 40px;
+  grid-column-start: 1;
+  grid-column-end: 6;*/
+}
+
+.checkbox {
+  background-color: red;
+}
+
+.checkbox div {
+  width: 0%;
+}
+
+.daily-entry-name {
+  background-color: white;
+}
+
+.daily-start-time {
+  background-color: red;
+}
+
+.daily-end-time {
+  background-color: white;
+}
+
+.daily-delete-button {
+  background-color: red;
+}
+
 
 a:focus, a:hover, a:visited, a:link, a:active {
   text-decoration: none;
