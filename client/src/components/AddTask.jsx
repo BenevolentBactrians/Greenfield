@@ -123,6 +123,9 @@ class AddTask extends React.Component {
               value={this.state.date}
               hintText="yyyy/mm/dd"
               onChange={this.onChangeDate}
+              formatDate={(date) => {
+                return date.toLocaleString('en-US',{weekday: "long", year: "numeric", month: "long", day: "numeric"})
+              }}
               style={{
                textAlign: 'center'
              }}
