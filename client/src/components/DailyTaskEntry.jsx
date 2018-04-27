@@ -64,7 +64,7 @@ class DailyTaskEntry extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        <Paper  zDepth={2}>
+        <Paper  zDepth={2} style={{padding: '10px'}}>
           {this.props.task.description}
         </Paper>
         </Dialog>
