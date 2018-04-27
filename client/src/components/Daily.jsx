@@ -1,5 +1,6 @@
 import React from 'react';
 import DailyTaskEntry from './DailyTaskEntry.jsx';
+import axios from 'axios';
 
 class Daily extends React.Component {
   constructor(props) {
