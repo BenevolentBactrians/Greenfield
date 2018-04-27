@@ -24,26 +24,31 @@ class Login extends Component {
   }
 }
 
-const Logged = (props) => {
-  const handleSignOut = () => {
+class Logged extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSignOut = this.handleSignOut.bind(this);
+  }
+  handleSignOut() {
     axios.get('/signout');
-    props.clearUserIdFromState();
+    this.props.clearUserIdFromState();
     localStorage.clear();
   }
-  return (
-    <IconMenu
-      {...props}
-      iconButtonElement={
-        <IconButton><MoreVertIcon color={fullWhite} /></IconButton>
-      }
-      targetOrigin={{horizontal: 'right', vertical: 'top'}}
-      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-    >
-      <MenuItem primaryText="Refresh" />
-      <MenuItem primaryText="Help" />
-      <Link to="/" style={{ textDecoration: 'none' }}><MenuItem primaryText="Sign out" onClick={handleSignOut} ></MenuItem></Link>
-    </IconMenu>
-  )
+  render() {
+    return (
+      <IconMenu
+        iconButtonElement={
+          <IconButton><MoreVertIcon color={fullWhite} /></IconButton>
+        }
+        targetOrigin={{horizontal: 'right', vertical: 'top'}}
+        anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+      >
+        <MenuItem primaryText="Refresh" />
+        <MenuItem primaryText="Help" />
+        <Link to="/" style={{ textDecoration: 'none' }}  ><MenuItem primaryText="Sign out" onClick={this.handleSignOut} ></MenuItem></Link>
+      </IconMenu>
+    )
+  };
 };
 
 Logged.muiName = 'IconMenu';
