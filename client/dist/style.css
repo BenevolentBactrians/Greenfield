@@ -269,6 +269,7 @@ body {
     border: none;
 }
 
+
 /* ===========================================
         Daily
 =========================================== */
@@ -328,6 +329,22 @@ body {
 }
 
 .daily-delete-button {
+}
+
+
+.timer-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.timer-row {
+  display: flex;
+  flex-direction: row;
+  height:;
+}
+
+.timer-btn {
+  margin-left: 8px;
 
 }
 
