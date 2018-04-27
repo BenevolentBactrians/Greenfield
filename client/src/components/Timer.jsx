@@ -32,6 +32,7 @@ class Timer extends React.Component {
       if ( this.state.status === 'pomodoro' ) {
         
         // TODO play audio sample timer bell
+        this.playAudio()
         
         // cooldown status is 5 minutes
         this.setState({
@@ -86,19 +87,19 @@ class Timer extends React.Component {
   }
   
   resetTimer () {
+    //pause audio
+    this.pauseAudio();
+    
     // swith to normal status 25 minutes
+    // reset bigTime
+    // show start button
     this.setState({ 
       bigTime: 1499,
       minutes: '25',
-      seconds: '00'
+      seconds: '00',
+      buttonText: 'Start',
+      status: 'pomodoro'
     })
-    
-    // reset bigTime
-    this.setState({bigTime: 1499});
-    
-    // show start button
-    this.setState({buttonText: 'Start'})
-    
   }
   
   handleClick () {
@@ -111,6 +112,42 @@ class Timer extends React.Component {
     if ( this.state.buttonText == 'Reset' ) {
       this.resetTimer();
     }
+  }
+  
+  playAudio () {
+    // get audio element
+    var audio = document.querySelector('audio');
+    // set volume
+    audio.volume = 0.3;
+    
+    // if no audio avail stop fn
+    if (!audio) {
+      return;
+    }
+    
+    // reset audio to 0
+    audio.currentTime = 0;
+    
+    // else play audio
+    audio.play();
+      
+  }
+  
+  pauseAudio () {
+    // get audio element
+    var audio = document.querySelector('audio');
+    
+    // if no audio avail stop fn
+    if (!audio) {
+      return;
+    }
+    
+    // reset audio to 0
+    audio.currentTime = 0;
+    
+    // else play audio
+    audio.pause();
+    
   }
   
   
@@ -133,6 +170,7 @@ class Timer extends React.Component {
              
         </div>
         <div className="timer-status">{this.state.status}</div>
+        <audio className="bell" src="/assets/zenbell-1.mp3"></audio>
         
       </div>  
     
