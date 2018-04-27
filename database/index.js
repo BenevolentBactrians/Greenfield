@@ -128,20 +128,20 @@ let saveTask = (taskObj) => {
 }
 
 let getTasksOnDate = (userId, date, callback) => {
-  
+
   // filter for date range midnight to midnight on requested date
   date = new Date (date);
-  
+
   var startDate = date;
-  startDate.setUTCHours(0,0,0,0);  
- 
+  startDate.setUTCHours(0,0,0,0);
+
   var endDate = new Date(startDate.getTime() + 1 * 86400000);
-  
+
   var dateRange = {
     $gte: startDate,
     $lte: endDate
   };
-  
+
   Task.find({userId: userId, date: dateRange}, '_id userId task date startTime endTime description', function(err, results) {
     if (err) {
       console.error(err)
@@ -252,5 +252,6 @@ module.exports = {
   getAllQuotes,
   getTasksOnDate,
   updateTaskOnCheck,
-  updateTaskOnUnCheck
+  updateTaskOnUnCheck,
+  deleteTask
 }

@@ -31,9 +31,9 @@ class Daily extends React.Component {
   render() {
     return (
         <div className='daily-container'>
-          <div className='daily-header'>header</div>
+          <div className='daily-header'>Tasks for {(this.props.date).toLocaleString('en-US', {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</div>
           <div className='daily-body'>
-            {this.props.tasks.map((task, index) => {
+            {this.state.tasks.map((task, index) => {
               return (
                 <DailyTaskEntry task={task} handleDelete={this.handleDelete} key={index}/>
                 )

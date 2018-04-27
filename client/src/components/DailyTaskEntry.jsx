@@ -23,9 +23,9 @@ class DailyTaskEntry extends React.Component {
     })
 
     if (!this.state.checked) {
-    axios.put(`http://localhost:3000/taskCheck/${this.props.task.taskId}`)
+    axios.put(`http://localhost:3000/taskCheck/${this.props.task._id}`)
     } else {
-    axios.put(`http://localhost:3000/taskUnCheck/${this.props.task.taskId}`)
+    axios.put(`http://localhost:3000/taskUnCheck/${this.props.task._id}`)
     }
   }
 
@@ -42,6 +42,7 @@ class DailyTaskEntry extends React.Component {
   }
 
   handleDelete(taskId) {
+    console.log('OBJECT TO DELETEEEEEE!!!!!!', this.props.task)
    this.props.handleDelete(this.props.task._id)
   }
 
