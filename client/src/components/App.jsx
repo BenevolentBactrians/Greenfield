@@ -58,9 +58,6 @@ class App extends React.Component {
           <div className='col-center'>
 
 
-          
-           { this.state.userId ?
-
             <Weekly 
               week={this.state.weekState} 
               className='weekly-view' 
@@ -70,10 +67,7 @@ class App extends React.Component {
               showAddTaskForm={this.toggleAddTaskForm}
               setWeekDataState = {this.updateCurrentWeekData}
               />
-              :
-              null
-              
-           }
+           
 
 
           </div>
