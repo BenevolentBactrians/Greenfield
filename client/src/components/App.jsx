@@ -5,6 +5,7 @@ import Duck from './Duck.jsx';
 import Weekly from './Weekly.jsx';
 import AppHeader from './AppHeader.jsx';
 import Notes from './Notes.jsx';
+import Chart from './Chart.jsx'
 
 class App extends React.Component {
   constructor(props) {
@@ -49,7 +50,7 @@ class App extends React.Component {
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
-            <div className='chart'>CHART</div>
+            <div className='chart'><Chart /></div>
           </div>
         </div>
       </div>
