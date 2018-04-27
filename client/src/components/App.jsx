@@ -13,13 +13,13 @@ class App extends React.Component {
     this.state = {
       userId: null,
       weekState: [
-        {name: 'Monday', total: 4},
-        {name: 'Tuesday', total: 5},
-        {name: 'Wednesday', total: 12},
-        {name: 'Thursday', total: 0},
-        {name: 'Friday', total: 33},
-        {name: 'Saturday', total: 2},
-        {name: 'Sunday', total: 0}
+        {date: 'Monday', count: 0},
+        {date: 'Tuesday', count: 0},
+        {date: 'Wednesday', count: 0},
+        {date: 'Thursday', count: 0},
+        {date: 'Friday', count: 0},
+        {date: 'Saturday', count: 0},
+        {date: 'Sunday', count: 0}
       ]
     }
   }
@@ -37,7 +37,8 @@ class App extends React.Component {
   }
 
   render(props) {
-    return (
+    
+    return ( 
       <div>
         <div className="app-container">
           <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
@@ -46,7 +47,17 @@ class App extends React.Component {
             <Duck className='duck-view'/>
           </div>
           <div className='col-center'>
-            <Weekly week={this.state.weekState} className='weekly-view'/>
+
+
+            <Weekly 
+              week={this.state.weekState} 
+              className='weekly-view' 
+              userId={this.state.userId}
+              logged={!(!this.state.userId)}
+              />
+           
+
+
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
