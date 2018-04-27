@@ -13,6 +13,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       userId: null,
+      currentWeekData: [],
       weekState: [
         {date: 'Monday', count: 0},
         {date: 'Tuesday', count: 0},
@@ -40,6 +41,10 @@ class App extends React.Component {
 
   toggleAddTaskForm = () => this.setState({addTaskActive: !this.state.addTaskActive});
 
+  updateCurrentWeekData = (data) => {
+    this.setState({currentWeekData: data})
+  }
+
   render(props) {
 
     return (
@@ -58,11 +63,13 @@ class App extends React.Component {
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               showAddTaskForm={this.toggleAddTaskForm}
+              setWeekDataState = {this.updateCurrentWeekData}
               />
 
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
+            <div className='chart'><Chart data={this.state.currentWeekData} /></div>
           </div>
           {
             <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >

@@ -11,7 +11,7 @@ const Chart = (props) => {
         ]
     }],
     labels: ['Completed', 'Todo']
-};
+  };
 
   return  (
     <Doughnut data={data} />
