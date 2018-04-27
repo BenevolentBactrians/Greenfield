@@ -127,7 +127,7 @@ class Weekly extends React.Component {
       updatedCurrentWeekData.push(tasksByDay);
       context.setState({currentWeekData: updatedCurrentWeekData});
 
-      console.log('currentWeekData: ', context.state.currentWeekData);
+      //console.log('currentWeekData: ', context.state.currentWeekData);
 
     })
     .catch ( (error) => {
