@@ -140,6 +140,9 @@ class AddTask extends React.Component {
               hintText="end time"
               value={this.state.endTime}
               onChange={this.onChangeEnd}
+              style={{
+               textAlign: 'center'
+             }}
             />
             <TextField
               id='description'
