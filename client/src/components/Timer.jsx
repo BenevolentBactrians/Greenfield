@@ -1,5 +1,5 @@
 import React from 'react';
-
+//import RaisedButton from 'material-ui/RaisedButton';
 
 
 class Timer extends React.Component {
@@ -84,8 +84,6 @@ class Timer extends React.Component {
   }
   
   resetTimer () {
-    // // stop timer ??
-    // clearInterval(this.state.countdownId);
 
     // swith to normal status 25 minutes
     this.setState({ 
@@ -124,13 +122,18 @@ class Timer extends React.Component {
         <div className='timer-row'>
           TIMER {this.state.minutes} : {this.state.seconds} 
           
-          <button className="timer-btn" onClick={()=> this.handleClick()}>
+          <button
+            onClick={()=> this.handleClick()} 
+            className="timer-btn"
+            >
             {this.state.buttonText}
           </button>
+          
+
              
         </div>
-        
         <div className="timer-status">{this.state.status}</div>
+        
       </div>  
     
     )
@@ -138,4 +141,8 @@ class Timer extends React.Component {
   
 }
 
-export default Timer
+export default Timer;
+
+
+
+
