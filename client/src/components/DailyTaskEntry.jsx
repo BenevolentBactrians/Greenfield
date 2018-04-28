@@ -9,7 +9,7 @@ class DailyTaskEntry extends React.Component {
   constructor(props) {
     super(props)
     this.state={
-      checked: false,
+      checked: this.props.task.completed,
       open: false
     }
     this.updateCheck = this.updateCheck.bind(this);
