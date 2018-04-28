@@ -62,6 +62,7 @@ class AddTask extends React.Component {
           description: '',
           open:true
         })
+        this.props.closeAddTaskForm()
       }}).catch(function(err, response) {
         console.error(err);
       })
@@ -108,9 +109,7 @@ class AddTask extends React.Component {
 
   render() {
     return (
-        <Paper className="paper">
-          <h2>add a task</h2>
-          <form onSubmit={this.handleSubmit} className="addTaskForm">
+          <form onSubmit={this.handleSubmit} className="add-task-form">
              <TextField
               id='task'
               value={this.state.task}
@@ -126,9 +125,6 @@ class AddTask extends React.Component {
               formatDate={(date) => {
                 return date.toLocaleString('en-US',{weekday: "long", year: "numeric", month: "long", day: "numeric"})
               }}
-              style={{
-               textAlign: 'center'
-             }}
             />
             <TimePicker
               id="starttime"
@@ -143,9 +139,6 @@ class AddTask extends React.Component {
               hintText="end time"
               value={this.state.endTime}
               onChange={this.onChangeEnd}
-              style={{
-               textAlign: 'center'
-             }}
             />
             <TextField
               id='description'
@@ -153,14 +146,12 @@ class AddTask extends React.Component {
               onChange={this.onChangeDesc}
               floatingLabelText="description"
               rows={2}
-              // style={{
-              //   height: '48px'
-              // }}
             />
 
             <RaisedButton
               onClick={this.handleSubmit}
               label="add task"
+              style={{marginTop: '10px'}}
               disabled={!this.props.userId || !this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description}
             />
             <Snackbar
@@ -183,7 +174,6 @@ class AddTask extends React.Component {
               onRequestClose={this.handleRequestClose}
             />
           </form>
-        </Paper >
       )
   }
 }

@@ -47,7 +47,7 @@ class Register extends React.Component {
 
   render() {
     return (
-      <div className="login-wrap" style={{display: this.state.isActive ? 'flex' : 'none'}}>
+      <div className="modal-wrap" style={{display: this.state.isActive ? 'flex' : 'none'}}>
         <div className="container login-container">
         <button className="close-button-login" onClick={this.handleClose}><Link to="/">
       <svg fill="#FFFFFF" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">

@@ -13,6 +13,18 @@ body {
   height: 100%;
 }
 
+@media (max-width: 1073px) { 
+    .chart {
+      display: none;
+    }
+    .app-container {
+      display: flex;
+      flex-direction: column;
+    }
+    .col-center {
+      align-items: center;
+    }
+ }
 
 .nav-left {
   grid-area: 1/1/2/2;
@@ -49,11 +61,10 @@ body {
   flex-direction: column;
 }
 
-.add-task {
+.add-task-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 100%;
+  margin: 2.5rem;
 }
 
 .duck-view {
@@ -82,6 +93,7 @@ body {
 .week-view-container {
   display: flex;
   flex-direction: column;
+  z-index: 0;
   /*align-items: center;*/
 }
 .week-list {
@@ -164,7 +176,7 @@ body {
 }
 
 .duck-image img {
-  height: 26vh;
+  height: 25vh;
 }
 
 .duck-text {
@@ -225,7 +237,7 @@ body {
         Login
 =========================================== */
 
-.login-wrap {
+.modal-wrap {
   position: absolute;
   display: flex;
   justify-content: center;
