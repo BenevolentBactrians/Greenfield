@@ -1,4 +1,7 @@
-# Synopsis
+# Hump Day
+
+
+  ## Synopsis
 
 Hump Day is a weekly task manager that allows users to store and view tasks for a given week or day and track their progress.
 Users can create a task with a specific date and time range and can mark it as completed. 
@@ -14,8 +17,6 @@ Additional tools include:
 
 
 ## File Structure
-
-### HumpDay File Structure
 ```
 CLIENT
   DIST
@@ -54,6 +55,40 @@ package.json
 .gitignore
 ```
 
+## Data Base
+```
+User:
+- _id
+- name: String
+- hashedPassword: String
+- salt: Sting
+
+Task:
+- _id
+- user id: String
+- task: String
+- description: String
+- date: Date
+- startTime: Date
+- endTime: Date
+- completed: Boolean
+
+Note
+- _id
+- userId: String
+- text: String
+
+Quote
+- _id
+- text: String
+
+Session
+- _id
+- session
+- expires
+```
+
+
 ## Installing Dependencies
 From within the root directory:
 ```
@@ -71,7 +106,7 @@ npm run dev
 
 
 ## Contributors
-- vasyl-n
+- [vasyl-n](https://github.com/vasyl-n)
 - mjraybk07
 - echi81
 
