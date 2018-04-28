@@ -88,6 +88,21 @@ Session
 - expires
 ```
 
+## React Components
+```
+App
+	AppHeader
+		Register
+		Login
+	Duck
+	Chart
+	Weekly
+		WeeklyTaskEntry
+			Daily
+	Notes
+	Drawer
+		AddTask
+```
 
 ## Installing Dependencies
 From within the root directory:
