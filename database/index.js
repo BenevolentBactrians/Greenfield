@@ -152,11 +152,11 @@ let getTasksOnDate = (userId, date, callback) => {
 }
 
 let updateTaskOnCheck = (taskId, callback) => {
-  Task.findOneAndUpdate({_id: taskId}, {complete:true}, null ,callback)
+  Task.findOneAndUpdate({_id: taskId}, {completed :true}, null ,callback)
 }
 
 let updateTaskOnUnCheck = (taskId, callback) => {
-  Task.findOneAndUpdate({_id: taskId}, {complete:false}, null ,callback)
+  Task.findOneAndUpdate({_id: taskId}, {completed: false}, null ,callback)
 }
 
 const deleteTask = function(taskId, callback) {

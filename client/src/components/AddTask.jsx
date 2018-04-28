@@ -92,7 +92,7 @@ class AddTask extends React.Component {
     })
   }
 
-  onChangeDesc = (e) => {
+  onChangeDesc (e) {
     this.setState({
       description: e.target.value, logOpen: !this.props.userId
     })
