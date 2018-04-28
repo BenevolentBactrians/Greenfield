@@ -124,7 +124,7 @@ App
 ## Contributors
 - [vasyl-n](https://github.com/vasyl-n)
 - mjraybk07
-- echi81
+- [echi81] (https://github.com/echi81)
 
 
 **Contribute By**
