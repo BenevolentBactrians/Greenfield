@@ -1,4 +1,4 @@
-# Hump Day
+# Hump Day :camel:
 
 
   ## Synopsis
