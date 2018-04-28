@@ -19,7 +19,11 @@ Once the project moves into development, the press release can be used as a touc
 ## Heading ##
   > Name the product in a way the reader (i.e. your target customers) will understand.
   
+Hump Day is a productivity tool to help people get through their busy week.
 
+It offers a series of scheduling and tracking tools for users to add tasks to their weekly planner and track their progress.
+
+Hump Day also provides a series of motivational tools to help users get through roadblocks and complete their tasks.
   
    
 ## Sub-Heading ##
