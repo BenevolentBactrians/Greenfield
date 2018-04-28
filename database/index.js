@@ -142,7 +142,7 @@ let getTasksOnDate = (userId, date, callback) => {
     $lte: endDate
   };
 
-  Task.find({userId: userId, date: dateRange}, '_id userId task date startTime endTime description completed', function(err, results) {
+  Task.find({userId: userId, date: dateRange}, '_id userId task date startTime endTime description', function(err, results) {
     if (err) {
       console.error(err)
     } else {
