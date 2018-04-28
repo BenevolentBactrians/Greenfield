@@ -64,8 +64,10 @@ class DailyTaskEntry extends React.Component {
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-        <Paper  zDepth={2} style={{padding: '10px'}}>
+        <Paper  zDepth={2} >
+        <div style={{padding: '10px', wordWrap: 'break-word', whiteSpace: 'normal'}}>
           {this.props.task.description}
+        </div>
         </Paper>
         </Dialog>
         <span className='daily-start-time'>from {new Date((this.props.task.startTime)).toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: true})}
