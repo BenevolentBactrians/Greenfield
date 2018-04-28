@@ -110,7 +110,7 @@ class AddTask extends React.Component {
     return (
         <Paper className="paper">
           <h2>add a task</h2>
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} className="addTaskForm">
              <TextField
               id='task'
               value={this.state.task}
@@ -153,6 +153,9 @@ class AddTask extends React.Component {
               onChange={this.onChangeDesc}
               floatingLabelText="description"
               rows={2}
+              // style={{
+              //   height: '48px'
+              // }}
             />
 
             <RaisedButton
