@@ -1,21 +1,40 @@
 import {Doughnut} from 'react-chartjs-2';
 import React from 'react';
 
-const Chart = (props) => {
-  const data = {
-    datasets: [{
-        data: [props.completed, props.todo],
-        backgroundColor: [
-          'rgba(0,255,0, 0.5)',
-          'rgba(255, 0, 0, 0.5)'
-        ]
-    }],
-    labels: ['Completed', 'Todo']
-  };
+class Chart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      completed: 1,
+      todo: 2
+    }
+  }
 
-  return  (
-    <Doughnut data={data} />
-  )
+  static getDerivedStateFromProps = (nextProps, prevState) => {
+    console.log('here', nextProps)
+    let completed = 0;
+    let updated = 0;
+    nextProps.data.forEach((el, ind) => {
+      if(el.tasks.length) {
+        
+      }
+    })
+  }
+
+  render() {
+    return  (
+      <Doughnut data={{
+        datasets: [{
+            data: [this.state.completed, this.state.todo],
+            backgroundColor: [
+              'rgba(0,255,0, 0.5)',
+              'rgba(255, 0, 0, 0.5)'
+            ]
+        }],
+        labels: ['Completed', 'Todo']
+      }} />
+    )
+  }
 }
 
 Chart.defaultProps = {
