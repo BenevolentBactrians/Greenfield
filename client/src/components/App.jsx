@@ -53,7 +53,7 @@ class App extends React.Component {
           <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
           <div className='col-left'>
             <Duck className='duck-view'/>
-            <div className='chart'><Chart /></div>
+            <div className='chart'><Chart data={this.state.currentWeekData} /></div>
           </div>
           <div className='col-center'>
 
@@ -69,7 +69,6 @@ class App extends React.Component {
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
-            <div className='chart'><Chart data={this.state.currentWeekData} /></div>
           </div>
           {
             <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >

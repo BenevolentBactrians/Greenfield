@@ -13,13 +13,15 @@ class Chart extends React.Component {
   static getDerivedStateFromProps = (nextProps, prevState) => {
     let completed = 0;
     let todo = 0;
-    nextProps.data.forEach((el, ind) => {
-      if(el.tasks.length) {
-        el.tasks.forEach((task, index) => {
-          task.completed ? completed = completed + 1 : todo = todo + 1;
-        })
-      }
-    })
+    if( nextProps.data !== undefined ) {
+      nextProps.data.forEach((el, ind) => {
+        if(el.tasks.length) {
+          el.tasks.forEach((task, index) => {
+            task.completed ? completed = completed + 1 : todo = todo + 1;
+          })
+        }
+      })
+    }
     return {completed: completed, todo: todo}
   }
 
@@ -37,11 +39,6 @@ class Chart extends React.Component {
       }} />
     )
   }
-}
-
-Chart.defaultProps = {
-  completed: 20,
-  todo: 44
 }
 
 export default Chart;
