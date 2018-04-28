@@ -57,14 +57,18 @@ class App extends React.Component {
           </div>
           <div className='col-center'>
 
-            <Weekly
-              week={this.state.weekState}
-              className='weekly-view'
+
+            <Weekly 
+              week={this.state.weekState} 
+              className='weekly-view' 
+
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               showAddTaskForm={this.toggleAddTaskForm}
               setWeekDataState = {this.updateCurrentWeekData}
               />
+           
+
 
           </div>
           <div className='col-right'>
