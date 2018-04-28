@@ -15,6 +15,15 @@ Additional tools include:
 ## Functionality
 
 
+## Installing Dependencies
+From within the root directory:
+```
+npm install
+mongod --dbpath=./data/db
+npm run build
+npm run dev
+```
+
 
 ## File Structure
 ```
@@ -102,15 +111,6 @@ App
 	Notes
 	Drawer
 		AddTask
-```
-
-## Installing Dependencies
-From within the root directory:
-```
-npm install
-mongod --dbpath=./data/db
-npm run build
-npm run dev
 ```
 
 ## Current Issues
