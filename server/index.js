@@ -88,7 +88,7 @@ app.post('/signup', urlencodedParser, (req, res) => {
         formated.salt = salt
         formated.hashedPassword = hash
         db.saveUser(formated, (error, success) => {
-          error ? res.status(400).send(`Sorry ${error}`) : 
+          error ? res.status(400).send(`Sorry ${error}`) :
           req.session.regenerate(() => {
             req.session.userId = success._id;
             res.send(201, {userId: success._id});
@@ -104,7 +104,21 @@ app.post('/task', restrict, jsonParser, (req, res) => {
   console.log(req.body);
   db.saveTask(req.body);
   res.sendStatus(201);
-  // res.sendStatus(403);
+})
+
+app.put('/taskCheck/:taskId', urlencodedParser, (req,res) => {
+  console.log('HHHHEEEEERRRREEE')
+  const taskId = req.params.taskId;
+  db.updateTaskOnCheck(taskId, function() {
+    res.sendStatus(201)
+  })
+})
+
+app.put('/taskUnCheck/:taskId',urlencodedParser, (req,res) => {
+  const taskId = req.params.taskId;
+  db.updateTaskOnUnCheck(taskId, function() {
+    res.sendStatus(201)
+  })
 })
 
 app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
@@ -112,6 +126,13 @@ app.get('/task/:userId/:date', urlencodedParser, (req,res) => {
   const date = req.params.date;
   db.getTasksOnDate(userId, date, function(results) {
     res.send(results)
+  })
+})
+
+app.delete('/task/:taskId', (req, res) => {
+  const taskId = req.params.taskId
+  db.deleteTask(taskId, ()=>{
+    res.sendStatus(200)
   })
 })
 

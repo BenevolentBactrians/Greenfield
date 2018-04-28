@@ -34,6 +34,7 @@ class AddTask extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
+
     if (!this.state.task || !this.state.date ||  !this.state.startTime || !this.state.endTime || !this.state.description) {
       this.setState({emptyOpen: true})
     } else {
@@ -56,6 +57,7 @@ class AddTask extends React.Component {
           task: '',
           date: null,
           startTime: null,
+          startTIme: null,
           endTime: null,
           description: '',
           open:true
@@ -90,7 +92,7 @@ class AddTask extends React.Component {
     })
   }
 
-  onChangeDesc = (e) => {
+  onChangeDesc (e) {
     this.setState({
       description: e.target.value, logOpen: !this.props.userId
     })
@@ -121,6 +123,9 @@ class AddTask extends React.Component {
               value={this.state.date}
               hintText="yyyy/mm/dd"
               onChange={this.onChangeDate}
+              formatDate={(date) => {
+                return date.toLocaleString('en-US',{weekday: "long", year: "numeric", month: "long", day: "numeric"})
+              }}
               style={{
                textAlign: 'center'
              }}
@@ -138,6 +143,9 @@ class AddTask extends React.Component {
               hintText="end time"
               value={this.state.endTime}
               onChange={this.onChangeEnd}
+              style={{
+               textAlign: 'center'
+             }}
             />
             <TextField
               id='description'

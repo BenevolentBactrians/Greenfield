@@ -14,40 +14,39 @@ class WeeklyTaskEntry extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
-  
+
   handleClick () {
     console.log('clicked:', this.props.day.date);
     this.setState({open: true});
   }
-  
+
   handleClose () {
     this.setState({open: false});
   }
-  
+
   render () {
     var date = this.props.day.date.getTime()
     date = moment(date).format('LL')
-    
-    return ( 
+
+    return (
       <div>
-        <MenuItem  
-          primaryText={date} 
-          secondaryText={`${this.props.day.tasks.length} Task(s)`} 
+        <MenuItem
+          primaryText={date}
+          secondaryText={`${this.props.day.tasks.length} Task(s)`}
           onClick={this.handleClick}
           />
         <Dialog
-          title="Scrollable Dialog"
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}
           autoScrollBodyContent={true}
          >
-           <Daily tasks={this.props.day}/>
-        </Dialog>      
+           <Daily tasks={this.props.day.tasks} date={this.props.day.date}/>
+        </Dialog>
       </div>
     )
   }
-  
+
 }
 
 

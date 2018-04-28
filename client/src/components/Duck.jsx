@@ -10,7 +10,7 @@ class Duck extends React.Component {
     }
     this.handleClick = this.handleClick.bind(this)
   }
-  
+
   handleClick() {
     this.setState({currentQuote: this.state.quotes[Math.floor(Math.random() * this.state.quotes.length)].text})
   }
@@ -38,7 +38,7 @@ class Duck extends React.Component {
       </div>
     )
   }
-} 
+}
 
 
 export default Duck;

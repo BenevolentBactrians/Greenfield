@@ -31,7 +31,8 @@ const taskSchema = new mongoose.Schema (
     date: Date,
     description: String,
     startTime: Date,
-    endTime: Date
+    endTime: Date,
+    completed: Boolean
   }
 );
 
@@ -114,7 +115,8 @@ let saveTask = (taskObj) => {
     date: date,
     startTime: startTime,
     endTime: endTime,
-    description: description
+    description: description,
+    completed: false
   }
   //save new task to database
     new Task(formatted).save( (err, newTaskEntry) => {
@@ -126,20 +128,20 @@ let saveTask = (taskObj) => {
 }
 
 let getTasksOnDate = (userId, date, callback) => {
-  
+
   // filter for date range midnight to midnight on requested date
   date = new Date (date);
-  
+
   var startDate = date;
-  startDate.setUTCHours(0,0,0,0);  
- 
+  startDate.setUTCHours(0,0,0,0);
+
   var endDate = new Date(startDate.getTime() + 1 * 86400000);
-  
+
   var dateRange = {
     $gte: startDate,
     $lte: endDate
   };
-  
+
   Task.find({userId: userId, date: dateRange}, '_id userId task date startTime endTime description', function(err, results) {
     if (err) {
       console.error(err)
@@ -149,6 +151,23 @@ let getTasksOnDate = (userId, date, callback) => {
   })
 }
 
+let updateTaskOnCheck = (taskId, callback) => {
+  Task.findOneAndUpdate({_id: taskId}, {completed :true}, null ,callback)
+}
+
+let updateTaskOnUnCheck = (taskId, callback) => {
+  Task.findOneAndUpdate({_id: taskId}, {completed: false}, null ,callback)
+}
+
+const deleteTask = function(taskId, callback) {
+  Task.remove({_id: taskId}, (err) => {
+    if(err) {
+      console.log(err)
+    } else {
+      callback()
+    }
+  })
+}
 
 
 // -- Note Functons --
@@ -231,5 +250,8 @@ module.exports = {
   deleteNote,
   saveQuote,
   getAllQuotes,
-  getTasksOnDate
+  getTasksOnDate,
+  updateTaskOnCheck,
+  updateTaskOnUnCheck,
+  deleteTask
 }
