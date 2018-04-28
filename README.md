@@ -1,4 +1,4 @@
-# Hump Day :camel:
+# Hump Day :dromedary_camel: :camel: :dromedary_camel:
 
 
   ## Synopsis
