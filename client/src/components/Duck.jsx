@@ -19,7 +19,7 @@ class Duck extends React.Component {
     const that = this
     axios.get('/quotes')
       .then((res) => {
-        that.setState({quotes: res.data, currentQuote: 'Click Duck for quotes'})
+        that.setState({quotes: res.data, currentQuote: 'Click for inspiration'})
     })
   }
 
