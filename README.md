@@ -4,10 +4,10 @@ Hump Day is a weekly task manager that allows users to store and view tasks for 
 Users can create a task with a specific date and time range and can mark it as completed. 
 
 Additional tools include:
-- 1. Note pad for easy addition of notes
-- 2. Rubber Ducky displays inspirational quotes when clicked
-- 3. Pomodoro timer
-- 4. Chart of task completion progress
+- Note pad for easy addition of notes
+- Rubber Ducky displays inspirational quotes when clicked
+- Pomodoro timer
+- Chart of task completion progress
 
 ## Functionality
 
