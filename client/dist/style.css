@@ -13,7 +13,7 @@ body {
   height: 100%;
 }
 
-@media (max-width: 1073px) { 
+/* @media (max-width: 1073px) { 
     .chart {
       display: none;
     }
@@ -24,7 +24,7 @@ body {
     .col-center {
       align-items: center;
     }
- }
+ } */
 
 .nav-left {
   grid-area: 1/1/2/2;
