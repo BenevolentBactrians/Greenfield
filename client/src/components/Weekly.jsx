@@ -129,6 +129,9 @@ class Weekly extends React.Component {
         tasks: results.data
       }
       updatedCurrentWeekData.push(tasksByDay);
+      updatedCurrentWeekData.sort((a, b) =>{
+        return new Date(a.date) - new Date(b.date);
+      })
       context.setState({currentWeekData: updatedCurrentWeekData});
 
       this.props.setWeekDataState(updatedCurrentWeekData)
