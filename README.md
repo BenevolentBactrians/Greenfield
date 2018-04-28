@@ -64,7 +64,7 @@ package.json
 .gitignore
 ```
 
-## Data Base
+## Database
 ```
 User:
 - _id
