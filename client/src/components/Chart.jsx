@@ -11,14 +11,16 @@ class Chart extends React.Component {
   }
 
   static getDerivedStateFromProps = (nextProps, prevState) => {
-    console.log('here', nextProps)
     let completed = 0;
-    let updated = 0;
+    let todo = 0;
     nextProps.data.forEach((el, ind) => {
       if(el.tasks.length) {
-        
+        el.tasks.forEach((task, index) => {
+          task.completed ? completed = completed + 1 : todo = todo + 1;
+        })
       }
     })
+    return {completed: completed, todo: todo}
   }
 
   render() {
