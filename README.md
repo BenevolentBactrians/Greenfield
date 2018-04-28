@@ -3,11 +3,9 @@
 
   ## Synopsis
 
-Hump Day is a weekly task manager and productivity tool that helps users crate and view daily tasks and track their progress.
+Hump Day is a weekly task manager and productivity tool that helps users create and view daily tasks and track their progress.
 
-Users can create tasks with a specific date and time range, add them to their weekly overview and mark tasks as completed or deleted. 
-
-Throughout the week, users can track their own progress adding and completing tasks by checking their progress chart. 
+Throughout the week, users can create tasks with a specific date and time range, add them to their weekly overview and mark tasks as completed or deleted. Then they can track their own progress adding and completing tasks by checking their progress chart. 
 
 Additional tools include:
 - Note pad for easy addition of notes
