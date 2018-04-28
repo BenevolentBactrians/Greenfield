@@ -47,7 +47,7 @@ class LoginView extends React.Component {
 
   render() {
     return (
-      <div className="login-wrap" style={{display: this.state.isActive ? 'flex' : 'none'}}>
+      <div className="modal-wrap" style={{display: this.state.isActive ? 'flex' : 'none'}}>
 
         <div className="container login-container">
         <button className="close-button-login" onClick={this.handleClose}><Link to="/">

@@ -1,11 +1,12 @@
 import React from 'react';
 import AddTask from './AddTask.jsx';
 import Duck from './Duck.jsx';
-// import SvgIcon from 'material-ui/SvgIcon';
 import Weekly from './Weekly.jsx';
 import AppHeader from './AppHeader.jsx';
 import Notes from './Notes.jsx';
 import Chart from './Chart.jsx'
+import Drawer from 'material-ui/Drawer';
+import AppBar from 'material-ui/AppBar';
 
 class App extends React.Component {
   constructor(props) {
@@ -20,7 +21,8 @@ class App extends React.Component {
         {date: 'Friday', count: 0},
         {date: 'Saturday', count: 0},
         {date: 'Sunday', count: 0}
-      ]
+      ],
+      addTaskActive: false
     }
   }
 
@@ -36,6 +38,8 @@ class App extends React.Component {
     this.setState({userId: null});
   }
 
+  toggleAddTaskForm = () => this.setState({addTaskActive: !this.state.addTaskActive});
+
   render(props) {
 
     return (
@@ -43,8 +47,8 @@ class App extends React.Component {
         <div className="app-container">
           <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
           <div className='col-left'>
-            <AddTask className='add-task' userId={this.state.userId}/>
             <Duck className='duck-view'/>
+            <div className='chart'><Chart /></div>
           </div>
           <div className='col-center'>
 
@@ -53,13 +57,19 @@ class App extends React.Component {
               className='weekly-view'
               userId={this.state.userId}
               logged={!(!this.state.userId)}
+              showAddTaskForm={this.toggleAddTaskForm}
               />
 
           </div>
           <div className='col-right'>
             <Notes userId={this.state.userId} />
-            <div className='chart'><Chart /></div>
           </div>
+          {
+            <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+              <AppBar iconStyleLeft={{display: 'none'}} title="Add Task" />
+              <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} /> 
+            </Drawer>
+          } 
         </div>
       </div>
       )

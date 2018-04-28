@@ -68,7 +68,7 @@ class AppHeader extends React.Component {
     return (
       <div className="app-header">
           <div className="nav-left"></div>
-          <div className="nav-center header header-el"><div className="header-text"><h2> CamelNotes </h2> </div> </div>
+          <div className="nav-center header header-el"><div className="header-text"><h2> Hump Day </h2> </div> </div>
           <div className="nav-right header-el"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
           <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>

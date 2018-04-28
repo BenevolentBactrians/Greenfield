@@ -5,8 +5,11 @@ import MenuItem from 'material-ui/MenuItem';
 import axios from 'axios';
 import moment from 'moment'; 
 import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import SvgIcon from 'material-ui/SvgIcon';
 import WeeklyTaskEntry from './WeeklyTaskEntry.jsx';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 const listStyles = {
   display: 'inline-block',
@@ -55,6 +58,7 @@ class Weekly extends React.Component {
   }
 
   
+
   componentDidMount() {
     console.log('weekly component did mount....');  
     this.initializeData()
@@ -170,19 +174,16 @@ class Weekly extends React.Component {
     this.initializeData();
   }
   
-   
-  
   render (props) { 
     return (
 
           <Paper style={listStyles} className="week-view-container paper">
             
-            <div className="week-title"> <h3>WEEKLY TASKS</h3></div>
+            <div className="week-title"> <h2>Weekly Tasks</h2></div>
            
            
             <div className="week-list">       
               
-              <Paper style={listStyles}>
 
                 <Menu width={320}>               
 
@@ -191,18 +192,20 @@ class Weekly extends React.Component {
                     )
                   }               
                 </Menu>
-              </Paper>
  
           </div>
           
           
           <div className="week-selectors">            
-            <RaisedButton 
+            <FlatButton 
               icon={<LeftArrow style={iconStyles} />} 
               style={buttonStyles} 
               onClick={()=> this.handlePreviousWeekButton()}
               />
-            <RaisedButton 
+            <FloatingActionButton style={{height: '40px', marginTop: '15px'}} mini={true} onClick={this.props.showAddTaskForm} disabled={!this.props.userId} >
+              <ContentAdd />
+            </FloatingActionButton>
+            <FlatButton 
               label={<RightArrow style={iconStyles} />} 
               style={buttonStyles} 
               onClick={()=> this.handleNextWeekButton()}
