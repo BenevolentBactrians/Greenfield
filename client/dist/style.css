@@ -361,3 +361,9 @@ a:focus, a:hover, a:visited, a:link, a:active {
   color:white !important;
 }
 
+/* Category */
+
+.categoryName {
+  text-transform: capitalize;
+}
+

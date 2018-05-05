@@ -6,6 +6,7 @@ yarn-debug.log*
 yarn-error.log*
 # Remove my configurations
 config.js
+dist/bundle.js
 
 # Runtime data
 pids
