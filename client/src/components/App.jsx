@@ -1,12 +1,15 @@
+// Module Imports
 import React from 'react';
-import AddTask from './AddTask.jsx';
-import Duck from './Duck.jsx';
-import Weekly from './Weekly.jsx';
-import AppHeader from './AppHeader.jsx';
-import Notes from './Notes.jsx';
-import Chart from './Chart.jsx'
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
+
+// File Imports
+import Weekly from './Weekly.jsx';
+import AddTask from './AddTask.jsx';
+import Notes from './Notes.jsx';
+import AppHeader from './AppHeader.jsx';
+import Chart from './Chart.jsx'
+import Ddiv from '../hoc/ddiv/ddiv.js'
 
 class App extends React.Component {
   constructor(props) {
@@ -48,38 +51,55 @@ class App extends React.Component {
   render(props) {
 
     return (
-      <div>
-        <div className="app-container">
-          <AppHeader logged={!(!this.state.userId)} setUserIdToState={this.setUserIdToState} clearUserIdFromState={this.clearUserIdFromState} />
-          <div className='col-left'>
-            <Duck className='duck-view'/>
-            <div className='chart'><Chart data={this.state.currentWeekData} /></div>
+      <div className="container-fluid"> 
+        <div className="row">
+
+        {/* Sidebar Component */}
+          <div className="col-md-3 pl-0 pr-0">
+            <AppHeader
+            logged={!(!this.state.userId)}
+            setUserIdToState={this.setUserIdToState}
+            clearUserIdFromState={this.clearUserIdFromState} />
+            
           </div>
-          <div className='col-center'>
 
+          {/* Chart Component */}
+          <div className='col-md-4'>
+            <div className='chart'>
+              <Chart data={this.state.currentWeekData} />
+            </div>
+          </div>  
 
-            <Weekly 
-              week={this.state.weekState} 
-              className='weekly-view' 
+          
+          <div className="col-md-5">
+            {/* Tasks Component */}
+            <Weekly
+              week={this.state.weekState}
+              className='weekly-view'
 
               userId={this.state.userId}
               logged={!(!this.state.userId)}
               showAddTaskForm={this.toggleAddTaskForm}
-              setWeekDataState = {this.updateCurrentWeekData}
-              />
-           
+              setWeekDataState={this.updateCurrentWeekData}            
+            />
+            {
+              <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+                <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
+                <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
+              </Drawer>
+            }
 
+            {/* Note Component */}
+            <div className='col-md-4'>
+              <div className="row">
+                <div>
+                  <Notes userId={this.state.userId} />
+                </div>
+              </div>
+            </div>
 
           </div>
-          <div className='col-right'>
-            <Notes userId={this.state.userId} />
-          </div>
-          {
-            <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
-              <AppBar iconStyleLeft={{display: 'none'}} title="Add Task" />
-              <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} /> 
-            </Drawer>
-          } 
+
         </div>
       </div>
       )
@@ -87,3 +107,48 @@ class App extends React.Component {
 }
 
 export default App;
+
+
+// <AppHeader
+//   logged={!(!this.state.userId)}
+//   setUserIdToState={this.setUserIdToState}
+//   clearUserIdFromState={this.clearUserIdFromState} />
+
+  // <div className="row">
+  //   <div className='col-md-4'>
+  //     <Duck className='duck-view' />
+  //     <div className='chart'><Chart data={this.state.currentWeekData} /></div>
+  //   </div>
+  //   <div className='col-md-4'>
+
+
+      // <Weekly
+      //   week={this.state.weekState}
+      //   className='weekly-view'
+
+      //   userId={this.state.userId}
+      //   logged={!(!this.state.userId)}
+      //   showAddTaskForm={this.toggleAddTaskForm}
+      //   setWeekDataState={this.updateCurrentWeekData}
+      // />
+
+
+
+//     </div>
+//     <div className='col-md-4'>
+//       <div className="row">
+//         <div className="col-md-12">
+//           <Notes userId={this.state.userId} />
+//         </div>
+//         <div className="col-md-12">
+//           <h2>Bottom Col</h2>
+//         </div>
+//       </div>
+//     </div>
+    // {
+    //   <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+    //     <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
+    //     <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
+    //   </Drawer>
+    // }
+//   </div>
