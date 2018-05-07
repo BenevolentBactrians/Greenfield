@@ -82,6 +82,12 @@ class App extends React.Component {
               showAddTaskForm={this.toggleAddTaskForm}
               setWeekDataState={this.updateCurrentWeekData}            
             />
+            {
+              <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+                <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
+                <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
+              </Drawer>
+            }
 
             {/* Note Component */}
             <div className='col-md-4'>
@@ -139,10 +145,10 @@ export default App;
 //         </div>
 //       </div>
 //     </div>
-//     {
-//       <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
-//         <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
-//         <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
-//       </Drawer>
-//     }
+    // {
+    //   <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+    //     <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
+    //     <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
+    //   </Drawer>
+    // }
 //   </div>
