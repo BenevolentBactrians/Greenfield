@@ -55,7 +55,7 @@ class App extends React.Component {
         <div className="row">
 
         {/* Sidebar Component */}
-          <div className="col-md-3 pl-0 pr-0">
+          <div className="col-md-2 pl-0 pr-0">
             <AppHeader
             logged={!(!this.state.userId)}
             setUserIdToState={this.setUserIdToState}
@@ -71,7 +71,7 @@ class App extends React.Component {
           </div>  
 
           
-          <div className="col-md-5">
+          <div className="col-md-6">
             {/* Tasks Component */}
             <Weekly
               week={this.state.weekState}
@@ -83,7 +83,7 @@ class App extends React.Component {
               setWeekDataState={this.updateCurrentWeekData}            
             />
             {
-              <Drawer width={400} openSecondary={false} open={this.state.addTaskActive} >
+              <Drawer width={400} openSecondary={true} open={this.state.addTaskActive} >
                 <AppBar iconStyleLeft={{ display: 'none' }} title="Add Task" />
                 <AddTask userId={this.state.userId} closeAddTaskForm={this.toggleAddTaskForm} />
               </Drawer>

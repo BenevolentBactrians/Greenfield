@@ -42,7 +42,7 @@ class Logged extends React.Component {
     localStorage.clear();
   }
   render() {
-    return (
+    return (    
       <IconMenu
         iconButtonElement={
           <IconButton> 
@@ -69,6 +69,15 @@ class AppHeader extends React.Component {
   
   constructor(props) {
     super(props);
+    this.checkSignedin = this.checkSignedin.bind(this);
+  }
+
+  checkSignedin() {
+    console.log("Started!")
+    this.props.logged ?
+      <Logged clearUserIdFromState={this.props.clearUserIdFromState} />
+      :
+      <Link to="/login"> <Login /> </Link>
   }
 
   render() {
@@ -92,8 +101,17 @@ class AppHeader extends React.Component {
           </div>
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
           <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
+
+          <button type="button" className="btn btn-info tsk-btn">
+            Add Task 
+          </button>
           
           <Duck className='duck-view' />
+
+          <button type="button" className="btn btn-info app-btn" onClick={this.checkSignedin}>
+            Sign Out 
+          </button>
+          
         </div>
       </Ddiv>
     )

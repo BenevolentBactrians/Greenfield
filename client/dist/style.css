@@ -26,6 +26,17 @@ body {
     }
  } */
 
+.app-btn {
+  position: absolute;
+  bottom:2vh;
+
+}
+
+.tsk-btn {
+  position: absolute;
+  bottom:65vh;
+}
+
 .nav-left {
   grid-area: 1/1/2/2;
   max-height: 60px;
@@ -138,16 +149,16 @@ body {
 }
 
 .app-header {
-  height: 101%;
+  height: 100vh;
+  width: 100%
   /* align-items: center; */
   grid-column-end: 4;
   grid-column-start: 1;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: rgb(0, 188, 212);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-  margin-bottom: 10px;
 }
 
 .header-el {
@@ -168,7 +179,7 @@ body {
   flex-direction: row;
   padding: 1rem;
   height: 150px;
-  bottom: 0;
+  bottom: 80px;
   position: absolute;
   flex: 2;
 }
