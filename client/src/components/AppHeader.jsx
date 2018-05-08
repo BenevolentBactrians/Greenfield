@@ -103,7 +103,6 @@ class AppHeader extends React.Component {
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
           <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
 
-<<<<<<< HEAD
           <button type="button" className="btn btn-info tsk-btn">
             Add Task 
           </button>
@@ -113,14 +112,6 @@ class AppHeader extends React.Component {
           <button type="button" className="btn btn-info app-btn" onClick={this.checkSignedin}>
             Sign Out 
           </button>
-=======
-          <button type="button" className="btn btn-info tsk-btn"> Add Task </button>
-
-          
-          <Duck className='duck-view' />
-
-          <button type="button" className="btn btn-info app-btn"> Sign Out </button>
->>>>>>> cfc7e9b6b1f7a446f2eaec38eeb8d135e44a4935
           
         </div>
       </Ddiv>
