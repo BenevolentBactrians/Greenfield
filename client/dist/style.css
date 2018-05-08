@@ -26,9 +26,6 @@ body {
     }
  } */
 
-<<<<<<< 871326e830aa7994dc09b8d4bf8cec91b425775e
-=======
-
 .app-btn {
   position: absolute;
   bottom:15px;
@@ -40,11 +37,6 @@ body {
   bottom:65vh;
 }
 
-.set-btn {
-  position: absolute;
-  bottom: 60vh;
-}
->>>>>>> Added Task, Settings buttons
 .nav-left {
   grid-area: 1/1/2/2;
   max-height: 60px;
@@ -157,16 +149,15 @@ body {
 }
 
 .app-header {
-  height: 101%;
+  height: 100vh;
   /* align-items: center; */
   grid-column-end: 4;
   grid-column-start: 1;
   display: inline-flex;
-  justify-content: space-between;
+  justify-content: center;
   background-color: rgb(0, 188, 212);
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 6px, rgba(0, 0, 0, 0.12) 0px 1px 4px;
   transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
-  margin-bottom: 10px;
 }
 
 .header-el {
