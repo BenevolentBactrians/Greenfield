@@ -26,13 +26,9 @@ body {
     }
  } */
 
-<<<<<<< HEAD
-=======
-
->>>>>>> cfc7e9b6b1f7a446f2eaec38eeb8d135e44a4935
 .app-btn {
   position: absolute;
-  bottom:15px;
+  bottom:2vh;
 
 }
 
@@ -154,10 +150,7 @@ body {
 
 .app-header {
   height: 100vh;
-<<<<<<< HEAD
-=======
-  width: 100%;
->>>>>>> cfc7e9b6b1f7a446f2eaec38eeb8d135e44a4935
+  width: 100%
   /* align-items: center; */
   grid-column-end: 4;
   grid-column-start: 1;
