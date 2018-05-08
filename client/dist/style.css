@@ -26,6 +26,25 @@ body {
     }
  } */
 
+<<<<<<< 871326e830aa7994dc09b8d4bf8cec91b425775e
+=======
+
+.app-btn {
+  position: absolute;
+  bottom:15px;
+
+}
+
+.tsk-btn {
+  position: absolute;
+  bottom:65vh;
+}
+
+.set-btn {
+  position: absolute;
+  bottom: 60vh;
+}
+>>>>>>> Added Task, Settings buttons
 .nav-left {
   grid-area: 1/1/2/2;
   max-height: 60px;
