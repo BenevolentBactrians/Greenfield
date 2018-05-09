@@ -26,8 +26,6 @@ body {
     }
  } */
 
-
-/* Sidebar Buttons */
 .app-btn {
   position: absolute;
   bottom:2vh;
@@ -37,15 +35,6 @@ body {
 .tsk-btn {
   position: absolute;
   bottom:65vh;
-}
-
-/* Chart Display */
-
-.bar-chart {
-  bottom: 50vh;
-  margin-left: 15px;
-  margin-bottom: 25px;
-  margin-top: 25px;
 }
 
 .nav-left {
@@ -154,14 +143,14 @@ body {
 .chart {
   display: flex;
   flex-direction: column;
-  align-items: left;
-  width: 50%;
+  align-items: center;
+  width: 100%;
   height: 45%;
 }
 
 .app-header {
   height: 100vh;
-  width: 100%;
+  width: 100%
   /* align-items: center; */
   grid-column-end: 4;
   grid-column-start: 1;

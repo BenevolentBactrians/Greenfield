@@ -65,7 +65,7 @@ class App extends React.Component {
 
           {/* Chart Component */}
           <div className='col-md-4'>
-            <div>
+            <div className='chart'>
               <Chart data={this.state.currentWeekData} />
             </div>
           </div>  
