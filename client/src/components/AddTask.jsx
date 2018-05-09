@@ -7,6 +7,17 @@ import Snackbar from 'material-ui/Snackbar';
 import axios from 'axios';
 import Paper from 'material-ui/Paper';
 
+//add
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+
+
+const styles = {
+  customWidth: {
+    width: 200,
+  },
+};
+
 class AddTask extends React.Component {
   constructor(props) {
     super(props);
@@ -20,7 +31,16 @@ class AddTask extends React.Component {
       open: false,
       logOpen: false,
       emptyOpen: false,
-      today: new Date()
+      today: new Date(),
+      categoryValue: 0,
+      categories: [
+        {id: 1, name: 'urgent'},
+        {id: 2, name: 'erand'}, 
+        {id: 3, name: 'personal'},
+        {id: 4, name: 'friends'},        
+        {id: 5, name: 'fitness'},               
+      ],
+      taskCategory: '',
     }
 
     this.onChangeTask = this.onChangeTask.bind(this);
@@ -30,6 +50,7 @@ class AddTask extends React.Component {
     this.onChangeDesc = this.onChangeDesc.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRequestClose = this.handleRequestClose.bind(this);
+    this.onCategorySelect = this.onCategorySelect.bind(this);
   }
 
   handleSubmit(e) {
@@ -44,6 +65,7 @@ class AddTask extends React.Component {
         startTime: this.state.startTime,
         endTime: this.state.endTime,
         description: this.state.description,
+        category: this.state.taskCategory,
         userId: this.props.userId
       }, {validateStatus: function(status) {
         return status === 201 || status === 200 || status === 403}
@@ -60,6 +82,7 @@ class AddTask extends React.Component {
           startTIme: null,
           endTime: null,
           description: '',
+          category: '',
           open:true
         })
         this.props.closeAddTaskForm()
@@ -97,6 +120,13 @@ class AddTask extends React.Component {
     this.setState({
       description: e.target.value, logOpen: !this.props.userId
     })
+  }
+
+  onCategorySelect(event, value) {
+    console.log('onCategorySelect ', event.target.innerText);
+    console.log('value ', value);
+    this.setState({ categoryValue: value, taskCategory: event.target.innerText })
+
   }
 
   handleRequestClose() {
@@ -147,7 +177,15 @@ class AddTask extends React.Component {
               floatingLabelText="description"
               rows={2}
             />
-
+        <DropDownMenu
+          value={this.state.categoryValue}
+          onChange={this.onCategorySelect}
+        >
+          <MenuItem value={0} primaryText="Category" />
+          {this.state.categories.map((category, idx) => {
+            return ( <MenuItem value={idx + 1} primaryText={category.name} />)
+          })}
+        </DropDownMenu>
             <RaisedButton
               onClick={this.handleSubmit}
               label="add task"

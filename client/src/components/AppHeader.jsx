@@ -1,11 +1,9 @@
+// Module Imports
 import React, {Component} from 'react';
-import LoginView from './Login.jsx';
 import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Timer from './Timer.jsx';
-
 import { fullWhite } from 'material-ui/styles/colors';
 import Register from './Register.jsx'
 import axios from 'axios';
@@ -14,6 +12,14 @@ import {
   Route,
   Link
 } from 'react-router-dom'
+
+// File Imports
+import Timer from './Timer.jsx';
+import LoginView from './Login.jsx';
+import Duck from './Duck.jsx';
+import Ddiv from '../hoc/ddiv/ddiv.js'
+
+
 
 class Login extends Component {
   static muiName = 'FlatButton';
@@ -36,7 +42,7 @@ class Logged extends React.Component {
     localStorage.clear();
   }
   render() {
-    return (
+    return (    
       <IconMenu
         iconButtonElement={
           <IconButton> 
@@ -44,7 +50,7 @@ class Logged extends React.Component {
               <path d="M0 0h24v24H0z" fill="none"/>
               <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
             </svg>
-       </IconButton>
+          </IconButton>
         }
         targetOrigin={{horizontal: 'right', vertical: 'top'}}
         anchorOrigin={{horizontal: 'right', vertical: 'top'}}
@@ -63,19 +69,51 @@ class AppHeader extends React.Component {
   
   constructor(props) {
     super(props);
+    this.checkSignedin = this.checkSignedin.bind(this);
+  }
+
+  checkSignedin() {
+    console.log("Started!")
+    this.props.logged ?
+      <Logged clearUserIdFromState={this.props.clearUserIdFromState} />
+      :
+      <Link to="/login"> <Login /> </Link>
   }
 
   render() {
     return (
-      <div className="app-header">
+      <Ddiv>
+        <div className="app-header">
 
-          <div className="nav-left"> <Timer/> </div>
-          <div className="nav-center header header-el"><div className="header-text"><h2>  Hump Day  </h2> </div> </div>
-
-          <div className="nav-right header-el"> {this.props.logged ? <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> : <Link to="/login"> <Login /> </Link> } </div>
+          <div className="nav-center header header-el ml-3">
+            <div className="header-text">
+              <h2>  Hump Day  </h2> 
+              
+            </div>
+          </div>
+          
+          <div className="nav-right header-el"> 
+            {this.props.logged ? 
+              <Logged clearUserIdFromState={this.props.clearUserIdFromState} /> 
+              : 
+              <Link to="/login"> <Login /> </Link> 
+            } 
+          </div>
           <Route exact path="/signup" render={()=><Register setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
           <Route exact path="/login" render={()=><LoginView setUserIdToState={this.props.setUserIdToState} isActive={true}/>}/>
-      </div>
+
+          <button type="button" className="btn btn-info tsk-btn">
+            Add Task 
+          </button>
+          
+          <Duck className='duck-view' />
+
+          <button type="button" className="btn btn-info app-btn" onClick={this.checkSignedin}>
+            Sign Out 
+          </button>
+          
+        </div>
+      </Ddiv>
     )
   }
 

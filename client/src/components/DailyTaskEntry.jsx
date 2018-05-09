@@ -57,7 +57,7 @@ class DailyTaskEntry extends React.Component {
           onCheck={this.updateCheck}
           />
         </span>
-        <span onClick={this.handleOpen} className='daily-entry-name'>{this.props.task.task}</span>
+        <span onClick={this.handleOpen} className='daily-entry-name'>{this.props.task.task}</span> <span className="categoryName"> {this.props.task.category}</span>
         <Dialog
           title="Task Description"
           modal={false}
@@ -67,6 +67,7 @@ class DailyTaskEntry extends React.Component {
         <Paper  zDepth={2} >
         <div style={{padding: '10px', wordWrap: 'break-word', whiteSpace: 'normal'}}>
           {this.props.task.description}
+         
         </div>
         </Paper>
         </Dialog>

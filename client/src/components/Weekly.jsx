@@ -136,6 +136,7 @@ class Weekly extends React.Component {
 
       this.props.setWeekDataState(updatedCurrentWeekData)
 
+      console.log('currentWeekData ', this.state.currentWeekData);
 
     })
     .catch ( (error) => {
@@ -151,7 +152,8 @@ class Weekly extends React.Component {
     var formattedWeek = this.currentWeekData.map ( (day) => {
       var formattedDay = {
         date: day.date, 
-        count: day.tasks.length
+        count: day.tasks.length,
+        category: day.tasks.category
       }
       return formattedDay
     })
@@ -208,7 +210,7 @@ class Weekly extends React.Component {
 
                   { this.state.currentWeekData.map( (day, index) =>
 
-                    <WeeklyTaskEntry day={day} key={index} />                 
+                    <WeeklyTaskEntry day={day} key={index} categoryText="hello cateegory" />                 
                     )
                   }               
                 </Menu>
