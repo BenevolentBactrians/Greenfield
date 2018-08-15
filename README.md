@@ -129,5 +129,4 @@ App
 
 **Contribute By**
 
-
 Fork HumpDay repository. Send Pull Request for review and merge.
